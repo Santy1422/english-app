@@ -31,6 +31,14 @@ const create = async () => {
   
   // MIDDLEWARES, se meten en todos los request y en todos los sends
   app.use(cors({ origin: '*' })); // Discrimina quién puede hacer peticiones al backend, poner página del frontend al deployar.
+  app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*'); // update to match the domain you will make the request from
+    // res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // update to match the domain you will make the request from
+    res.header('Access-Control-Allow-Credentials', 'true');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+    next();
+  });
   app.use(globalLimit);
   app.use(express.json({ limit: "50mb" })); // Transforma json en strings automáticamente y viceversa.
   app.use(bodyParser.urlencoded({ extended: true })); // Permite anidación de objetos y arrays
