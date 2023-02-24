@@ -1,4 +1,6 @@
 const express = require('express');
+const cors = require('cors');
+
 //agregar mas importaciones de ruta aca:
 // const userRoute = require('./user.route');
 // const petRoute = require('./pet.route');
@@ -18,5 +20,8 @@ const router = express.Router();
 // router.use('/admin', adminRoute)
 // router.use('/donation', mercadopago)
 router.use('/ingles', ingles)
-
+const corsOptions = {
+    origin: '*'
+  };
+  router.use(cors(corsOptions));
 module.exports = router;
