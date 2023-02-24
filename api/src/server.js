@@ -14,10 +14,14 @@ require('dotenv').config();
 
 //#region  MONGOOSE  
 mongoose.set('strictQuery', true)
-
+let MONGOUSER= "mongo"
+let MONGOPASSWORD = "bryxl0WFeD3IetwBzAIc"
+let MONGOHOST = "containers-us-west-28.railway.app"
+let MONGOPORT = 6726
+//mongodb://${{ MONGOUSER }}:${{ MONGOPASSWORD }}@${{ MONGOHOST }}:${{ MONGOPORT }}
 // Agrega aquí las variables de entorno necesarias para conectarte a tu base de datos de MongoDB
-const DATABASE_URL = 'mongodb://' + process.env.DATABASE_USER + ':' + process.env.DATABASE_PASSWORD + '@' + process.env.DATABASE_HOST + ':' + process.env.DATABASE_PORT + '/' + process.env.DATABASE_NAME;
-
+// const DATABASE_URL = 'mongodb://' + process.env.DATABASE_USER + ':' + process.env.DATABASE_PASSWORD + '@' + containers-us-west-28.railway.app + ':' + process.env.DATABASE_PORT + '/' + process.env.DATABASE_NAME;
+const DATABASE_URL = `mongodb://${{ MONGOUSER }}:${{ MONGOPASSWORD }}@${{ MONGOHOST }}:${{ MONGOPORT }}/ingles`
 async function main() {
   // Conecta mongoose a la database
   await mongoose.connect(DATABASE_URL);
