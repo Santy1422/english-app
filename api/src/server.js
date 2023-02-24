@@ -39,21 +39,15 @@ const MONGOUSER = "mongo";
 const MONGOPASSWORD = "bryxl0WFeD3IetwBzAIc";
 const MONGOHOST = "containers-us-west-28.railway.app";
 const MONGOPORT = 6726;
-const DATABASE_NAME = "ingles";
+let conexion = "mongodb://mongo:bryxl0WFeD3IetwBzAIc@containers-us-west-28.railway.app:6726"
 
-const DATABASE_URL = `mongodb://${MONGOUSER}:${MONGOPASSWORD}@${MONGOHOST}:${MONGOPORT}/${DATABASE_NAME}`;
-
-mongoose.set('strictQuery', true);
-
-async function main() {
-  try {
-    await mongoose.connect(`mongodb://mongo:bryxl0WFeD3IetwBzAIc@containers-us-west-28.railway.app:6726/ingles`);
-    console.log('Connected to MongoDB successfully!');
-  } catch (error) {
-    console.error('Error connecting to MongoDB:', error);
-  }
+async function main() {//conecta mongoose a la database
+         await mongoose.connect(conexion);
+// use  `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
 }
-main();
+
+main().catch(err => console.log({error: 'Error al conectar con la database' + err.message})); //como main es asincronica, es una promesa, tiene .catch:
+//#endregion
 
 // main().catch(err => console.log({error: 'Error al conectar con la database' + err.message})); //como main es asincronica, es una promesa, tiene .catch:
 //#endregion
