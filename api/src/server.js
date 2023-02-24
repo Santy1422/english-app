@@ -30,7 +30,7 @@ const create = async () => {
   const app = express();
   
   // MIDDLEWARES, se meten en todos los request y en todos los sends
-  app.use(cors()); // Discrimina quién puede hacer peticiones al backend, poner página del frontend al deployar.
+  app.use(cors({ origin: '*' })); // Discrimina quién puede hacer peticiones al backend, poner página del frontend al deployar.
   app.use(globalLimit);
   app.use(express.json({ limit: "50mb" })); // Transforma json en strings automáticamente y viceversa.
   app.use(bodyParser.urlencoded({ extended: true })); // Permite anidación de objetos y arrays
