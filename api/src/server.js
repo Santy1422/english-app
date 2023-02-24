@@ -13,34 +13,53 @@ const {globalLimit} = require('./utils/rate-limiters');
 require('dotenv').config();
 
 //#region  MONGOOSE  
-mongoose.set('strictQuery', true)
-let MONGOUSER= "mongo"
-let MONGOPASSWORD = "bryxl0WFeD3IetwBzAIc"
-let MONGOHOST = "containers-us-west-28.railway.app"
-let MONGOPORT = 6726
-DATABASE_NAME = "ingles"
-//mongodb://${{ MONGOUSER }}:${{ MONGOPASSWORD }}@${{ MONGOHOST }}:${{ MONGOPORT }}
-// Agrega aquí las variables de entorno necesarias para conectarte a tu base de datos de MongoDB
-// const DATABASE_URL = 'mongodb://' + MONGOUSER + ':' + MONGOPASSWORD + '@' + MONGOHOST + ':' + MONGOPORT + '/' + DATABASE_NAME;
-// // const DATABASE_URL = `mongodb://${ MONGOUSER }:${MONGOPASSWORD }@${ MONGOHOST }:${ MONGOPORT }/ingles`
-// async function main() {
-//   // Conecta mongoose a la database
-//   await mongoose.connect(DATABASE_URL);
+// mongoose.set('strictQuery', true)
+// let MONGOUSER= "mongo"
+// let MONGOPASSWORD = "bryxl0WFeD3IetwBzAIc"
+// let MONGOHOST = "containers-us-west-28.railway.app:6726"
+// let MONGOPORT = 6726
+// DATABASE_NAME = "ingles"
+// //mongodb://${{ MONGOUSER }}:${{ MONGOPASSWORD }}@${{ MONGOHOST }}:${{ MONGOPORT }}
+// // Agrega aquí las variables de entorno necesarias para conectarte a tu base de datos de MongoDB
+// // const DATABASE_URL = 'mongodb://' + MONGOUSER + ':' + MONGOPASSWORD + '@' + MONGOHOST + ':' + MONGOPORT + '/' + DATABASE_NAME;
+// // // const DATABASE_URL = `mongodb://${ MONGOUSER }:${MONGOPASSWORD }@${ MONGOHOST }:${ MONGOPORT }/ingles`
+// // async function main() {
+// //   // Conecta mongoose a la database
+// //   await mongoose.connect(DATABASE_URL);
+// // }
+
+// mongoose.set('strictQuery', true)
+// const DATABASE_URL = MONGOHOST ? MONGOHOST : 'MONGOHOST';
+// const DATABASE_NAME = DATABASE_NAME || 'ingles';
+// async function main() {//conecta mongoose a la database
+//          await mongoose.connect(DATABASE_URL+"/"+DATABASE_NAME);
+// // use  `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
 // }
+const MONGOUSER = "mongo";
+const MONGOPASSWORD = "bryxl0WFeD3IetwBzAIc";
+const MONGOHOST = "containers-us-west-28.railway.app";
+const MONGOPORT = 6726;
+const DATABASE_NAME = "ingles";
 
-mongoose.set('strictQuery', true)
-const DATABASE_URL = MONGOHOST ? MONGOHOST : 'MONGOHOST';
-const DATABASE_NAME = DATABASE_NAME || 'ingles';
-async function main() {//conecta mongoose a la database
-         await mongoose.connect(DATABASE_URL+"/"+DATABASE_NAME);
-// use  `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
+const DATABASE_URL = `mongodb://${MONGOUSER}:${MONGOPASSWORD}@${MONGOHOST}:${MONGOPORT}/${DATABASE_NAME}`;
+
+mongoose.set('strictQuery', true);
+
+async function main() {
+  try {
+    await mongoose.connect(DATABASE_URL);
+    console.log('Connected to MongoDB successfully!');
+  } catch (error) {
+    console.error('Error connecting to MongoDB:', error);
+  }
 }
+main();
 
-main().catch(err => console.log({error: 'Error al conectar con la database' + err.message})); //como main es asincronica, es una promesa, tiene .catch:
+// main().catch(err => console.log({error: 'Error al conectar con la database' + err.message})); //como main es asincronica, es una promesa, tiene .catch:
 //#endregion
 
 
-main().catch(err => console.log({error: 'Error al conectar con la database' + err.message}));
+// main().catch(err => console.log({error: 'Error al conectar con la database' + err.message}));
 
 //#endregion
 
