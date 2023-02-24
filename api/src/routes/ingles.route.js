@@ -1,5 +1,6 @@
 const express = require('express');
 const axios = require('axios');
+const cors = require('cors');
 
 const OpenAI = require('openai-api');
 
@@ -7,7 +8,9 @@ const OpenAI = require('openai-api');
 const { checkJwt, checkAdmin } = require('../utils/firebase-stuff');
 const UserModel = require('../models/user.model');
 const router = express.Router();
-
+const corsOptions = {
+  origin: 'https://english-app-santy1422.vercel.app/'
+};
 router.post("/", async (req, res) =>{
   const {email, name, picture} = req.body;
 

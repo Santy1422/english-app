@@ -21,7 +21,7 @@ const router = express.Router();
 // router.use('/donation', mercadopago)
 router.use('/ingles', ingles)
 const corsOptions = {
-    origin: '*'
+    origin: 'https://english-app-santy1422.vercel.app/'
   };
   router.use(cors(corsOptions));
 module.exports = router;
