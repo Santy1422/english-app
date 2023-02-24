@@ -47,7 +47,7 @@ mongoose.set('strictQuery', true);
 
 async function main() {
   try {
-    await mongoose.connect(DATABASE_URL);
+    await mongoose.connect(`mongodb://mongo:bryxl0WFeD3IetwBzAIc@containers-us-west-28.railway.app:6726/ingles`);
     console.log('Connected to MongoDB successfully!');
   } catch (error) {
     console.error('Error connecting to MongoDB:', error);
