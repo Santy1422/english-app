@@ -3,6 +3,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const routes = require('./routes');
 const bodyParser = require('body-parser');
+const morgan = require('morgan');
+
 // const cors = require('cors');
 const { checkJwt, firebaseAdmin, setAdmin, extractUserData } = require('./utils/firebase-stuff');
 const {globalLimit} = require('./utils/rate-limiters');
@@ -32,7 +34,7 @@ const create = async () => {
   // MIDDLEWARES, se meten en todos los request y en todos los sends
   app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
   app.use(bodyParser.json({ limit: '50mb' }));
-  app.use(cookieParser());
+//   app.use(cookieParser());
   app.use(morgan('dev'));
   app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*'); // update to match the domain you will make the request from
