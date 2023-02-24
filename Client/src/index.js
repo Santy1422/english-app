@@ -7,6 +7,9 @@ import {BrowserRouter} from "react-router-dom"
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { Provider } from 'react-redux';
 import store from './redux/store';
+import axios from 'axios';
+
+axios.defaults.baseURL = 'https://english-app-production.up.railway.app';
 ReactDOM.render(
 
   <React.StrictMode>

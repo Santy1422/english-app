@@ -39,7 +39,7 @@ if(profile) setPalabras({...palabras, email: profile.email})
                     'Authorization': 'qVCoI6tAFaG3g5O3IQPMFiUduRrIfm3DMQKg09i930B77EaYU699y6gJ'
                 }
             })
-        await axios.put("http://localhost:8080/ingles", {
+        await axios.put("/ingles", {
             email: profile?.email,
             palabra: palabras.palabra,
             word: palabras.word,
