@@ -21,12 +21,24 @@ let MONGOPORT = 6726
 DATABASE_NAME = "ingles"
 //mongodb://${{ MONGOUSER }}:${{ MONGOPASSWORD }}@${{ MONGOHOST }}:${{ MONGOPORT }}
 // Agrega aquí las variables de entorno necesarias para conectarte a tu base de datos de MongoDB
-const DATABASE_URL = 'mongodb://' + MONGOUSER + ':' + MONGOPASSWORD + '@' + MONGOHOST + ':' + MONGOPORT + '/' + DATABASE_NAME;
-// const DATABASE_URL = `mongodb://${ MONGOUSER }:${MONGOPASSWORD }@${ MONGOHOST }:${ MONGOPORT }/ingles`
-async function main() {
-  // Conecta mongoose a la database
-  await mongoose.connect(DATABASE_URL);
+// const DATABASE_URL = 'mongodb://' + MONGOUSER + ':' + MONGOPASSWORD + '@' + MONGOHOST + ':' + MONGOPORT + '/' + DATABASE_NAME;
+// // const DATABASE_URL = `mongodb://${ MONGOUSER }:${MONGOPASSWORD }@${ MONGOHOST }:${ MONGOPORT }/ingles`
+// async function main() {
+//   // Conecta mongoose a la database
+//   await mongoose.connect(DATABASE_URL);
+// }
+
+mongoose.set('strictQuery', true)
+const DATABASE_URL = MONGOHOST ? MONGOHOST : 'MONGOHOST';
+const DATABASE_NAME = DATABASE_NAME || 'ingles';
+async function main() {//conecta mongoose a la database
+         await mongoose.connect(DATABASE_URL+"/"+DATABASE_NAME);
+// use  `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
 }
+
+main().catch(err => console.log({error: 'Error al conectar con la database' + err.message})); //como main es asincronica, es una promesa, tiene .catch:
+//#endregion
+
 
 main().catch(err => console.log({error: 'Error al conectar con la database' + err.message}));
 
