@@ -3,7 +3,6 @@ import axios from "axios";
 export const useStat = () =>{
     const [profile, setProfile] = useState()
     const token = localStorage.getItem('accessToken')
-
     useEffect( () => {
         if (localStorage.length) {
             axios
