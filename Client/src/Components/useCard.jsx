@@ -28,14 +28,14 @@ const prev = () => {
 const deleteWord = async () =>{
 
     try{
-let word = await axios.put("/ingles/delete",
+await axios.put("/ingles/delete",
  
 {    email: profile.email,
       palabra: profile.palabras.español[posicion],
       word: profile.palabras.ingles[posicion],
       image: profile.palabras.image[posicion]
 } )
-.then((succces) => alert ("Palabra marcada como aprendida!"), window.location.reload() )
+.then((succces) => alert ("Palabra marcada como aprendida!") )
 
 }
 catch(err) {
