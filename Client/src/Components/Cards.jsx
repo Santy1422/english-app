@@ -12,6 +12,9 @@ export const Cards = () =>{
     useEffect(() =>{
         leer()
     }, [posicion])
+    useEffect(() =>{
+        leer()
+    }, [])
 
     const leer = () =>{
     const synth = window.speechSynthesis;
@@ -80,9 +83,9 @@ synth.speak(utterThis);
         Ya aprendi esta palabra
   </button>        
 
-<div class="card-actions-container absolute top-1/2   justify-betwen mt-20 mx-9">
-        <button class="btn btn-primary  mx-20" onClick={() => prev()}>Anterior</button>
-        <button class="btn btn-primary  mx-20" onClick={() => next()}>Siguiente</button>
+<div class="container py-10 px-10 mx-0 min-w-full flex flex-row">
+        <button class="btn btn-primary sm:mx md:mx-20" onClick={() => prev()}>Anterior</button>
+        <button class="btn btn-primary sm:mx md:mx-20" onClick={() => next()}>Siguiente</button>
       </div>   
                         </div>
                     </div>
