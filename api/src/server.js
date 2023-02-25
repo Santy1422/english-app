@@ -35,10 +35,7 @@ require('dotenv').config();
 //          await mongoose.connect(DATABASE_URL+"/"+DATABASE_NAME);
 // // use  `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
 // }
-const MONGOUSER = "mongo";
-const MONGOPASSWORD = "bryxl0WFeD3IetwBzAIc";
-const MONGOHOST = "containers-us-west-28.railway.app";
-const MONGOPORT = 6726;
+
 let conexion = "mongodb://mongo:bryxl0WFeD3IetwBzAIc@containers-us-west-28.railway.app:6726"
 
 async function main() {//conecta mongoose a la database

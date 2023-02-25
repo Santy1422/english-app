@@ -28,7 +28,7 @@ const prev = () => {
 const deleteWord = async () =>{
 
     try{
-let word = await axios.put("https://english-app-production.up.railway.app/ingles/delete",
+let word = await axios.put("/ingles/delete",
  
 {    email: profile.email,
       palabra: profile.palabras.español[posicion],

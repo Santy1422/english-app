@@ -15,7 +15,7 @@ export const useStat = () =>{
                 })
                 .then(async (res) => {
                     // setProfile(res.data);
-                 await axios.post("https://english-app-production.up.railway.app/ingles", { email: res.data.email, name: res.data.name, picture: res.data.picture  })
+                 await axios.post("/ingles", { email: res.data.email, name: res.data.name, picture: res.data.picture  })
                         .then((scces) => setProfile(scces.data) )
 
                 })

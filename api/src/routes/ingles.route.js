@@ -1,10 +1,6 @@
 const express = require('express');
 const axios = require('axios');
 
-const OpenAI = require('openai-api');
-
-
-const { checkJwt, checkAdmin } = require('../utils/firebase-stuff');
 const UserModel = require('../models/user.model');
 const router = express.Router();
 
@@ -62,25 +58,4 @@ router.put("/", async (req, res) => {
 
 
 
-  router.post('/chat', async (req, res) => {
-    const question = req.body.question;
-  
-    // Hacer una solicitud a la API de ChatGPT
-    const response = await axios.post('https://api.openai.com/v1/engines/davinci-codex/completions', {
-      prompt: `Pregunta: ${question}\nRespuesta:`,
-      max_tokens: 50,
-      temperature: 0.7,
-      n: 1,
-      stop: ['\n']
-    }, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer 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`
-      }
-    });
-  
-    const answer = response.data.choices[0].text.trim();
-  
-    res.send({ answer });
-  });
 module.exports = router;
