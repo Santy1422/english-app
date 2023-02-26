@@ -5,14 +5,28 @@ const UserModel = require('../models/user.model');
 const router = express.Router();
 
 router.post("/", async (req, res) =>{
-  const {email, name, picture} = req.body;
+  const {email, name, picture, password} = req.body;
 
+  if(!password){
   const existe = await UserModel.findOne({ email: email })
   if(existe) res.status(200).send(existe)
   else{
       const newUser = await UserModel.create({ email, name, picture })
       res.status(200).send(newUser)
   }
+}
+else{
+  const salt = bcrypt.genSaltSync(10);
+  const hashedPassword = bcrypt.hashSync(password, salt);
+
+  const existeUser = await UserModel.findOne({ email: email, password: hashedPassword})
+  if(existeUser) res.status(200).send(existe)
+  else{
+    const newUser2 = await UserModel.create({ email, password: hashedPassword });
+    res.status(200).send(newUser2)
+  }
+
+}
 })
 
 router.put("/", async (req, res) => {

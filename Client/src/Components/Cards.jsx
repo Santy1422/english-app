@@ -47,8 +47,12 @@ synth.speak(utterThis);
     return(
        
         <><div class="relative max-w-md mx-auto md:max-w-2xl min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-xl mt-20">
-                     {profile?.palabras?.ingles === 0 || palabraEspañol || palabraIngles? 
+                     {profile?.palabras?.ingles < 1 ? 
+                     <div>
+                     <p> Aun no tienes palabras</p>
                      <NewWord/>
+                     </div>
+
 :
             <div class="px-6">
                 <div class="flex flex-wrap justify-center">

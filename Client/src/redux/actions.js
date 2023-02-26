@@ -1,10 +1,10 @@
 import axios from "axios";
 
-export const SetProfile = ({email, name, picture}) => async (dispatch) => {
+export const SetProfile = ({email, name, picture, password}) => async (dispatch) => {
   const token = localStorage.getItem("accessToken");
 
   try {
-    const userProfile = await axios.post("/ingles", {email, name, picture}, {
+    const userProfile = await axios.post("/ingles", {email, name, picture, password}, {
     
     });
 

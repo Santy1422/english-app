@@ -8,7 +8,7 @@ export const Panel = ({location}) =>{
   const history = useHistory()  
 
   const profile = useSelector((state) => state.profile)
-const [paginas, setPaginas] = useState(2)
+const [paginas, setPaginas] = useState(1)
 const logout = () =>{
   localStorage.clear("accessToken")
   history.push("/")
