@@ -34,8 +34,11 @@ export const Cards = () =>{
         fetchData();
       }, [ changeCard]);
 
+      useEffect(() =>{
+        leer()
+      }, [posicion])
 
-    const leer = () =>{
+      const leer = () =>{
     const synth = window.speechSynthesis;
 const utterThis = new SpeechSynthesisUtterance(profile?.palabras?.ingles[posicion]);
 utterThis.lang = 'en-US';
