@@ -21,9 +21,9 @@ router.put("/", async (req, res) => {
     const usuario = await UserModel.findOne({ email: email });
   
     if (usuario) {
-      palabra.map((p) => usuario.palabras.español.push(p));
-      word.map((w) => usuario.palabras.ingles.push(w));
-      image.map((img) => usuario.palabras.image.push(img));
+      palabra.forEach((p, i) => usuario.palabras.español.push(p.toString()));
+      word.forEach((w, i) => usuario.palabras.ingles.push(w.toString()));
+      image.forEach((img, i) => usuario.palabras.image.push(img.toString()));
 
       await usuario.save();
       res.status(200).json({ message: "Objeto actualizado correctamente" });
