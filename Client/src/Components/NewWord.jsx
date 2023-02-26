@@ -90,12 +90,31 @@ const bulk = async() =>{
 							<label for="password" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Palabra en ingles</label>
 						</div>
                         <div class="container py-10 px-10 mx-0 min-w-full flex flex-row">
-							<button onClick={() => agregar()} class="bg-blue-500 text-white rounded-md px-2 py-1">Enviar palabras</button>
                             <button onClick={() => bulk()} class="bg-blue-500 text-white rounded-md px-2 py-1">Agregar palabras</button>
-						</div>
-                        <p>Recuerda enviar las palabras actualmente tienes {spanish.length}</p>
-                        {english.map((ele) => <li>{ele}</li>)}
+                            <button onClick={() => agregar()} class="bg-blue-500 text-white rounded-md px-2 py-1">Enviar palabras</button>
 
+						</div>
+                        {english?.map((ele, index) => (
+  <ul key={index} class="max-w-md divide-y divide-gray-200 dark:divide-gray-700">
+    <li class="pb-3 sm:pb-4">
+      <div class="flex items-center space-x-4">
+        <div class="flex-shrink-0">
+          <img class="w-8 h-8 rounded-full" src={screen[index]} alt="Neil image"/>
+        </div>
+        <div class="flex-1 min-w-0">
+          <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+            {ele}
+          </p>
+          <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+            {spanish[index]}
+          </p>
+        </div>
+      </div>
+    </li>
+  </ul>
+))}
+
+                        
 					</div>
 				</div>
 			</div>
