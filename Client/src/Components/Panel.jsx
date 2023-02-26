@@ -1,14 +1,13 @@
 import React, {useState} from "react";
 import { Cards } from "./Cards";
 import { NewWord } from "./NewWord";
-import { useStat } from "./useStat";
 import { useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export const Panel = ({location}) =>{
   const history = useHistory()  
 
-const {profile} = useStat()    
-const {state} = location
+  const profile = useSelector((state) => state.profile)
 const [paginas, setPaginas] = useState(1)
 const logout = () =>{
   localStorage.clear("accessToken")

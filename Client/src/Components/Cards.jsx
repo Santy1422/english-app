@@ -1,20 +1,39 @@
 import React, { useEffect, useState } from "react";
-import { useStat } from "./useStat";
 import { useCard } from "./useCard";
 import { NewWord } from "./NewWord";
-
+import  {SetProfile}  from "../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 export const Cards = () =>{
 
+  const {posicion, español, setEspañol, next, prev, palabraEspañol, palabraIngles, deleteWord, changeCard} = useCard()
 
-    const {profile} = useStat()    
-    const {posicion, español, setEspañol, next, prev, palabraEspañol, palabraIngles, deleteWord} = useCard()
+    const dispatch = useDispatch()
+    const profile = useSelector((state) => state.profile)
 
-    useEffect(() =>{
-        leer()
-    }, [posicion])
-    useEffect(() =>{
-        leer()
-    }, [])
+    useEffect(() => {
+        const fetchData = async () => {
+          const token = localStorage.getItem("accessToken");
+      
+          if (!token || !profile) {
+            return;
+          }
+      
+          try {
+            const decifrar = await axios.get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${token}`, {
+              headers: {
+                Authorization: `Bearer ${token}`,
+                Accept: 'application/json'
+              }
+            });
+            dispatch(SetProfile({ email: decifrar.data.email, name: decifrar.data.name, picture: decifrar.data.picture }));
+          } catch (error) {
+            console.error(error);
+          }
+        };
+        fetchData();
+      }, [ changeCard]);
+
 
     const leer = () =>{
     const synth = window.speechSynthesis;

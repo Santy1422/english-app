@@ -1,12 +1,14 @@
 import React, {useState} from "react";
-import { useStat } from "./useStat";
 
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 export const useCard = () =>{
-    const {profile} = useStat()    
+    const profile = useSelector((state) => state.profile)
+
     const [posicion, setPosicion] = useState(0)    
-const [español, setEspañol] = useState(false)    
+const [español, setEspañol] = useState(false)
+const [changeCard, setChangeCard] = useState(true)
 
 const next = () => {
     if(profile?.palabras?.ingles[posicion + 1] === undefined) alert("Agrega mas palabras")
@@ -35,7 +37,7 @@ let word = await axios.put("/ingles/delete",
       word: profile.palabras.ingles[posicion],
       image: profile.palabras.image[posicion]
 } )
-.then((succces) => alert ("Palabra marcada como aprendida!"), window.location.reload() )
+.then((succces) => alert ("Palabra marcada como aprendida!"), setChangeCard(!changeCard))
 
 }
 catch(err) {
@@ -49,6 +51,6 @@ var palabraEspañol = profile?.palabras?.español[posicion]?.charAt(0).toUpperCa
 var palabraIngles = profile?.palabras?.ingles[posicion]?.charAt(0).toUpperCase() + profile?.palabras?.ingles[posicion]?.slice(1).toLowerCase();
 
 return{
-    posicion, español, next, prev, palabraEspañol, palabraIngles, setEspañol, deleteWord
+    posicion, español, next, prev, palabraEspañol, palabraIngles, setEspañol, deleteWord, changeCard
 }
 }

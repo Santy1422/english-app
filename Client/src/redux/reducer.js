@@ -1,18 +1,16 @@
 
 const initialState = {
-    usuario: [],
-    palabrasEsp: [],
-    palabrasEng: [],
-    test: "asd"
+    profile: [],
+    test : "asd"
 }
 
 function rootReducer(state = initialState, action) {
 switch(action.type){
 
-case "ADDUSER":
+case "INFOUSER":
     return{
         ...state,
-        usuario: action.payload
+        profile: action.payload
     }
               default:
                 return { ...state };

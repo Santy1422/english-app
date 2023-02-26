@@ -1,26 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { useStat } from "./useStat";
-import { createClient } from 'pexels';
 import axios from "axios"
+import { useSelector } from "react-redux";
 
 
 export const NewWord = () =>{
 
-    const client = createClient('qVCoI6tAFaG3g5O3IQPMFiUduRrIfm3DMQKg09i930B77EaYU699y6gJ');
-   
-    const {profile} = useStat()    
+    const profile = useSelector((state) => state.profile)
 
     const [palabras, setPalabras] = useState({
-        email: "",
         palabra: "",
         word: "",
         image: ""
     })    
-useEffect(() => {
-if(profile) setPalabras({...palabras, email: profile.email})
-}, [profile])
-
-
 
     const changeInput = (e) =>{
         setPalabras({...palabras,
@@ -40,7 +31,7 @@ if(profile) setPalabras({...palabras, email: profile.email})
                 }
             })
         await axios.put("/ingles", {
-            email: profile?.email,
+            email: profile.email,
             palabra: palabras.palabra,
             word: palabras.word,
             image: response.data.photos[0].src.medium

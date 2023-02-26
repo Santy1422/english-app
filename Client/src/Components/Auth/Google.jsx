@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useGoogleLogin } from '@react-oauth/google';
 import { googleLogout } from '@react-oauth/google';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios"
-import { useStat } from "../useStat";
 import { useHistory } from "react-router-dom";
 export const Google = () =>{
 
   const history = useHistory()
 const [user, setUser] = useState()
 
-const {setProfile, profile} = useStat()
-   
+// const {setProfile, profile} = useStat()
+const profile = useSelector((state) => state.profile)
+
 useEffect(()=>{
  if(localStorage.length)  history.push("/userPanel") 
 },[localStorage.length])
@@ -32,7 +32,7 @@ useEffect(()=>{
       return(
 
 <div>
-  {!profile ? (
+  {!profile.length ? (
     <button onClick={() => login()}>
       Iniciar con Google
     </button>
