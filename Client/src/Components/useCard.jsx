@@ -47,8 +47,8 @@ catch(err) {
 }
 
 
-var palabraEspañol = profile?.palabras?.español[posicion]?.charAt(0).toUpperCase() + profile?.palabras?.español[posicion]?.slice(1).toLowerCase();
-var palabraIngles = profile?.palabras?.ingles[posicion]?.charAt(0).toUpperCase() + profile?.palabras?.ingles[posicion]?.slice(1).toLowerCase();
+var palabraEspañol = profile?.palabras?.español[posicion]?.charAt(0)?.toUpperCase() + profile?.palabras?.español[posicion]?.slice(1)?.toLowerCase();
+var palabraIngles = profile?.palabras?.ingles[posicion]?.charAt(0)?.toUpperCase() + profile?.palabras?.ingles[posicion]?.slice(1)?.toLowerCase();
 
 return{
     posicion, español, next, prev, palabraEspañol, palabraIngles, setEspañol, deleteWord, changeCard

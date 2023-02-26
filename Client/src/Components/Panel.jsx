@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { Cards } from "./Cards";
 import { NewWord } from "./NewWord";
 import { useHistory } from "react-router-dom";
@@ -8,11 +8,12 @@ export const Panel = ({location}) =>{
   const history = useHistory()  
 
   const profile = useSelector((state) => state.profile)
-const [paginas, setPaginas] = useState(1)
+const [paginas, setPaginas] = useState(2)
 const logout = () =>{
   localStorage.clear("accessToken")
   history.push("/")
 }
+
 return(
 <div> 
 
