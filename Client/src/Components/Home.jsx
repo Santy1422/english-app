@@ -30,7 +30,6 @@ const handleLogin = (e) => {
       </div>
     </div>
     <div class="mt-10">
-      <form action="#">
         <div class="flex flex-col mb-6">
           <label for="email" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Email:</label>
           <div class="relative">
@@ -74,7 +73,6 @@ const handleLogin = (e) => {
             </span>
           </button>
         </div>
-      </form>
     </div>
     {/* <div class="flex justify-center items-center mt-6">
       <a href="#" target="_blank" class="inline-flex items-center font-bold text-blue-500 hover:text-blue-700 text-xs text-center">
