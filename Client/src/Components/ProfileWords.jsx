@@ -1,34 +1,9 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import  {SetProfile}  from "../redux/actions";
-import axios from "axios";
+import React from "react";
+import { useSelector } from "react-redux";
+
 
 export const ProfileWords = () =>{
     const profile = useSelector((state) => state.profile)
-const dispatch = useDispatch()
-    console.log(profile)
-useEffect(() => {
-    const fetchData = async () => {
-      const token = localStorage.getItem("accessToken");
-  
-      if (!token || !profile) {
-        return;
-      }
-  
-      try {
-        const decifrar = await axios.get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${token}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            Accept: 'application/json'
-          }
-        });
-        dispatch(SetProfile({ email: decifrar.data.email, name: decifrar.data.name, picture: decifrar.data.picture }));
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchData();
-  }, [ ]);
 
 
   return (

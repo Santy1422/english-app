@@ -1,49 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useCard } from "./useCard";
-import { NewWord } from "./NewWord";
-import  {SetProfile}  from "../redux/actions";
-import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
-export const Cards = () =>{
 
-  const {posicion, español, setEspañol, next, prev, palabraEspañol, palabraIngles, deleteWord, changeCard} = useCard()
+import { useSelector } from "react-redux";
+export const Cards = ({setChangeCard, changeCard}) =>{
 
-    const dispatch = useDispatch()
+  const {posicion, español, setEspañol, next, prev, palabraEspañol, palabraIngles, deleteWord, leer} = useCard(setChangeCard, changeCard)
+
     const profile = useSelector((state) => state.profile)
-
-    useEffect(() => {
-        const fetchData = async () => {
-          const token = localStorage.getItem("accessToken");
-      
-          if (!token || !profile) {
-            return;
-          }
-      
-          try {
-            const decifrar = await axios.get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${token}`, {
-              headers: {
-                Authorization: `Bearer ${token}`,
-                Accept: 'application/json'
-              }
-            });
-            dispatch(SetProfile({ email: decifrar.data.email, name: decifrar.data.name, picture: decifrar.data.picture }));
-          } catch (error) {
-            console.error(error);
-          }
-        };
-        fetchData();
-      }, [ changeCard]);
 
       useEffect(() =>{
         leer()
       }, [posicion])
 
-      const leer = () =>{
-    const synth = window.speechSynthesis;
-const utterThis = new SpeechSynthesisUtterance(profile?.palabras?.ingles[posicion]);
-utterThis.lang = 'en-US';
-synth.speak(utterThis);
-}
+
     return(
        
         <><div class="relative max-w-md mx-auto md:max-w-2xl min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-xl mt-20">

@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios"
 import { useSelector } from "react-redux";
 
-
-export const NewWord = () =>{
+export const NewWord = ({newCard, setNewCard}) =>{
 
     const profile = useSelector((state) => state.profile)
 
@@ -59,7 +58,9 @@ const bulk = async() =>{
         },
         setEnglish([]),
         setSpanish([]),
-        setScreen([])) )
+        setScreen([])),
+        setNewCard(!newCard),
+         )
     }
     catch(err){
         console.log(err)

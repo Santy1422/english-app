@@ -1,12 +1,9 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { SetProfile } from "../redux/actions";
-import axios from "axios";
+import React from "react";
+import { useSelector } from "react-redux";
 import { ProfileWords } from "./ProfileWords";
 export  const Profile = () =>{
   const profile = useSelector((state) => state.profile)
 
-  console.log(profile)
 return(
   <div>
     <div class="text-center">
