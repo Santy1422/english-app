@@ -19,7 +19,7 @@ export const NewWord = () =>{
         setPalabras({...palabras,
             [e.target.name]: e.target.value,})
     }
-console.log(spanish, english, screen)
+
 const bulk = async() =>{
     let search = palabras.word
   

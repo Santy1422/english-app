@@ -3,12 +3,12 @@ import { Cards } from "./Cards";
 import { NewWord } from "./NewWord";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { Profile } from "./Profile";
+import { usePagination } from "./usePagination";
 
 export const Panel = ({location}) =>{
   const history = useHistory()  
-
-  const profile = useSelector((state) => state.profile)
-const [paginas, setPaginas] = useState(1)
+const {paginas, setPaginas, profile} = usePagination()
 const logout = () =>{
   localStorage.clear("accessToken")
   history.push("/")
@@ -22,23 +22,23 @@ return(
   {/* <!-- Sidebar --> */}
   <aside class="h-full w-20 flex flex-col space-y-10 items-center justify-center relative bg-gray-800 text-white">
     {/* <!-- Profile --> */}
- <button  class="h-10 w-10 flex items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">
+ <button onClick={() => setPaginas(0)} class=" flex items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">
 <p> Perfil </p>  
 </button>
 
     {/* <!-- Courses --> */}
-    <div onClick={() => setPaginas(1)} class="h-10 w-10 flex items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">
+    <div onClick={() => setPaginas(1)} class="flex items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">
     <p> Palabras </p>  
     </div>
 
     {/* <!-- Theme --> */}
-    <div onClick={() => setPaginas(2)} class="h-10 w-10 flex items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">
+    <div onClick={() => setPaginas(2)} class="flex items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">
     <p> Agregar palabra </p>  
 
     </div>
 
     {/* <!-- Configuration --> */}
-    <div class="h-10 w-10 flex items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">
+    <div class=" flex items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">
     <p>Ajustes</p>  
 
     </div>
@@ -60,7 +60,7 @@ return(
           <div class="text-sm font-regular">Student</div>
         </div>
         
-        <button onClick={() => logout()}>Logout</button>
+        <button class="rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white" onClick={() => logout()}>Logout</button>
       </div>
     </header>
 
@@ -70,7 +70,8 @@ return(
       <div class="h-full w-full m-6 flex flex-wrap items-start justify-start rounded-tl grid-flow-col auto-cols-max gap-4 overflow-y-scroll justify-center">
 
         {/* <!-- Container --> */}
-        {paginas === 1 ?
+        {paginas === 0 ? <Profile/>:
+        paginas === 1 ?
             <Cards/>    
              : paginas === 2 ? <NewWord/> : null
 
