@@ -2,14 +2,16 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 
-export const ProfileWords = () =>{
+export const ProfileWords = (props) =>{
     const profile = useSelector((state) => state.profile)
 
+const {spanish, english, screen} = props
+let mapeoCondicion = spanish ? spanish : profile?.palabras?.español
 
   return (
     <div class="my-6">
       {profile.palabras.español.length
-        ? profile.palabras?.español?.map((ele, index) => (
+        ? mapeoCondicion.map((ele, index) => (
             <ul key={index} className="max-w-md divide-y divide-gray-200 dark:divide-gray-700">
               <li className="pb-3 sm:pb-4">
                 <div className="flex items-center space-x-4">

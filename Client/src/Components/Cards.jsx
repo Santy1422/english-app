@@ -1,17 +1,37 @@
 import React, { useEffect } from "react";
 import { useCard } from "./useCard";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { SetProfile } from "../redux/actions";
 
-import { useSelector } from "react-redux";
-export const Cards = ({setChangeCard, changeCard}) =>{
+export const Cards = ({setChangeCard, changeCard, newCard}) =>{
 
   const {posicion, español, setEspañol, next, prev, palabraEspañol, palabraIngles, deleteWord, leer} = useCard(setChangeCard, changeCard)
 
     const profile = useSelector((state) => state.profile)
-
+const dispatch = useDispatch()
       useEffect(() =>{
         leer()
       }, [posicion])
 
+      useEffect(() => {
+        const fetchData = async () => {
+          const token = localStorage.getItem("accessToken");
+      
+          try {
+            const decifrar = await axios.get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${token}`, {
+              headers: {
+                Authorization: `Bearer ${token}`,
+                Accept: 'application/json'
+              }
+            });
+            dispatch(SetProfile({ email: decifrar.data.email, name: decifrar.data.name, picture: decifrar.data.picture }));
+          } catch (error) {
+            console.error(error);
+          }
+        };
+        fetchData();
+      }, [posicion, changeCard, newCard]);
 
     return(
        

@@ -12,7 +12,7 @@ export const Panel = ({location}) =>{
   const dispatch = useDispatch()
   const profile = useSelector((state) => state.profile)
   const [changeCard, setChangeCard] = useState(true)
-  const [paginas, setPaginas] = useState(0)
+  const [paginas, setPaginas] = useState(1)
 
   const history = useHistory()  
 const logout = () =>{
@@ -23,28 +23,7 @@ const {posicion } = useCard()
 const [newCard, setNewCard] = useState(true)
 
 
-useEffect(() => {
-  const fetchData = async () => {
-    const token = localStorage.getItem("accessToken");
 
-    if (!token || !profile) {
-      return;
-    }
-
-    try {
-      const decifrar = await axios.get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${token}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          Accept: 'application/json'
-        }
-      });
-      dispatch(SetProfile({ email: decifrar.data.email, name: decifrar.data.name, picture: decifrar.data.picture }));
-    } catch (error) {
-      console.error(error);
-    }
-  };
-  fetchData();
-}, [ posicion, changeCard, newCard]);
 
 
 return(
@@ -105,7 +84,7 @@ return(
         {/* <!-- Container --> */}
         {paginas === 0 ? <Profile/>:
         paginas === 1 ?
-            <Cards changeCard={changeCard} setChangeCard={setChangeCard}/>    
+            <Cards changeCard={changeCard} setChangeCard={setChangeCard} newCard={newCard}/>    
              : paginas === 2 ? <NewWord newCard={newCard} setNewCard={setNewCard}/> : null
 
     }

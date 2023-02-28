@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import axios from "axios"
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { ProfileWords } from "./ProfileWords";
 
 export const NewWord = ({newCard, setNewCard}) =>{
 
     const profile = useSelector((state) => state.profile)
+    const dispatch = useDispatch()
 
     const [palabras, setPalabras] = useState({
         palabra: "",
@@ -72,13 +74,12 @@ const bulk = async() =>{
 
     return(
         <div class="relative max-w-md mx-auto md:max-w-2xl mt-6 min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-xl mt-16">
-	<div class="relative py-3 sm:max-w-xl sm:mx-auto">
 		<div>
 		</div>
 		<div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
 			<div class="max-w-md mx-auto">
 				<div>
-					<h1 class="text-2xl font-semibold">Agrega nuevas palabras</h1>
+					<h1 class="text-2xl font-semibold text-primary">Agrega nuevas palabras</h1>
 				</div>
 				<div class="divide-y divide-gray-200">
 					<div class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
@@ -90,36 +91,16 @@ const bulk = async() =>{
 							<input autocomplete="off"  onChange={(e) => changeInput(e)} value ={palabras.word} id="ingles" name="word" type="text" class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600" placeholder="Password" />
 							<label for="password" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Palabra en ingles</label>
 						</div>
-                        <div class="container py-10 px-10 mx-0 min-w-full flex flex-row">
-                            <button onClick={() => bulk()} class="bg-blue-500 text-white rounded-md px-2 py-1">Agregar palabras</button>
-                            <button onClick={() => agregar()} class="bg-blue-500 text-white rounded-md px-2 py-1">Enviar palabras</button>
+            <div class="container py-10 px-10 mx-0 min-w-full flex flex-row">
+                            <button onClick={() => bulk()} class="btn btn-primary ">Agregar palabras</button>
+                            <button onClick={() => agregar()} class="btn btn-primary ">Enviar palabras</button>
 
 						</div>
-                        {english?.map((ele, index) => (
-  <ul key={index} class="max-w-md divide-y divide-gray-200 dark:divide-gray-700">
-    <li class="pb-3 sm:pb-4">
-      <div class="flex items-center space-x-4">
-        <div class="flex-shrink-0">
-          <img class="w-8 h-8 rounded-full" src={screen[index]} alt="Neil image"/>
-        </div>
-        <div class="flex-1 min-w-0">
-          <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-            {ele}
-          </p>
-          <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-            {spanish[index]}
-          </p>
-        </div>
-      </div>
-    </li>
-  </ul>
-))}
-
-                        
+            <ProfileWords spanish={spanish} english={english} screen={screen}/>
+            
 					</div>
 				</div>
 			</div>
-		</div>
 	</div>
 </div>
     )
