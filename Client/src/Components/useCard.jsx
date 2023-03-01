@@ -42,7 +42,8 @@ let word = await axios.put("/ingles/delete",
       word: profile.palabras.ingles[posicion],
       image: profile.palabras.image[posicion]
 } )
-.then((succces) => alert ("Palabra marcada como aprendida!"), setChangeCard(!changeCard))
+.then((succces) => alert ("Palabra marcada como aprendida!"), setChangeCard(!changeCard),
+profile?.palabras?.ingles[posicion + 1] ? next() : prev())
 
 }
 catch(err) {

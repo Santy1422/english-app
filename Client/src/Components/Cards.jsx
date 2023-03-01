@@ -14,24 +14,7 @@ const dispatch = useDispatch()
         leer()
       }, [posicion])
 
-      useEffect(() => {
-        const fetchData = async () => {
-          const token = localStorage.getItem("accessToken");
-      
-          try {
-            const decifrar = await axios.get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${token}`, {
-              headers: {
-                Authorization: `Bearer ${token}`,
-                Accept: 'application/json'
-              }
-            });
-            dispatch(SetProfile({ email: decifrar.data.email, name: decifrar.data.name, picture: decifrar.data.picture }));
-          } catch (error) {
-            console.error(error);
-          }
-        };
-        fetchData();
-      }, [posicion, changeCard, newCard]);
+
 
     return(
        

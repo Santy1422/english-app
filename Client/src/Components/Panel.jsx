@@ -22,7 +22,24 @@ const logout = () =>{
 const {posicion } = useCard()
 const [newCard, setNewCard] = useState(true)
 
+useEffect(() => {
+  const fetchData = async () => {
+    const token = localStorage.getItem("accessToken");
 
+    try {
+      const decifrar = await axios.get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${token}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          Accept: 'application/json'
+        }
+      });
+      dispatch(SetProfile({ email: decifrar.data.email, name: decifrar.data.name, picture: decifrar.data.picture }));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  fetchData();
+}, [posicion, changeCard, newCard, paginas]);
 
 
 
@@ -34,7 +51,7 @@ return(
   {/* <!-- Sidebar --> */}
   <aside class="h-full w-20 flex flex-col space-y-10 items-center justify-center relative bg-gray-800 text-white">
     {/* <!-- Profile --> */}
- <button onClick={() => setPaginas(0)} class=" flex items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">
+ <button onClick={() => setPaginas(0)} class="flex items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">
 <p> Perfil </p>  
 </button>
 

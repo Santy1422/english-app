@@ -6,24 +6,24 @@ export const ProfileWords = (props) =>{
     const profile = useSelector((state) => state.profile)
 
 const {spanish, english, screen} = props
-let mapeoCondicion = spanish ? spanish : profile?.palabras?.español
+let mapeoCondicion = screen ? spanish : profile?.palabras?.español
 
   return (
     <div class="my-6">
       {profile.palabras.español.length
         ? mapeoCondicion.map((ele, index) => (
             <ul key={index} className="max-w-md divide-y divide-gray-200 dark:divide-gray-700">
-              <li className="pb-3 sm:pb-4">
+              <li className="pb-3 sm:pb-4">  
                 <div className="flex items-center space-x-4">
                   <div className="flex-shrink-0">
-                    <img className="w-8 h-8 rounded-full" src={profile.palabras.image[index]} alt="Neil image" />
+                    <img className="w-8 h-8 rounded-full" src={screen ? screen[index] ? screen[index] : screen[0] : profile.palabras.image[index]} alt="Neil image" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-medium text-gray-900 truncate dark:text-white">
-                      {ele}
+                      {english ? english[index] : ele}
                     </p>
                     <p className="text-sm text-gray-500 truncate dark:text-gray-400">
-                      {profile?.palabras?.ingles[index]}
+                      {screen ? spanish[index] : profile?.palabras?.ingles[index]}
                     </p>
                   </div>
                 </div>
