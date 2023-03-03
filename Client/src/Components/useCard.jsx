@@ -10,7 +10,7 @@ export const useCard = (setChangeCard, changeCard) =>{
 const [español, setEspañol] = useState(false)
 
 const next = () => {
-    if(profile?.palabras?.ingles[posicion + 1] === undefined) alert("Agrega mas palabras")
+    if(profile?.palabras?.ingles[posicion + 1] === undefined) setPosicion(0)
     else{
     setEspañol(false)
     setPosicion(posicion + 1)
@@ -24,7 +24,7 @@ utterThis.lang = 'en-US';
 synth.speak(utterThis);
 }
 const prev = () => {
-    if(posicion === 0) alert("No puedes ir mas atras")
+    if(posicion === 0) setPosicion(posicion.length)
     else{
         setEspañol(false)
 
