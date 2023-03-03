@@ -6,13 +6,13 @@ import { SetProfile } from "../redux/actions";
 
 export const Cards = ({setChangeCard, changeCard, newCard}) =>{
 
-  const {posicion, español, setEspañol, next, prev, palabraEspañol, palabraIngles, deleteWord, leer} = useCard(setChangeCard, changeCard)
+  const {posicion, español, setEspañol, next, prev, palabraEspañol, palabraIngles, deleteWord, leer, check} = useCard(setChangeCard, changeCard)
 
     const profile = useSelector((state) => state.profile)
-
     useEffect(() =>{
         leer()
       }, [posicion])
+
 
 
     return(
@@ -78,10 +78,10 @@ export const Cards = ({setChangeCard, changeCard, newCard}) =>{
         Ya aprendi esta palabra
   </button>        
 
-<div class="container py-10 px-10 mx-0 min-w-full flex flex-row">
-  
-        <button class="btn btn-primary sm:mx md:mx-20" onClick={() => prev()}>Anterior</button>
-        <button class="btn btn-primary sm:mx md:mx-20" onClick={() => next()}>Siguiente</button>
+<div class="container py-10 px-10 mx-0 min-w-full ">
+
+        <button class="btn btn-primary sm:mx md:mx-20" onClick={() => next()}>{check ? palabraEspañol : palabraEspañol } </button>
+
       </div>   
 
                         </div>

@@ -10,13 +10,16 @@ export const useCard = (setChangeCard, changeCard) =>{
     const [posicion, setPosicion] = useState(0)    
 const [español, setEspañol] = useState(false)
 
+const [check, setCheck] = useState()
 
 
 const next = () => {
     if(profile?.palabras?.ingles[posicion + 1] === undefined && token) setPosicion(0)
+    
     else{
     setEspañol(false)
     setPosicion(posicion + 1)
+    checkButton()
 }
 
 } 
@@ -39,6 +42,14 @@ const prev = () => {
     setPosicion(posicion -1)
 }
 }   
+
+function checkButton() {     
+    const numeroAleatorio = Math.floor(Math.random() * 100) + 1;      
+    if (numeroAleatorio % 2 === 0) setCheck(true)
+    
+    else  setCheck(false)
+    
+      }
 
 const deleteWord = async () =>{
 
@@ -64,6 +75,6 @@ var palabraEspañol = token ? profile?.palabras?.español[posicion]?.charAt(0)?.
 var palabraIngles = token ? profile?.palabras?.ingles[posicion]?.charAt(0)?.toUpperCase() + profile?.palabras?.ingles[posicion]?.slice(1)?.toLowerCase() : test[0].ingles[posicion]
 
 return{
-    posicion, español, next, prev, palabraEspañol, palabraIngles, setEspañol, deleteWord, changeCard, leer
+    check,  posicion, español, next, prev, palabraEspañol, palabraIngles, setEspañol, deleteWord, changeCard, leer
 }
 }
