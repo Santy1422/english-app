@@ -84,7 +84,9 @@ const dispatch = useDispatch()
         <button class="btn btn-primary sm:mx md:mx-20" onClick={() => prev()}>Anterior</button>
         <button class="btn btn-primary sm:mx md:mx-20" onClick={() => next()}>Siguiente</button>
       </div>   
+
                         </div>
+
                     </div>
                 </div>
             </div>

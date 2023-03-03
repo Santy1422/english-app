@@ -8,7 +8,11 @@ export const useCard = (setChangeCard, changeCard) =>{
 
     const [posicion, setPosicion] = useState(0)    
 const [español, setEspañol] = useState(false)
-
+const [estudiando, setEstudiando] = useState([])
+React.useEffect(() => {
+    const posicionAleatoria = Math.floor(Math.random() * profile?.palabras?.ingles.length);
+    setPosicion(posicionAleatoria);
+  }, []);
 const next = () => {
     if(profile?.palabras?.ingles[posicion + 1] === undefined) setPosicion(0)
     else{
@@ -24,7 +28,7 @@ utterThis.lang = 'en-US';
 synth.speak(utterThis);
 }
 const prev = () => {
-    if(posicion === 0) setPosicion(posicion.length)
+    if(posicion === 0) setPosicion(profile?.palabras?.ingles.length -1)
     else{
         setEspañol(false)
 

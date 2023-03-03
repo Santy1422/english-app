@@ -89,7 +89,7 @@ return(
           <div class="text-sm font-regular">Student</div>
         </div>
         
-        <button class="rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white" onClick={() => logout()}>Logout</button>
+        <button class="rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white" onClick={() => logout()}>Salir</button>
       </div>
     </header>
 
