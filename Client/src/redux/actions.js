@@ -7,7 +7,7 @@ export const SetProfile = ({email, name, picture, password}) => async (dispatch)
     const userProfile = await axios.post("/ingles", {email, name, picture, password}, {
     
     });
-
+    console.log(userProfile)
     dispatch({
       type: "INFOUSER",
       payload: userProfile.data,

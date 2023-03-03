@@ -1,20 +1,43 @@
 const express = require('express');
 const axios = require('axios');
+const jwt = require('jsonwebtoken');
 
 const UserModel = require('../models/user.model');
 const router = express.Router();
 
-router.post("/", async (req, res) =>{
-  const {email, name, picture} = req.body;
+// router.post("/", async (req, res) =>{
+//   const {email, name, picture} = req.body;
 
-  const existe = await UserModel.findOne({ email: email })
-  if(existe) res.status(200).send(existe)
-  else{
-      const newUser = await UserModel.create({ email, name, picture })
-      res.status(200).send(newUser)
+//   const existe = await UserModel.findOne({ email: email })
+//   if(existe) res.status(200).send(existe)
+//   else{
+//       const newUser = await UserModel.create({ email, name, picture })
+//       res.status(200).send(newUser)
+//   }
+// })
+
+router.post("/", async (req, res) => {
+  const { email, name, picture } = req.body;
+
+  try {
+    // Verificar si el usuario ya existe en la base de datos
+    const existe = await UserModel.findOne({ email: email });
+    if (existe) {
+      // Si el usuario ya existe, generar un token JWT para el usuario y enviarlo en la respuesta
+      const token = jwt.sign({ email: existe.email }, jwtSecret, { expiresIn: '1h' });
+      res.status(200).json({ token });
+    } else {
+      // Si el usuario no existe, crear un nuevo usuario y generar un token JWT para el usuario, y enviarlo en la respuesta
+      const newUser = await UserModel.create({ email, name, picture });
+      const token = jwt.sign({ email: newUser.email }, jwtSecret, { expiresIn: '1h' });
+      res.status(200).json({ token });
+    }
+  } catch (error) {
+    // Manejar errores y enviar una respuesta de error en consecuencia
+    console.error(error);
+    res.status(500).send('Error al registrar usuario');
   }
-})
-
+});
 
 router.put("/", async (req, res) => {
     const { email, palabra, word, image } = req.body;
