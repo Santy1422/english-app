@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Google } from "./Auth/Google";
 
 export const Home = () =>{
@@ -16,6 +17,11 @@ export const Home = () =>{
       <span class="absolute left-0 top-0 flex items-center justify-center h-full w-10 text-blue-500"><i class="fab fa-facebook-f"></i></span>
       <Google/>
     </button>
+   <Link to="/userPanel"> <button class="relative mt-6 border rounded-md py-2 text-sm text-gray-800 bg-gray-100 hover:bg-gray-200" >
+      
+      <span class="absolute left-0 top-0 flex items-center justify-center h-full w-10 text-blue-500"><i class="fab fa-facebook-f"></i></span>
+     Ingresar como invitado
+    </button></Link>
 
     </div>
   </div>

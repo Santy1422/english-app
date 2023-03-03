@@ -1,32 +1,36 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
 import axios from "axios";
 import { useSelector } from "react-redux";
-
 export const useCard = (setChangeCard, changeCard) =>{
     const profile = useSelector((state) => state.profile)
+    const test = useSelector((state) => state.test)
+    const token = localStorage.getItem("accessToken");
 
     const [posicion, setPosicion] = useState(0)    
 const [español, setEspañol] = useState(false)
-const [estudiando, setEstudiando] = useState([])
-React.useEffect(() => {
-    const posicionAleatoria = Math.floor(Math.random() * profile?.palabras?.ingles.length);
-    setPosicion(posicionAleatoria);
-  }, []);
+
+
+
 const next = () => {
-    if(profile?.palabras?.ingles[posicion + 1] === undefined) setPosicion(0)
+    if(profile?.palabras?.ingles[posicion + 1] === undefined && token) setPosicion(0)
     else{
     setEspañol(false)
     setPosicion(posicion + 1)
 }
 
 } 
-const leer = () =>{
+const leer = () => {
     const synth = window.speechSynthesis;
-const utterThis = new SpeechSynthesisUtterance(profile?.palabras?.ingles[posicion]);
-utterThis.lang = 'en-US';
-synth.speak(utterThis);
-}
+    const utterThis = new SpeechSynthesisUtterance(
+      profile?.palabras?.ingles[posicion] ? profile?.palabras?.ingles[posicion] : test[0].ingles[posicion]
+    );
+    utterThis.lang = 'en-UK';
+    utterThis.rate = 0.9; // Ajustar la velocidad (rango: 0.1 - 10)
+    utterThis.pitch = 1.1; // Ajustar el tono (rango: 0 - 2)
+    utterThis.volume = 0.8; // Ajustar el volumen (rango: 0 - 1)
+    synth.speak(utterThis);
+  }
 const prev = () => {
     if(posicion === 0) setPosicion(profile?.palabras?.ingles.length -1)
     else{
@@ -56,9 +60,8 @@ catch(err) {
  
 }
 
-
-var palabraEspañol = profile?.palabras?.español[posicion]?.charAt(0)?.toUpperCase() + profile?.palabras?.español[posicion]?.slice(1)?.toLowerCase();
-var palabraIngles = profile?.palabras?.ingles[posicion]?.charAt(0)?.toUpperCase() + profile?.palabras?.ingles[posicion]?.slice(1)?.toLowerCase();
+var palabraEspañol = token ? profile?.palabras?.español[posicion]?.charAt(0)?.toUpperCase() + profile?.palabras?.español[posicion]?.slice(1)?.toLowerCase() : test[0].español[posicion]
+var palabraIngles = token ? profile?.palabras?.ingles[posicion]?.charAt(0)?.toUpperCase() + profile?.palabras?.ingles[posicion]?.slice(1)?.toLowerCase() : test[0].ingles[posicion]
 
 return{
     posicion, español, next, prev, palabraEspañol, palabraIngles, setEspañol, deleteWord, changeCard, leer

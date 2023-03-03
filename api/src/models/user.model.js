@@ -47,6 +47,9 @@ const userSchema = mongoose.Schema(
       image:{
         type: Array,
       }, 
+      detail:{
+        type: Array
+      }
     },
     aprendidas: {
       español: {
@@ -58,6 +61,9 @@ const userSchema = mongoose.Schema(
       image:{
         type: Array,
       }, 
+      detail:{
+        type: Array
+      }
     },
   },
   {

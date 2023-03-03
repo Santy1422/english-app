@@ -7,10 +7,11 @@ export const ProfileWords = (props) =>{
 
 const {spanish, english, screen} = props
 let mapeoCondicion = screen ? spanish : profile?.palabras?.español
+const token = localStorage.getItem("accessToken");
 
   return (
     <div class="my-6">
-      {profile.palabras.español.length
+      {profile?.palabras?.español.length && token
         ? mapeoCondicion.map((ele, index) => (
             <ul key={index} className="max-w-md divide-y divide-gray-200 dark:divide-gray-700">
               <li className="pb-3 sm:pb-4">  

@@ -1,7 +1,13 @@
-
+import palabras from "../Components/palabras.json"
 const initialState = {
     profile: [],
-    test : "asd"
+    test : [
+        palabras ={
+            español: palabras.espanol,
+            ingles: palabras.ingles
+
+        },
+    ]
 }
 
 function rootReducer(state = initialState, action) {

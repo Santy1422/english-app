@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useCard } from "./useCard";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,11 +9,10 @@ export const Cards = ({setChangeCard, changeCard, newCard}) =>{
   const {posicion, español, setEspañol, next, prev, palabraEspañol, palabraIngles, deleteWord, leer} = useCard(setChangeCard, changeCard)
 
     const profile = useSelector((state) => state.profile)
-const dispatch = useDispatch()
-      useEffect(() =>{
+
+    useEffect(() =>{
         leer()
       }, [posicion])
-
 
 
     return(
@@ -23,7 +22,7 @@ const dispatch = useDispatch()
             <div class="px-6">
                 <div class="flex flex-wrap justify-center">
                         <div class="relative">
-                            <img src={profile?.palabras?.image[posicion] ? profile?.palabras?.image[posicion] : null} class="shadow-xl rounded-full align-middle border-none relative -m-16 -ml-20 lg:-ml-16 max-w-[150px]" />
+                            <img src={profile?.palabras?.image[posicion] ? profile?.palabras?.image[posicion] :   null} class="shadow-xl rounded-full align-middle border-none relative -m-16 -ml-20 lg:-ml-16 max-w-[150px]" />
                         </div>
                         </div>
                     <div class="w-full text-center mt-20">
