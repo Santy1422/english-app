@@ -79,9 +79,13 @@ export const Cards = ({setChangeCard, changeCard, newCard}) =>{
   </button>        
 
 <div class="container py-10 px-10 mx-0 min-w-full ">
+{palabraEspañol || palabraIngles ? 
 
         <button class="btn btn-primary bg-white sm:mx md:mx-20 text-black" onClick={() => next()}>{check ? palabraEspañol : palabraEspañol } </button>
+:
+<button class="btn btn-primary bg-white sm:mx md:mx-20 text-black">Agrega mas palabras</button>
 
+}
       </div>   
 
 
