@@ -73,13 +73,13 @@ const bulk = async() =>{
 
 
     return(
-        <div class="relative max-w-md mx-auto md:max-w-2xl mt-6 min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-xl mt-16">
+        <div class="relative max-w-md mx-auto md:max-w-2xl mt-6 min-w-0 break-words bg-bg-yellow-500 w-full mb-6 shadow-lg rounded-xl mt-16">
 		<div>
 		</div>
-		<div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
+		<div class="relative px-4 py-10 bg-yellow-500 shadow-lg sm:rounded-3xl sm:p-20">
 			<div class="max-w-md mx-auto">
 				<div>
-					<h1 class="text-2xl font-semibold text-primary">Agrega nuevas palabras</h1>
+					<h1 class="text-2xl font-semibold text-primary text-white">Agrega nuevas palabras</h1>
 				</div>
 				<div class="divide-y divide-gray-200">
 					<div class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
@@ -89,11 +89,11 @@ const bulk = async() =>{
 						</div>
 						<div class="relative">
 							<input autocomplete="off"  onChange={(e) => changeInput(e)} value ={palabras.word} id="ingles" name="word" type="text" class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600" placeholder="Password" />
-							<label for="password" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Palabra en ingles</label>
+							<label for="password" class="absolute left-0 -top-3.5 text-white text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Palabra en ingles</label>
 						</div>
             <div class="container py-10 px-10 mx-0 min-w-full flex flex-row">
-                            <button onClick={() => bulk()} class="btn btn-primary ">Agregar palabras</button>
-                            <button onClick={() => agregar()} class="btn btn-primary ">Enviar palabras</button>
+                            <button onClick={() => bulk()} class="btn btn-primary bg-white text-black">Agregar palabras</button>
+                            <button onClick={() => agregar()} class="btn btn-primary bg-white text-black">Enviar palabras</button>
 
 						</div>
             <ProfileWords spanish={spanish} english={english} screen={screen}/>

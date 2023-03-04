@@ -19,7 +19,6 @@ const next = () => {
     else{
     setEspañol(false)
     setPosicion(posicion + 1)
-    checkButton()
 }
 
 } 
@@ -43,13 +42,7 @@ const prev = () => {
 }
 }   
 
-function checkButton() {     
-    const numeroAleatorio = Math.floor(Math.random() * 100) + 1;      
-    if (numeroAleatorio % 2 === 0) setCheck(true)
-    
-    else  setCheck(false)
-    
-      }
+
 
 const deleteWord = async () =>{
 
@@ -61,7 +54,7 @@ let word = await axios.put("/ingles/delete",
       word: profile.palabras.ingles[posicion],
       image: profile.palabras.image[posicion]
 } )
-.then((succces) => alert ("Palabra marcada como aprendida!"), setChangeCard(!changeCard),
+.then((succces) => setChangeCard(!changeCard),
 profile?.palabras?.ingles[posicion + 1] ? next() : prev())
 
 }

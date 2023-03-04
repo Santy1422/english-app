@@ -13,15 +13,15 @@ export  const Profile = () =>{
     src={profile.imagen ?  profile.imagen : "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/1200px-User-avatar.svg.png"}
     class="mx-auto mb-4 w-32 rounded-lg"
     alt="Avatar" />
-<h5 class="mb-2 text-xl text-black font-medium leading-tight text-center">{!token ? "invitado" : profile?.name}</h5>
+<h5 class="mb-2 text-xl text-black font-medium font-bold leading-tight text-center">{!token ? "invitado" : profile?.name}</h5>
     <div class="flex flex-row space-x-4 flex-center">
     <div class="pt-6 text-center bg-white rounded">
-          <h4 class="mb-2 text-xs text-gray-500">Aprendiendo</h4>
-          <p class="mb-1 text-4xl font-bold">{!token ? 0 :profile.palabras.español.length}</p>
+          <h4 class="mb-2 text-xs text-black">Aprendiendo</h4>
+          <p class="mb-1 text-4xl font-bold text-black">{!token ? 0 :profile.palabras.español.length}</p>
         </div>
           <div class="pt-6 text-center bg-white rounded">
-          <h4 class="mb-2 text-xs text-gray-500">Aprendidas</h4>
-          <p class="mb-1 text-4xl font-bold">{!token ? 0 :profile.aprendidas.español.length < 10 ? "0" + profile.aprendidas.español.length : profile.aprendidas.español.length }   </p>
+          <h4 class="mb-2 text-xs text-black">Aprendidas</h4>
+          <p class="mb-1 text-4xl font-bold text-black">{!token ? 0 :profile.aprendidas.español.length < 10 ? "0" + profile.aprendidas.español.length : profile.aprendidas.español.length }   </p>
         </div> 
   
   <div> 

@@ -49,7 +49,7 @@ return(
 <div class="h-screen w-full bg-white relative flex overflow-hidden">
 
   {/* <!-- Sidebar --> */}
-  <aside class="h-full w-20 flex flex-col space-y-10 items-center justify-center relative bg-gray-800 text-white">
+  <aside class="h-full w-20 flex flex-col space-y-10 items-center justify-center relative bg-yellow-500 text-white">
     {/* <!-- Profile --> */}
  <button onClick={() => setPaginas(0)} class="flex items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">
 <p> Perfil </p>  
@@ -77,7 +77,7 @@ return(
  
   <div class="w-full h-full flex flex-col justify-between">
     {/* <!-- Header --> */}
-    <header class="h-16 w-full flex items-center relative justify-end px-5 space-x-10 bg-gray-800">
+    <header class="h-16 w-full flex items-center relative justify-end px-5 space-x-10 bg-yellow-500">
     {/* <!-- Informação --> */}
       <div class="flex flex-shrink-0 items-center space-x-4 text-white">
         

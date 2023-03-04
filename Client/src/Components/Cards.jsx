@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useCard } from "./useCard";
-import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
-import { SetProfile } from "../redux/actions";
+import {  useSelector } from "react-redux";
+
+import 'reactjs-popup/dist/index.css';
 
 export const Cards = ({setChangeCard, changeCard, newCard}) =>{
 
-  const {posicion, español, setEspañol, next, prev, palabraEspañol, palabraIngles, deleteWord, leer, check} = useCard(setChangeCard, changeCard)
+  const {posicion, español, setEspañol, next, palabraEspañol, palabraIngles, deleteWord, leer, check} = useCard(setChangeCard, changeCard)
 
     const profile = useSelector((state) => state.profile)
     useEffect(() =>{
@@ -17,7 +17,7 @@ export const Cards = ({setChangeCard, changeCard, newCard}) =>{
 
     return(
        
-        <><div class="relative max-w-md mx-auto md:max-w-2xl min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-xl mt-20">
+        <><div class="relative max-w-md mx-auto md:max-w-2xl min-w-0 break-words bg-yellow-500 w-full mb-6 shadow-lg rounded-xl mt-20">
 
             <div class="px-6">
                 <div class="flex flex-wrap justify-center">
@@ -28,17 +28,17 @@ export const Cards = ({setChangeCard, changeCard, newCard}) =>{
                     <div class="w-full text-center mt-20">
                         <div class="flex justify-center lg:pt-4 pt-8 pb-0">
                             <div class="p-3 text-center">
-                                <span class="text-xl font-bold block uppercase tracking-wide text-slate-700">{profile?.palabras?.ingles.length ? profile?.palabras?.ingles.length + profile?.aprendidas?.ingles.length : 0}</span>
-                                <span class="text-sm text-slate-400">Palabras</span>
+                                <span class="text-xl font-bold block uppercase tracking-wide text-black">{profile?.palabras?.ingles.length ? profile?.palabras?.ingles.length + profile?.aprendidas?.ingles.length : 0}</span>
+                                <span class="text-sm text-white">Palabras</span>
                             </div>
                             <div class="p-3 text-center">
-                                <span class="text-xl font-bold block uppercase tracking-wide text-slate-700">{profile?.aprendidas?.ingles.length ? profile?.aprendidas?.ingles.length : 0}</span>
-                                <span class="text-sm text-slate-400">Aprendidas</span>
+                                <span class="text-xl font-bold block uppercase tracking-wide text-black">{profile?.aprendidas?.ingles.length ? profile?.aprendidas?.ingles.length : 0}</span>
+                                <span class="text-sm text-white">Aprendidas</span>
                             </div>
 
                             <div class="p-3 text-center">
-                                <span class="text-xl font-bold block uppercase tracking-wide text-slate-700">{profile?.palabras?.ingles.length ? profile?.palabras?.ingles.length : 0}</span>
-                                <span class="text-sm text-slate-400">Estudiando</span>
+                                <span class="text-xl font-bold block uppercase tracking-wide text-black">{profile?.palabras?.ingles.length ? profile?.palabras?.ingles.length : 0}</span>
+                                <span class="text-sm text-white">Estudiando</span>
                             </div>
                     </div>
                 </div>
@@ -46,7 +46,7 @@ export const Cards = ({setChangeCard, changeCard, newCard}) =>{
 {palabraEspañol || palabraIngles ? 
           <h3 class="text-2xl text-slate-700 font-bold leading-normal mt-16">{ español ? palabraEspañol : palabraIngles}</h3>
         :
-        <h3 class="text-2xl text-slate-700 font-bold leading-normal mt-16">¡Ups no tienes palabras para aprender!</h3>
+        <h3 class="text-2xl text-white font-bold leading-normal mt-16">¡Ups no tienes palabras para aprender!</h3>
 
         }
                     <div class="text-xs mt-0 mb-2 text-slate-400 font-bold uppercase">
@@ -80,9 +80,10 @@ export const Cards = ({setChangeCard, changeCard, newCard}) =>{
 
 <div class="container py-10 px-10 mx-0 min-w-full ">
 
-        <button class="btn btn-primary sm:mx md:mx-20" onClick={() => next()}>{check ? palabraEspañol : palabraEspañol } </button>
+        <button class="btn btn-primary bg-white sm:mx md:mx-20 text-black" onClick={() => next()}>{check ? palabraEspañol : palabraEspañol } </button>
 
       </div>   
+
 
                         </div>
 
@@ -90,7 +91,9 @@ export const Cards = ({setChangeCard, changeCard, newCard}) =>{
                 </div>
             </div>
         
-        </div>         </>
+        </div>        <div>
+
+    </div>          </>
 
     )
 }
