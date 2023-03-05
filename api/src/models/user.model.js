@@ -65,6 +65,9 @@ const userSchema = mongoose.Schema(
         type: Array
       }
     },
+    vistas:{
+      type: Array
+    }
   },
   {
     timestamps: {
