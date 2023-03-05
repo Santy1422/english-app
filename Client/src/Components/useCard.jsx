@@ -42,9 +42,9 @@ const prev = () => {
     setPosicion(posicion -1)
 }
 }   
-const sendResults = async () =>{
+const sendResults = () =>{
         try{
-        await axios.put("/ingles", {
+         axios.put("/ingles/save", {
             email: profile.email,
             aprendida: registrar,
           })
