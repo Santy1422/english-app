@@ -29,29 +29,17 @@ router.put("/", async (req, res) => {
 
       await usuario.save();
       res.status(200).json({ message: "Objeto actualizado correctamente" });
+      if(!word && image){
+        palabra.forEach((p, i) => usuario.palabras.vistas.push(p.toString()));
+        res.status(200).json({ message: "Palabras agregadas correctamente" });
+        await usuario.save();
+
+      }
     } else {
       res.status(404).json({ message: "No se encontró el usuario" });
     }
   });
-  router.put("/save", async (req, res) => {
-    const { email, palabra } = req.body;
-try{
-    const usuario = await UserModel.findOne({ email: email });
-  
-    if (usuario) {
-      palabra.forEach((p, i) => usuario.palabras.vistas.push(p.toString()));
-      await usuario.save();
-      res.status(200).json({ message: "Objeto actualizado correctamente" });
-    } else {
-      res.status(404).json({ message: "No se encontró el usuario" });
-    }
-  }
-  catch(err){
-    console.log(err)
-  }
-}
-);
-
+ 
 
   router.put("/delete", async (req, res) => {
     const { email, palabra, word, image } = req.body;

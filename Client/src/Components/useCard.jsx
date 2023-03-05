@@ -44,7 +44,7 @@ const prev = () => {
 }   
 const sendResults = async () =>{
         try{
-        await axios.put("/save", {
+        await axios.put("/", {
             email: profile.email,
             palabra: registrar,
           })
