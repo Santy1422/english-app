@@ -9,9 +9,10 @@ export const useCard = (setChangeCard, changeCard) =>{
 
     const [posicion, setPosicion] = useState(0)    
 const [español, setEspañol] = useState(false)
+const [saveWords, setSaveWords] = useState(false)
 
 const [check, setCheck] = useState()
-
+const [registrar, setRegistrar] = useState([])
 
 const next = () => {
     if(profile?.palabras?.ingles[posicion + 1] === undefined && token) setPosicion(0)
@@ -42,7 +43,11 @@ const prev = () => {
 }
 }   
 
+const sendResults = () =>{
 
+    setSaveWords(false)
+    setRegistrar([])
+}
 
 const deleteWord = async () =>{
 
@@ -68,6 +73,6 @@ var palabraEspañol = token ? profile?.palabras?.español[posicion]?.charAt(0)?.
 var palabraIngles = token ? profile?.palabras?.ingles[posicion]?.charAt(0)?.toUpperCase() + profile?.palabras?.ingles[posicion]?.slice(1)?.toLowerCase() : test[0].ingles[posicion]
 
 return{
-    check,  posicion, español, next, prev, palabraEspañol, palabraIngles, setEspañol, deleteWord, changeCard, leer
+    check,  posicion, español, next, prev, palabraEspañol, palabraIngles, setEspañol, deleteWord, changeCard, leer, registrar, setRegistrar, sendResults, saveWords, setSaveWords
 }
 }

@@ -47,7 +47,7 @@ const userSchema = mongoose.Schema(
       image:{
         type: Array,
       }, 
-      detail:{
+      vistas:{
         type: Array
       }
     },

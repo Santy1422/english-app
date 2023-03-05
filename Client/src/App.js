@@ -5,6 +5,8 @@ import { Home } from './Components/Home';
 import { Panel } from './Components/Panel';
 import axios from "axios"
 axios.defaults.baseURL = "https://english-app-production.up.railway.app"
+// axios.defaults.baseURL = "https://localhost:8080"
+
 function App() {
   return (
     <div className="App">

@@ -6,11 +6,13 @@ import 'reactjs-popup/dist/index.css';
 
 export const Cards = ({setChangeCard, changeCard, newCard}) =>{
 
-  const {posicion, español, setEspañol, next, palabraEspañol, palabraIngles, deleteWord, leer, check} = useCard(setChangeCard, changeCard)
+  const {posicion, español, setEspañol, next, palabraEspañol, palabraIngles, deleteWord, leer, check, registrar, setRegistrar,sendResults, saveWords, setSaveWords} = useCard(setChangeCard, changeCard)
 
     const profile = useSelector((state) => state.profile)
     useEffect(() =>{
         leer()
+        if(saveWords) setRegistrar([...registrar, palabraIngles])
+
       }, [posicion])
 
 
@@ -82,8 +84,15 @@ export const Cards = ({setChangeCard, changeCard, newCard}) =>{
 {palabraEspañol || palabraIngles ? 
 
         <button class="btn btn-primary bg-white sm:mx md:mx-20 text-black" onClick={() => next()}>{check ? palabraEspañol : palabraEspañol } </button>
+
 :
 <button class="btn btn-primary bg-white sm:mx md:mx-20 text-black">Agrega mas palabras</button>
+
+}
+{!saveWords ? 
+<button class="btn btn-primary bg-white sm:mx md:mx-20 text-black" onClick={() => setSaveWords(true)}>Comenzar a estudiar</button>
+:
+<button class="btn btn-primary bg-white sm:mx md:mx-20 text-black" onClick={() => sendResults()}>Guardar resultados</button>
 
 }
       </div>   
