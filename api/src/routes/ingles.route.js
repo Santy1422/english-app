@@ -18,7 +18,7 @@ router.post("/", async (req, res) =>{
 
 
 router.put("/", async (req, res) => {
-    const { email, palabra, word, image } = req.body;
+    const { email, palabra, word, image, aprendida } = req.body;
 
     const usuario = await UserModel.findOne({ email: email });
   
@@ -26,15 +26,11 @@ router.put("/", async (req, res) => {
       palabra.forEach((p, i) => usuario.palabras.español.push(p.toString()));
       word.forEach((w, i) => usuario.palabras.ingles.push(w.toString()));
       image.forEach((img, i) => usuario.palabras.image.push(img.toString()));
+      aprendida.forEach((e, i) => usuario.palabras.vistas.push(e.toString()));
 
       await usuario.save();
       res.status(200).json({ message: "Objeto actualizado correctamente" });
-      if(!word && image){
-        palabra.forEach((p, i) => usuario.palabras.vistas.push(p.toString()));
-        res.status(200).json({ message: "Palabras agregadas correctamente" });
-        await usuario.save();
 
-      }
     } else {
       res.status(404).json({ message: "No se encontró el usuario" });
     }

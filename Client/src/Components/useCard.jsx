@@ -46,7 +46,7 @@ const sendResults = async () =>{
         try{
         await axios.put("/", {
             email: profile.email,
-            palabra: registrar,
+            aprendida: registrar,
           })
         .then((scces) =>  
         setSaveWords(false),
