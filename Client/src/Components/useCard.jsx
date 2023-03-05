@@ -42,7 +42,6 @@ const prev = () => {
     setPosicion(posicion -1)
 }
 }   
-
 const sendResults = async () =>{
         try{
         await axios.put("/save", {
