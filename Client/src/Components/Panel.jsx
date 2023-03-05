@@ -37,10 +37,16 @@ useEffect(() => {
     } catch (error) {
       console.error(error);
     }
+
   };
   fetchData();
 }, [posicion, changeCard, newCard, paginas]);
 
+useEffect(() =>{
+  const token = localStorage.getItem("accessToken");
+
+ if( profile &&  token && profile?.palabras?.español?.length  === 0  ) setPaginas(2) 
+})
 
 
 return(

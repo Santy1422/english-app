@@ -6,7 +6,6 @@ import { ProfileWords } from "./ProfileWords";
 export const NewWord = ({newCard, setNewCard}) =>{
 
     const profile = useSelector((state) => state.profile)
-    const dispatch = useDispatch()
 
     const [palabras, setPalabras] = useState({
         palabra: "",
@@ -91,6 +90,7 @@ const bulk = async() =>{
 							<input autocomplete="off"  onChange={(e) => changeInput(e)} value ={palabras.word} id="ingles" name="word" type="text" class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600" placeholder="Password" />
 							<label for="password" class="absolute left-0 -top-3.5 text-white text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Palabra en ingles</label>
 						</div>
+            
             <div class="container py-10 px-10 mx-0 min-w-full flex flex-row">
                             <button onClick={() => bulk()} class="btn btn-primary bg-white text-black">Agregar palabras</button>
                             <button onClick={() => agregar()} class="btn btn-primary bg-white text-black">Enviar palabras</button>
