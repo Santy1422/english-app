@@ -44,7 +44,7 @@ const prev = () => {
 }   
 const sendResults = async () =>{
         try{
-        await axios.put("/", {
+        await axios.put("/ingles", {
             email: profile.email,
             aprendida: registrar,
           })
