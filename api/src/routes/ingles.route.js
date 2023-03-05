@@ -38,12 +38,12 @@ router.put("/", async (req, res) => {
     }
   });
   router.put("/save", async (req, res) => {
-    const { email, palabra } = req.body;
+    const { email, aprendida } = req.body;
 try{
     const usuario = await UserModel.findOne({ email: email });
   
     if (usuario) {
-      palabra.forEach((p, i) => usuario.palabras.vistas.push(p.toString()));
+      aprendida.forEach((p, i) => usuario.palabras.vistas.push(p.toString()));
       await usuario.save();
       res.status(200).json({ message: "Objeto actualizado correctamente" });
     } else {
