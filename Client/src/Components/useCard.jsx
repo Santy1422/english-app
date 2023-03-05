@@ -43,10 +43,20 @@ const prev = () => {
 }
 }   
 
-const sendResults = () =>{
-
-    setSaveWords(false)
-    setRegistrar([])
+const sendResults = async () =>{
+        try{
+        await axios.put("/save", {
+            email: profile.email,
+            palabra: registrar,
+          })
+        .then((scces) =>  
+        setSaveWords(false),
+        setRegistrar([])
+         )
+    }
+    catch(err){
+        console.log(err)
+    }
 }
 
 const deleteWord = async () =>{
