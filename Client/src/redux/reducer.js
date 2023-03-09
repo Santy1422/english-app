@@ -18,6 +18,7 @@ case "INFOUSER":
         ...state,
         profile: action.payload
     }
+
               default:
                 return { ...state };
             }

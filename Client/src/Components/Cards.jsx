@@ -98,9 +98,9 @@ export const Cards = ({setChangeCard, changeCard, newCard}) =>{
     </button>
     {token && vistas?.length > 0?
                         <ul class="steps py-3">
-  <li class={vistas?.length >= 1 ? "step step-yellow-500 text-white" : "step text-black"}>1 ves vista</li>
-  <li class=  {vistas?.length > 1 ? "step step-yellow-500 text-white" : "text-black step"}>2 ves vista</li>
-  <li class=  {vistas?.length > 2 ? "step step-yellow-500 text-white" : " text-black step"}>3 ves vista</li>
+  <li class={vistas?.length >= 1 ? "step step-yellow-500 text-white" : "step text-black"}>vista</li>
+  <li class=  {vistas?.length > 1 ? "step step-yellow-500 text-white" : "text-black step"}>vistas</li>
+  <li class=  {vistas?.length > 2 ? "step step-yellow-500 text-white" : " text-black step"}>vistas</li>
   <li class=  {vistas?.length > 3 ? "step step-yellow-500 text-white" : " text-black step"}>¡Palabra aprendida!</li>
 </ul>
 : null 

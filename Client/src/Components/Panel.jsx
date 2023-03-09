@@ -4,7 +4,7 @@ import { NewWord } from "./NewWord";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Profile } from "./Profile";
-import { SetProfile } from "../redux/actions";
+import { CleanUser, SetProfile } from "../redux/actions";
 import  axios  from "axios";
 import { useCard } from "./useCard";
 
@@ -13,7 +13,6 @@ export const Panel = ({location}) =>{
   const profile = useSelector((state) => state.profile)
   const [changeCard, setChangeCard] = useState(true)
   const [paginas, setPaginas] = useState(1)
-
   const history = useHistory()  
 const logout = () =>{
   localStorage.clear("accessToken")
@@ -57,9 +56,9 @@ return(
   {/* <!-- Sidebar --> */}
   <aside class="h-full w-20 flex flex-col space-y-10 items-center justify-center relative bg-yellow-500 text-white">
     {/* <!-- Profile --> */}
- <button onClick={() => setPaginas(0)} class="flex items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">
+    <div onClick={() => setPaginas(0)} class="flex items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">
 <p> Perfil </p>  
-</button>
+</div>
 
     {/* <!-- Courses --> */}
     <div onClick={() => setPaginas(1)} class="flex items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">

@@ -15,3 +15,4 @@ export const SetProfile = ({email, name, picture, password}) => async (dispatch)
     console.log(error);
   }
 };
+

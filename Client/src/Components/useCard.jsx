@@ -80,7 +80,7 @@ catch(err) {
 
 var palabraEspañol = token ? profile?.palabras?.español[posicion]?.charAt(0)?.toUpperCase() + profile?.palabras?.español[posicion]?.slice(1)?.toLowerCase() : test[0].español[posicion]
 var palabraIngles = token ? profile?.palabras?.ingles[posicion]?.charAt(0)?.toUpperCase() + profile?.palabras?.ingles[posicion]?.slice(1)?.toLowerCase() : test[0].ingles[posicion]
-var vistas = profile?.vistas?.filter((ele) => ele.toLowerCase() === profile?.palabras?.ingles[posicion].toLowerCase())
+var vistas = profile?.vistas?.filter((ele) => ele?.toLowerCase() === profile?.palabras?.ingles[posicion]?.toLowerCase())
 return{
     vistas, check,  posicion, español, next, prev, palabraEspañol, palabraIngles, setEspañol, deleteWord, changeCard, leer, registrar, setRegistrar, sendResults, saveWords, setSaveWords
 }

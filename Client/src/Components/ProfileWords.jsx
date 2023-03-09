@@ -6,7 +6,6 @@ export const ProfileWords = (props) =>{
     const profile = useSelector((state) => state.profile)
 
 const {spanish, english, screen} = props
-console.log(english)
 
 let mapeoCondicion = screen ? spanish : profile?.palabras?.ingles
 const token = localStorage.getItem("accessToken");
@@ -51,16 +50,16 @@ Aprendizaje
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-medium text-black">
-                      {spanish ? profile?.palabras?.español[index] : profile?.palabras?.español[index]}
+                      {spanish ? spanish[index] : profile?.palabras?.español[index]}
                     </p>
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-medium text-black">
-                    {screen ? spanish[index] : profile?.palabras?.ingles[index]}</p>
+                    {screen ? english[index] : profile?.palabras?.ingles[index]}</p>
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-medium text-black">
-                  Veces vistas: {profile?.vistas?.filter((vista) => vista.toLowerCase() === (english ? english[index] : ele).toLowerCase()).length}</p>
+                  Veces vistas: {profile?.vistas?.filter((vista) => vista.toLowerCase() === (english ? english[index] : ele)?.toLowerCase()).length}</p>
                   </div>
                   {/* {profile?.vistas?.filter((vista) => vista.toLowerCase() === (english ? english[index] : ele).toLowerCase()).length < 3} */}
 
