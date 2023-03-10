@@ -31,7 +31,7 @@ const userSchema = mongoose.Schema(
       type: String
     },
     refresh_token:{
-      type: Text
+      type: String
   },
     name:{
       type: String,
