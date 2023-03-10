@@ -16,3 +16,13 @@ export const SetProfile = ({email, name, picture, password}) => async (dispatch)
   }
 };
 
+export const Change = () =>{
+  return{
+    type: "CHANGE"
+  }
+}
+export const Reload = () =>{
+  return{
+    type: "RELOAD"
+  }
+}

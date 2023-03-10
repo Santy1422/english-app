@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from "react";
 
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { Change } from "../redux/actions";
 export const useCard = (setChangeCard, changeCard) =>{
     const profile = useSelector((state) => state.profile)
     const test = useSelector((state) => state.test)
@@ -13,7 +14,7 @@ const [saveWords, setSaveWords] = useState(false)
 
 const [check, setCheck] = useState()
 const [registrar, setRegistrar] = useState([])
-
+const dispatch = useDispatch()
 const next = () => {
     if(profile?.palabras?.ingles[posicion + 1] === undefined && token) setPosicion(0)
     
@@ -68,7 +69,8 @@ let word = await axios.put("/ingles/delete",
       word: profile.palabras.ingles[posicion],
       image: profile.palabras.image[posicion]
 } )
-.then((succces) => setChangeCard(!changeCard),
+.then((succces) => setChangeCard(!changeCard),     dispatch(Change()),
+
 profile?.palabras?.ingles[posicion + 1] ? next() : prev())
 
 }

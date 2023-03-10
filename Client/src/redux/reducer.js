@@ -7,7 +7,8 @@ const initialState = {
             ingles: palabras.ingles
 
         },
-    ]
+    ],
+    change:true
 }
 
 function rootReducer(state = initialState, action) {
@@ -18,7 +19,17 @@ case "INFOUSER":
         ...state,
         profile: action.payload
     }
-
+    case "CHANGE":
+        return{
+            ...state,
+            change: true
+        }    
+       
+        case "RELOAD":
+            return{
+                ...state,
+                change: false
+            } 
               default:
                 return { ...state };
             }
