@@ -8,16 +8,18 @@ export const NewWord = ({newCard, setNewCard}) =>{
 
     const profile = useSelector((state) => state.profile)
 const dispatch = useDispatch()
-    const [palabras, setPalabras] = useState({
-        palabra: "",
-        word: "",
-        image: ""
-    })    
+
     const [spanish, setSpanish] = useState([]);
     const [english, setEnglish] = useState([]);
     const [screen, setScreen] = useState([]);
     const [traslation, setTraslation] = useState("")
     const [englishWord, setEnglishword] = useState("")
+    const [auto, setAuto] = useState(false)
+    const [palabras, setPalabras] = useState({
+      palabra: "",
+      word: englishWord ? englishWord : "",
+      image: ""
+  })    
     const changeInput = (e) =>{
         setPalabras({
           ...palabras,
@@ -28,18 +30,18 @@ const dispatch = useDispatch()
       console.log(traslation);
     console.log(traslation)
 
-    const autoCompletar = async () => {
+    const autoCompletar = async (es) => {
       try {
         let traduccion = await axios.get(`https://api.mymemory.translated.net/get?q=${traslation}&langpair=es|en`);
-        setEnglishword(traduccion?.data?.responseData?.translatedText)
-        console.log(traduccion);
+      let ingles = traduccion?.data?.responseData?.translatedText.includes("(")
+        setEnglishword(traduccion?.data?.matches[1]?.translation)
       } catch (err) {
         console.log(err);
       }
     }
 
 const bulk = async() =>{
-    let search = palabras.word
+    let search = palabras.word || englishWord
   
     const response = await axios.get('https://api.pexels.com/v1/search', {
       params: {
@@ -52,13 +54,14 @@ const bulk = async() =>{
     })
   
     setScreen([...screen, response.data.photos[0].src.medium]);
-    setEnglish([...english, palabras.word]);
+    setEnglish([...english, palabras.word ? palabras.word : englishWord]);
     setSpanish([...spanish, palabras.palabra]);
   
     setPalabras({
       palabra: "",
-      word: ""  
+      word: ""  ,
     }) 
+    setEnglishword("")
   }
     const agregar = async () =>{
         try{
@@ -107,7 +110,7 @@ const bulk = async() =>{
 							<label for="email" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Palabra en español</label>
 						</div>
 						<div class="relative">
-							<input autocomplete="off"  onClick={()=> autoCompletar()} onChange={(e) => changeInput(e)} value ={englishWord ? englishWord : palabras.word} id="ingles" name="word" type="text" class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600" placeholder="Password" />
+							<input autocomplete="off"  onClick={()=> autoCompletar()} onChange={(e) => changeInput(e)} value ={ englishWord ? englishWord : palabras.word} id="ingles" name="word" type="text" class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600" placeholder="Password" />
 							<label for="password" class="absolute left-0 -top-3.5 text-white text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Palabra en ingles</label>
 						</div>
             
