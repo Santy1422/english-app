@@ -6,11 +6,11 @@ export  const Profile = () =>{
   const test = useSelector((state) => state.test)
 
   const token = localStorage.getItem("accessToken");
-
+let photo = profile.picture ? profile.picture.split('=')[0] : "https://img-19.ccm.net/4KM3uefjhLzfImuIf3ZtMyNGmes=/450x/smart/45d7788dc1474c02bd6ff6224672765a/ccmcms-esccm/34935311.png"
   return(
   <div>
         <img
-    src={profile.imagen ?  profile.imagen : "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/1200px-User-avatar.svg.png"}
+    src={photo}
     class="mx-auto mb-4 w-32 rounded-lg"
     alt="Avatar" />
 

@@ -114,11 +114,13 @@ const bulk = async() =>{
 							<label for="password" class="absolute left-0 -top-3.5 text-white text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Palabra en ingles</label>
 						</div>
             
-            <div class="container py-10 px-10 mx-0 min-w-full flex flex-row">
-                            <button onClick={() => bulk()} class="btn btn-primary bg-white text-black">Agregar palabras</button>
-                            <button onClick={() => agregar()} class="btn btn-primary bg-white text-black">Enviar palabras</button>
-
-						</div>
+<div class="">
+  <button onClick={() => bulk()} class="btn btn-primary bg-white text-black text-sm sm:text-base md:text-lg">Agregar palabras</button>
+  {spanish.length ? 
+  <button onClick={() => agregar()} class="btn btn-primary bg-white text-black text-sm sm:text-base sm:py-2 md:text-lg">Enviar palabras</button>
+  : null
+}
+</div>
             <ProfileWords spanish={spanish} english={english} screen={screen}/>
             
 					</div>

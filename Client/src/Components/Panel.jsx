@@ -21,7 +21,7 @@ const logout = () =>{
   localStorage.clear("accessToken")
   history.push("/")
 }
-const {posicion } = useCard()
+const {posicion, saveWords } = useCard()
 const [newCard, setNewCard] = useState(true)
 const [movil, setMovil] = useState(false)
 
@@ -36,23 +36,18 @@ useEffect(() => {
           Accept: 'application/json'
         }
       });
-if(change){
       dispatch(SetProfile({ email: decifrar.data.email, name: decifrar.data.name, picture: decifrar.data.picture }));
       dispatch(Reload())
-}
+
     } catch (error) {
       console.error(error);
     }
 
   };
   fetchData();
-}, [posicion, changeCard, newCard, paginas]);
+}, [posicion, changeCard, newCard, paginas, saveWords]);
 
-useEffect(() =>{
-  const token = localStorage.getItem("accessToken");
 
- if( profile &&  token && profile?.palabras?.español?.length  === 0  ) setPaginas(2) 
-})
 
 
 return(

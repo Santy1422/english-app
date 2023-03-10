@@ -19,12 +19,12 @@ export const Cards = ({setChangeCard, changeCard, newCard}) =>{
 
     return(
        
-        <><div class="relative max-w-md mx-auto md:max-w-2xl min-w-0 break-words bg-yellow-500 w-full mb-6 shadow-lg rounded-xl mt-20">
+        <><div class="relative max-w-md mx-auto md:max-w-2xl min-w-0 break-words bg-yellow-500 w-full mb-6 shadow-lg rounded-xl mt-20 my-0">
 
             <div class="px-6">
                 <div class="flex flex-wrap justify-center">
                         <div class="relative">
-                            <img src={profile?.palabras?.image[posicion] ? profile?.palabras?.image[posicion] :   null} class="shadow-xl rounded-full align-middle border-none relative -m-16 -ml-20 lg:-ml-16 min-w-[150px] max-w-[150px]" />
+                            <img src={profile?.palabras?.image[posicion] ? profile?.palabras?.image[posicion] :   null} class="shadow-xl  rounded-full align-middle border-none relative -m-16 -ml-20 lg:-ml-16 min-w-[100px] max-w-[130px]" />
                         </div>
                         </div>
                     <div class="w-full text-center mt-20">
@@ -33,15 +33,16 @@ export const Cards = ({setChangeCard, changeCard, newCard}) =>{
                                 <span class="text-xl font-bold block uppercase tracking-wide text-black">{profile?.palabras?.ingles.length ? profile?.palabras?.ingles.length + profile?.aprendidas?.ingles.length : 0}</span>
                                 <span class="text-sm text-white">Palabras</span>
                             </div>
+                            
+                            <div class="p-3 text-center">
+                                <span class="text-xl font-bold block uppercase tracking-wide text-black">{token ? vistas?.length : 0}</span>
+                                <span class="text-sm text-white">Veces vista</span>
+                            </div>
                             <div class="p-3 text-center">
                                 <span class="text-xl font-bold block uppercase tracking-wide text-black">{profile?.aprendidas?.ingles.length ? profile?.aprendidas?.ingles.length : 0}</span>
                                 <span class="text-sm text-white">Aprendidas</span>
                             </div>
 
-                            <div class="p-3 text-center">
-                                <span class="text-xl font-bold block uppercase tracking-wide text-black">{profile?.palabras?.ingles.length ? profile?.palabras?.ingles.length : 0}</span>
-                                <span class="text-sm text-white">Estudiando</span>
-                            </div>
                     </div>
                 </div>
 
@@ -96,15 +97,7 @@ export const Cards = ({setChangeCard, changeCard, newCard}) =>{
             <span class="sr-only">Next</span>
         </span>
     </button>
-    {token && vistas?.length > 0?
-                        <ul class="steps py-3">
-  <li class={vistas?.length >= 1 ? "step step-yellow-500 text-white" : "step text-black"}>vista</li>
-  <li class=  {vistas?.length > 1 ? "step step-yellow-500 text-white" : "text-black step"}>vistas</li>
-  <li class=  {vistas?.length > 2 ? "step step-yellow-500 text-white" : " text-black step"}>vistas</li>
-  <li class=  {vistas?.length > 3 ? "step step-yellow-500 text-white" : " text-black step"}>¡Palabra aprendida!</li>
-</ul>
-: null 
-}
+
 {!saveWords  && token ? 
 <button class="btn btn-primary bg-white sm:mx md:mx-20 text-black" onClick={() => setSaveWords(true)}>Comenzar a estudiar</button>
 : token ?
