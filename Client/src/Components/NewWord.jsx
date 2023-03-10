@@ -31,7 +31,7 @@ const dispatch = useDispatch()
     const autoCompletar = async () => {
       try {
         let traduccion = await axios.get(`https://api.mymemory.translated.net/get?q=${traslation}&langpair=es|en`);
-        setEnglishword(response?.data?.responseData?.translatedText)
+        setEnglishword(traduccion?.data?.responseData?.translatedText)
         console.log(traduccion);
       } catch (err) {
         console.log(err);
