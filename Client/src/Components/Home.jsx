@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Google } from "./Auth/Google";
+import { Login } from "./Auth/Login";
 
 export const Home = () =>{
 
@@ -22,6 +23,9 @@ export const Home = () =>{
      Ingresar como invitado
     </button></Link>
 
+    </div>
+    <div>
+      <Login/>
     </div>
   </div> 
   
