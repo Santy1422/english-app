@@ -20,13 +20,14 @@ useEffect(()=>{
       });
 
       const storage = (tokenResponse) =>{
-        localStorage.setItem('accessToken', tokenResponse.access_token)
+        localStorage.setItem('tokenGoogle', tokenResponse.access_token)
         setUser(tokenResponse)
       }
 
       const loguut = () =>{
         googleLogout()
-            localStorage.clear('accessToken')
+            localStorage.clear('tokenGoogle')
+
       }
 
       return(

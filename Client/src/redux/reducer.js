@@ -19,6 +19,11 @@ case "INFOUSER":
         ...state,
         profile: action.payload
     }
+    case "INFOUSER2":
+        return{
+            ...state,
+            profile: action.payload
+        }    
     case "CHANGE":
         return{
             ...state,

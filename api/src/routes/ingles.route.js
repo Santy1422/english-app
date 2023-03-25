@@ -27,22 +27,32 @@ const auth = async(req, res, next) => {
 
 }
 
-// router.post("/", async (req, res) =>{
-//   const {email, name, picture} = req.body;
+router.post("/google", async (req, res) =>{
+  const {email, name, picture} = req.body;
 
-//   const existe = await UserModel.findOne({ email: email })
-//   if(existe) res.status(200).send(existe)
-//   else{
-//       const newUser = await UserModel.create({ email, name, picture })
-//       res.status(200).send(newUser)
-//   }
-// })
+  const existe = await UserModel.findOne({ email: email })
+  if(existe) res.status(200).send(existe)
+  else{
+      const newUser = await UserModel.create({ email, name, picture })
+      res.status(200).send(newUser)
+  }
+})
+
+router.get("/user", auth, async (req, res) =>{
+try{
+  const existe = await UserModel.findOne({ email: req.body.email })
+ res.status(200).send(existe)
+}
+catch(err){
+  console.log(err)
+}
+})
 
 
-router.put("/", auth, async (req, res) => {
-    const {palabra, word, image } = req.body;
+router.put("/", async (req, res) => {
+    const {email, palabra, word, image } = req.body;
 
-    const usuario = await UserModel.findOne({ email: req.user.email });
+    const usuario = await UserModel.findOne({ email: email });
   
     if (usuario) {
       palabra.forEach((p, i) => usuario.palabras.español.push(p.toString()));
@@ -59,7 +69,26 @@ router.put("/", auth, async (req, res) => {
       res.status(404).json({ message: "No se encontró el usuario" });
     }
   });
+  router.put("/user", auth, async (req, res) => {
+    const {palabra, word, image } = req.body;
 
+    const usuario = await UserModel.findOne({ email: req.user });
+  
+    if (usuario) {
+      palabra.forEach((p, i) => usuario.palabras.español.push(p.toString()));
+      word.forEach((w, i) => usuario.palabras.ingles.push(w.toString()));
+      image.forEach((img, i) => usuario.palabras.image.push(img.toString()));
+      console.log(auth)
+      await usuario.save();
+      res.status(200).json({ message: "Objeto actualizado correctamente" });
+      if(!word && image){
+      palabra.forEach((p, i) => usuario.palabras.vistas.push(p.toString()));
+
+      }
+    } else {
+      res.status(404).json({ message: "No se encontró el usuario" });
+    }
+  });
   router.put("/save", async (req, res) => {
     const { email, aprendida } = req.body;
 try{
@@ -105,7 +134,7 @@ try{
   });
 
   
-  router.post('/', async (req, res) => {
+  router.post('/register', async (req, res) => {
     // Create a new user
     try {
         const user = new UserModel(req.body)
