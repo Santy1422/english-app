@@ -40,7 +40,7 @@ router.post("/google", async (req, res) =>{
 
 router.get("/user", auth, async (req, res) =>{
 try{
-  const existe = await UserModel.findOne({ email: req.body.email })
+  const existe = await UserModel.findOne({ email: req.user })
  res.status(200).send(existe)
 }
 catch(err){
@@ -53,26 +53,6 @@ router.put("/", async (req, res) => {
     const {email, palabra, word, image } = req.body;
 
     const usuario = await UserModel.findOne({ email: email });
-  
-    if (usuario) {
-      palabra.forEach((p, i) => usuario.palabras.español.push(p.toString()));
-      word.forEach((w, i) => usuario.palabras.ingles.push(w.toString()));
-      image.forEach((img, i) => usuario.palabras.image.push(img.toString()));
-      console.log(auth)
-      await usuario.save();
-      res.status(200).json({ message: "Objeto actualizado correctamente" });
-      if(!word && image){
-      palabra.forEach((p, i) => usuario.palabras.vistas.push(p.toString()));
-
-      }
-    } else {
-      res.status(404).json({ message: "No se encontró el usuario" });
-    }
-  });
-  router.put("/user", auth, async (req, res) => {
-    const {palabra, word, image } = req.body;
-
-    const usuario = await UserModel.findOne({ email: req.user });
   
     if (usuario) {
       palabra.forEach((p, i) => usuario.palabras.español.push(p.toString()));

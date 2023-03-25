@@ -31,20 +31,20 @@ useEffect(() => {
     const tokenUser = localStorage.getItem("accessToken");
 
     try {
-      const decifrar = await axios.get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${tokenGoogle}`, {
+      if(tokenGoogle){
+        const decifrar = await axios.get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${tokenGoogle}`, {
         headers: {
           Authorization: `Bearer ${tokenGoogle}`,
           Accept: 'application/json'
         }
       });
-      if(tokenGoogle){
       dispatch(SetProfile({ email: decifrar.data.email, name: decifrar.data.name, picture: decifrar.data.picture }));
       dispatch(Reload())
     }if(tokenUser){
       const response = await axios.get("/ingles/user", {
-        // headers: {
-        //   "Authorization": `Bearer ${tokenUser}`
-        // }
+        headers: {
+          "Authorization": `Bearer ${tokenUser}`
+        }
       });
       dispatch(InputRegister(response.data.user))
 console.log("asd", response)

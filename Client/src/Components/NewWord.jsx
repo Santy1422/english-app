@@ -64,11 +64,9 @@ const bulk = async() =>{
     setEnglishword("")
   }
     const agregar = async () =>{
-      const tokenGoogle = localStorage.getItem("tokenGoogle");
-      const tokenUser = localStorage.getItem("accessToken");
+
         try{
-if(tokenGoogle){
-        await axios.put("http://localhost:8080/ingles", {
+        await axios.put("/ingles", {
             email: profile.email,
             palabra: spanish,
             word: english,
@@ -87,30 +85,7 @@ if(tokenGoogle){
         setNewCard(!newCard),
         dispatch(Change())
          )
-    }
-    if(tokenUser && !tokenGoogle){
-      await axios.put("http://localhost:8080/ingles/user", {
-        palabra: spanish,
-        word: english,
-        image: screen
-      }, {
-        headers: {
-          "Authorization": `Bearer ${tokenUser}`
-        }
-      })
-    .then((scces) =>  setPalabras({
-        palabra: "",
-        word: ""  ,
-       englishWord: "",
-       traslation: ""
-    },
-    setEnglish([]),
-    setSpanish([]),
-    setScreen([])),
-    setNewCard(!newCard),
-    dispatch(Change())
-     )
-}
+    
 
   }
     catch(err){

@@ -20,7 +20,7 @@ require('dotenv').config();
 // const DATABASE_NAME = process.env.DATABASE_NAME || 'findahome';
 // async function main() {//conecta mongoose a la database
 //          await mongoose.connect(DATABASE_URL+"/"+DATABASE_NAME);
-// // use  `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
+// use  `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
 // }
 //#region  MONGOOSE  
 
@@ -53,10 +53,10 @@ const create = async () => {
 //   app.use(cookieParser());
   app.use(morgan('dev'));
   app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*'); // update to match the domain you will make the request from
-    // res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // update to match the domain you will make the request from
+    res.header('Access-Control-Allow-Origin', '*'); 
+    // res.header('Access-Control-Allow-Origin', 'http://localhost:8080'); // update to match the domain you will make the request from
     res.header('Access-Control-Allow-Credentials', 'true');
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
     res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
     next();
   });
