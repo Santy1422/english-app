@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useState} from "react";
 import axios from "axios"
 import { useDispatch, useSelector } from "react-redux";
 import { ProfileWords } from "./ProfileWords";
@@ -14,7 +14,6 @@ const dispatch = useDispatch()
     const [screen, setScreen] = useState([]);
     const [traslation, setTraslation] = useState("")
     const [englishWord, setEnglishword] = useState("")
-    const [auto, setAuto] = useState(false)
     const [palabras, setPalabras] = useState({
       palabra: "",
       word: englishWord ? englishWord : "",
@@ -33,7 +32,6 @@ const dispatch = useDispatch()
     const autoCompletar = async (es) => {
       try {
         let traduccion = await axios.get(`https://api.mymemory.translated.net/get?q=${traslation}&langpair=es|en`);
-      let ingles = traduccion?.data?.responseData?.translatedText.includes("(")
         setEnglishword(traduccion?.data?.matches[1]?.translation)
       } catch (err) {
         console.log(err);

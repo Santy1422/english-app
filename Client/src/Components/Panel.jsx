@@ -4,15 +4,13 @@ import { NewWord } from "./NewWord";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Profile } from "./Profile";
-import { CleanProfile, CleanUser, InputRegister, Reload, SetProfile } from "../redux/actions";
+import { CleanProfile, Reload, SetProfile } from "../redux/actions";
 import  axios  from "axios";
-import { useCard } from "./useCard";
 import { MovilMenu } from "./MovilMenu";
 
 export const Panel = ({location}) =>{
   const dispatch = useDispatch()
   const profile = useSelector((state) => state.profile)
-  const change = useSelector((state) => state.change)
   const [changeCard, setChangeCard] = useState(true)
   const [paginas, setPaginas] = useState(1)
   const history = useHistory()  
@@ -20,7 +18,6 @@ export const Panel = ({location}) =>{
   const logout = () => {
     localStorage.clear("accessToken");
     const tokenUser = localStorage.getItem("accessToken");
-    const tokenGoogle = localStorage.getItem("tokenGoogle");
     if(tokenUser){
     axios.post("/ingles/logout", {}, {
       headers: {
@@ -68,7 +65,7 @@ useEffect(() => {
 
   };
   fetchData();
-},[] );
+},[dispatch] );
 
 
 
@@ -89,7 +86,7 @@ return(
     <div onClick={() => setPaginas(1)} class="flex items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">
     <p> Palabras </p>  
     </div>
-
+ 
     {/* <!-- Theme --> */}
     <div onClick={() => setPaginas(2)} class="flex items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">
     <p> Agregar palabra </p>  

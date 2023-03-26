@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import axios from "axios"
 import { useHistory } from "react-router-dom";
 import {InputRegister} from "../../redux/actions"
@@ -9,7 +9,8 @@ export const useLogin = () =>{
 const history = useHistory()  
 const [user, setUser] = useState({
     email: "",
-    password: ""
+    password: "",
+    name: ""
 })
 const [register, setRegister] = useState(false)
 const [url, setUrl] = useState("register")
@@ -18,7 +19,6 @@ const [incorrecto, setIncorrecto] = useState(false)
 useEffect(() =>{
 if(url === "login") setUrl("register")
 if(url === "register") setUrl("login")
-
 
 }, [register])
 
@@ -36,7 +36,8 @@ const handleSubmit = async () =>{
     `/ingles/${url}`, 
     {
      email: user.email,
-     password: user.password
+     password: user.password,
+     name: user.name
     },
   );
   localStorage.setItem("accessToken", response?.data?.token)

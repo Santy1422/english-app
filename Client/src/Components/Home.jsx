@@ -1,12 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { Google } from "./Auth/Google";
-import { Login, useLogin } from "./Auth/useLogin";
+import {  useLogin } from "./Auth/useLogin";
 
 export const Home = () =>{
 
 
-const {changeInput, handleSubmit, user, setUser, register, setRegister, incorrecto} = useLogin()
+const {changeInput, handleSubmit, user, register, setRegister, incorrecto} = useLogin()
     return(
 
 <div class="min-h-screen bg-gray-100 flex flex-col justify-center sm:py-12">
@@ -21,10 +20,18 @@ const {changeInput, handleSubmit, user, setUser, register, setRegister, incorrec
 </div>
 : null}
     <div class="px-5 py-7">
-      <label class="font-semibold text-sm text-gray-600 pb-1 block">E-mail</label>
+    {register ?
+      <><label class="font-semibold text-sm text-gray-600 pb-1 block">Nombre</label><input type="text" class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" value={user.name} name="name" onChange={(e) => changeInput(e)} /></>
+      : 
+      null
+      }
+
+      <label class="font-semibold text-sm text-gray-600 pb-1 block">Correo electronico</label>
       <input type="email"  class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" value={user.email} name="email" onChange={(e) => changeInput(e)}/>
-      <label class="font-semibold text-sm text-gray-600 pb-1 block">Password</label>
+      <label class="font-semibold text-sm text-gray-600 pb-1 block">Contraseña</label>
       <input type="password" class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full"  value={user.password} name="password" onChange={(e) => changeInput(e)}/>
+      
+     
       {!register ?
       <button onClick={() => handleSubmit()} type="button" class="transition duration-200 bg-blue-500 hover:bg-blue-600 focus:bg-blue-700 focus:shadow-sm focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block">
           <span class="inline-block mr-2">Iniciar sesion</span>
