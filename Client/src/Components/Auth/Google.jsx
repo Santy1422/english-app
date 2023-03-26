@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useGoogleLogin } from '@react-oauth/google';
 import { googleLogout } from '@react-oauth/google';
-import { useDispatch, useSelector } from "react-redux";
-import axios from "axios"
+import {  useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 export const Google = () =>{
 
   const history = useHistory()
 const [user, setUser] = useState()
 
-// const {setProfile, profile} = useStat()
 const profile = useSelector((state) => state.profile)
 
 useEffect(()=>{

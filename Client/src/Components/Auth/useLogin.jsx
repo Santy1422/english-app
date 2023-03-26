@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios"
 import { useHistory } from "react-router-dom";
 import {InputRegister} from "../../redux/actions"
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 export const useLogin = () =>{
 
   const dispatch = useDispatch()
@@ -17,7 +17,7 @@ const [url, setUrl] = useState("register")
 
 useEffect(() =>{
 if(url === "login") setUrl("register")
-if(url === "register") setUrl("register")
+if(url === "register") setUrl("login")
 
 
 }, [register])
