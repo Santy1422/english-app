@@ -51,7 +51,6 @@ catch(err){
 
 router.put("/", async (req, res) => {
     const {email, palabra, word, image } = req.body;
-
     const usuario = await UserModel.findOne({ email: email });
   
     if (usuario) {
@@ -60,10 +59,10 @@ router.put("/", async (req, res) => {
       image.forEach((img, i) => usuario.palabras.image.push(img.toString()));
       console.log(auth)
       await usuario.save();
-      res.status(200).json({ message: "Objeto actualizado correctamente" });
+      res.status(200).send(usuario)
       if(!word && image){
       palabra.forEach((p, i) => usuario.palabras.vistas.push(p.toString()));
-
+        res.status(200).send(usuario)
       }
     } else {
       res.status(404).json({ message: "No se encontró el usuario" });
@@ -77,7 +76,7 @@ try{
     if (usuario) {
       aprendida.forEach((p, i) => usuario.vistas.push(p.toString()));
       await usuario.save();
-      res.status(200).json({ message: "Objeto actualizado correctamente" });
+      res.status(200).json(usuario);
     } else {
       res.status(404).json({ message: "No se encontró el usuario" });
     }
@@ -103,7 +102,7 @@ try{
         user.aprendidas.ingles.push(word);
         user.aprendidas.image.push(image);
         await user.save();
-        res.status(200).send("Palabras eliminadas");
+        res.status(200).send(user);
       } else {
         res.status(404).json({ message: "No se encontró el elemento" });
       }

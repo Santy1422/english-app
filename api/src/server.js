@@ -20,7 +20,6 @@ require('dotenv').config();
 // const DATABASE_NAME = process.env.DATABASE_NAME || 'findahome';
 // async function main() {//conecta mongoose a la database
 //          await mongoose.connect(DATABASE_URL+"/"+DATABASE_NAME);
-// use  `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
 // }
 //#region  MONGOOSE  
 

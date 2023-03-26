@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import axios from "axios"
 import { useDispatch, useSelector } from "react-redux";
 import { ProfileWords } from "./ProfileWords";
-import { Change } from "../redux/actions";
+import { Change, InputRegister } from "../redux/actions";
 
 export const NewWord = ({newCard, setNewCard}) =>{
 
@@ -63,36 +63,31 @@ const bulk = async() =>{
     }) 
     setEnglishword("")
   }
-    const agregar = async () =>{
-
-        try{
-        await axios.put("/ingles", {
-            email: profile.email,
-            palabra: spanish,
-            word: english,
-            image: screen
-
-          })
-        .then((scces) =>  setPalabras({
-            palabra: "",
-            word: ""  ,
-           englishWord: "",
-           traslation: ""
-        },
-        setEnglish([]),
-        setSpanish([]),
-        setScreen([])),
-        setNewCard(!newCard),
-        dispatch(Change())
-         )
-    
-
-  }
-    catch(err){
-        console.log(err)
+  const agregar = async () => {
+    try {
+      await axios.put("/ingles", {
+        email: profile.email,
+        palabra: spanish,
+        word: english,
+        image: screen
+      }).then((scces) => {
+        dispatch(InputRegister(scces.data));
+        setPalabras({
+          palabra: "",
+          word: "",
+          englishWord: "",
+          traslation: ""
+        });
+        setEnglish([]);
+        setSpanish([]);
+        setScreen([]);
+        setNewCard(!newCard);
+        dispatch(Change());
+      });
+    } catch(err) {
+      console.log(err);
     }
-    }
-
+  };
 
 
 

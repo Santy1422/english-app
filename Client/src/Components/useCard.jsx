@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from "react";
 
 import axios from "axios";
+
 import { useDispatch, useSelector } from "react-redux";
-import { Change } from "../redux/actions";
+import { Change, InputRegister } from "../redux/actions";
 export const useCard = (setChangeCard, changeCard) =>{
     const profile = useSelector((state) => state.profile)
     const test = useSelector((state) => state.test)
@@ -49,9 +50,11 @@ const sendResults = () =>{
             email: profile.email,
             aprendida: registrar,
           })
-        .then((scces) =>  
+        .then((scces) =>   
+         dispatch(InputRegister(scces.data),
         setSaveWords(false),
-        setRegistrar([])
+        setRegistrar([]))
+
          )
     }
     catch(err){
@@ -69,7 +72,10 @@ let word = await axios.put("/ingles/delete",
       word: profile.palabras.ingles[posicion],
       image: profile.palabras.image[posicion]
 } )
-.then((succces) => setChangeCard(!changeCard),     dispatch(Change()),
+.then((succces) => 
+dispatch(InputRegister(succces.data)),
+setChangeCard(!changeCard),    
+ dispatch(Change()),
 
 profile?.palabras?.ingles[posicion + 1] ? next() : prev())
 

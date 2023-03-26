@@ -36,3 +36,8 @@ export const Reload = () =>{
     type: "RELOAD"
   }
 }
+export const CleanProfile = () =>{
+  return{
+    type: "CLEAN"
+  }
+}

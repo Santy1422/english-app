@@ -29,6 +29,11 @@ case "INFOUSER":
             ...state,
             change: true
         }    
+        case "CLEAN":
+            return{
+                ...state,
+                profile: []
+            }    
        
         case "RELOAD":
             return{

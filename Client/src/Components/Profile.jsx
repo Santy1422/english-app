@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import { ProfileWords } from "./ProfileWords";
 export  const Profile = () =>{
   const profile = useSelector((state) => state.profile)
-  const test = useSelector((state) => state.test)
 
   const token = localStorage.getItem("accessToken");
 let photo = profile.picture ? profile.picture.split('=')[0] : "https://img-19.ccm.net/4KM3uefjhLzfImuIf3ZtMyNGmes=/450x/smart/45d7788dc1474c02bd6ff6224672765a/ccmcms-esccm/34935311.png"
