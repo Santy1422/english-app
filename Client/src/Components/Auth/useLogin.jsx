@@ -13,7 +13,7 @@ const [user, setUser] = useState({
 })
 const [register, setRegister] = useState(false)
 const [url, setUrl] = useState("register")
-
+const [incorrecto, setIncorrecto] = useState(false)
 
 useEffect(() =>{
 if(url === "login") setUrl("register")
@@ -44,9 +44,10 @@ dispatch(InputRegister(response.data.user))
   history.push("/userPanel") 
     }
 catch(err){
+  setIncorrecto(!incorrecto)
   console.log(err)
 }
   }
 
-return{changeInput, handleSubmit, user, setUser, register, setRegister}
+return{changeInput, handleSubmit, user, setUser, register, setRegister, incorrecto, setIncorrecto}
   }

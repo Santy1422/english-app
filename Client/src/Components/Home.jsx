@@ -6,15 +6,23 @@ import { Login, useLogin } from "./Auth/useLogin";
 export const Home = () =>{
 
 
-const {changeInput, handleSubmit, user, setUser, register, setRegister} = useLogin()
+const {changeInput, handleSubmit, user, setUser, register, setRegister, incorrecto} = useLogin()
     return(
 
 <div class="min-h-screen bg-gray-100 flex flex-col justify-center sm:py-12">
 <div class="p-10 xs:p-0 mx-auto md:w-full md:max-w-md">
   <div class="bg-white shadow w-full rounded-lg divide-y divide-gray-200">
+    {incorrecto ? 
+  <div className="alert alert-error shadow-lg">
+  <div>
+    <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+    <span>¡Ups!, Email o contraseña incorrecto.</span>
+  </div>
+</div>
+: null}
     <div class="px-5 py-7">
       <label class="font-semibold text-sm text-gray-600 pb-1 block">E-mail</label>
-      <input type="text" class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" value={user.email} name="email" onChange={(e) => changeInput(e)}/>
+      <input type="email"  class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" value={user.email} name="email" onChange={(e) => changeInput(e)}/>
       <label class="font-semibold text-sm text-gray-600 pb-1 block">Password</label>
       <input type="password" class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full"  value={user.password} name="password" onChange={(e) => changeInput(e)}/>
       {!register ?
