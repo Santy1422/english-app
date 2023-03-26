@@ -17,7 +17,7 @@ const [url, setUrl] = useState("register")
 
 useEffect(() =>{
 if(url === "login") setUrl("register")
-if(url === "register") setUrl("login")
+if(url === "register") setUrl("register")
 
 
 }, [register])

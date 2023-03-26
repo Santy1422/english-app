@@ -116,6 +116,8 @@ try{
   router.post('/register', async (req, res) => {
     // Create a new user
     try {
+
+      
         const user = new UserModel(req.body)
         await user.save()
         const token = await user.generateAuthToken()
