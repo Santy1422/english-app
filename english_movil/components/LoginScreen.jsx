@@ -10,7 +10,7 @@ export const LoginScreen = () =>{
 const dispatch = useDispatch()
 
 const handleSubmit = () => {
-    axios.post(`http://localhost:8080/ingles/register`,    {
+    axios.post(`/ingles/register`,    {
         email: username,
         password: password,
         name: name

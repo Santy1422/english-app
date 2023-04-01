@@ -7,6 +7,8 @@ import { Provider } from 'react-redux';
 import store from './redux/store';
 import { LoginScreen } from './components/LoginScreen';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import axios from 'axios';
+axios.defaults.baseURL = "http://localhost:8080"
 
 
 const Stack = createNativeStackNavigator();
