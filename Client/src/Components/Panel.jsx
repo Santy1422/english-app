@@ -1,14 +1,14 @@
-import React, {useEffect, useState} from "react";
-import { Cards } from "./Cards";
+import React, {useState} from "react";
+import { Cards } from "./Card/Cards";
 import { NewWord } from "./NewWord";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Profile } from "./Profile";
-import { CleanProfile, Reload, SetProfile } from "../redux/actions";
+import { CleanProfile } from "../redux/actions";
 import  axios  from "axios";
 import { MovilMenu } from "./MovilMenu";
 
-export const Panel = ({location}) =>{
+export const Panel = () =>{
   const dispatch = useDispatch()
   const profile = useSelector((state) => state.profile)
   const [changeCard, setChangeCard] = useState(true)
@@ -44,30 +44,6 @@ export const Panel = ({location}) =>{
   };
 const [newCard, setNewCard] = useState(true)
 const [movil, setMovil] = useState(false)
-
-useEffect(() => {
-  const fetchData = async () => {
-    const tokenGoogle = localStorage.getItem("tokenGoogle");
-    try {
-      if(tokenGoogle){
-        const decifrar = await axios.get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${tokenGoogle}`, {
-        headers: {
-          Authorization: `Bearer ${tokenGoogle}`,
-          Accept: 'application/json'
-        }
-      });
-      dispatch(SetProfile({ email: decifrar.data.email, name: decifrar.data.name, picture: decifrar.data.picture }));
-      dispatch(Reload())
-    }
-    } catch (error) {
-      console.error(error);
-    }
-
-  };
-  fetchData();
-},[dispatch] );
-
-
 
 
 return(

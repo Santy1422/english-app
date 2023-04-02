@@ -11,7 +11,7 @@ const router = express.Router();
 
 
 const auth = async(req, res, next) => {
-  const token = req.header('Authorization').replace('Bearer ', '')
+  const token = req?.header('Authorization')?.replace('Bearer ', '')
   const data = jwt.verify(token, process.env.JWT_KEY)
   try {
       const user = await UserModel.findOne({ _id: data._id, 'tokens.token': token })
@@ -27,16 +27,6 @@ const auth = async(req, res, next) => {
 
 }
 
-router.post("/google", async (req, res) =>{
-  const {email, name, picture} = req.body;
-
-  const existe = await UserModel.findOne({ email: email })
-  if(existe) res.status(200).send(existe)
-  else{
-      const newUser = await UserModel.create({ email, name, picture })
-      res.status(200).send(newUser)
-  }
-})
 
 router.get("/user", auth, async (req, res) =>{
 try{
@@ -90,7 +80,6 @@ try{
 
   router.put("/delete", async (req, res) => {
     const { email, palabra, word, image } = req.body;
-    
     try {
       const user = await UserModel.findOne({ email: email });  
       if (user) {
@@ -147,7 +136,6 @@ router.post('/login', async(req, res) => {
 router.post('/logout', auth, async(req, res) => {
   // Log user out of all devices
   try {
-    console.log(req.user)
       req.user.tokens.splice(0, req.user.tokens.length)
       await req.user.save()
       res.send()

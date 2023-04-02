@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from "react";
+import  { useState} from "react";
 
 import axios from "axios";
 
 import { useDispatch, useSelector } from "react-redux";
-import { Change, InputRegister } from "../redux/actions";
+import { Change, InputRegister } from "../../redux/actions";
 export const useCard = (setChangeCard, changeCard) =>{
     const profile = useSelector((state) => state.profile)
     const test = useSelector((state) => state.test)
@@ -12,6 +12,7 @@ export const useCard = (setChangeCard, changeCard) =>{
     const [posicion, setPosicion] = useState(0)    
 const [español, setEspañol] = useState(false)
 const [saveWords, setSaveWords] = useState(false)
+const tokenUser = localStorage.getItem("accessToken");
 
 const [check, setCheck] = useState()
 const [registrar, setRegistrar] = useState([])
@@ -65,7 +66,7 @@ const sendResults = () =>{
 const deleteWord = async () =>{
 
     try{
-let word = await axios.put("/ingles/delete",
+let word = await axios.put("/ingles/delete", 
  
 {    email: profile.email,
       palabra: profile.palabras.español[posicion],
@@ -89,6 +90,8 @@ catch(err) {
 var palabraEspañol = token ? profile?.palabras?.español[posicion]?.charAt(0)?.toUpperCase() + profile?.palabras?.español[posicion]?.slice(1)?.toLowerCase() : test[0].español[posicion]
 var palabraIngles = token ? profile?.palabras?.ingles[posicion]?.charAt(0)?.toUpperCase() + profile?.palabras?.ingles[posicion]?.slice(1)?.toLowerCase() : test[0].ingles[posicion]
 var vistas = profile?.vistas?.filter((ele) => ele?.toLowerCase() === profile?.palabras?.ingles[posicion]?.toLowerCase())
+
+
 return{
     vistas, check,  posicion, español, next, prev, palabraEspañol, palabraIngles, setEspañol, deleteWord, changeCard, leer, registrar, setRegistrar, sendResults, saveWords, setSaveWords
 }

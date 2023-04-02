@@ -1,6 +1,5 @@
 import React from "react";
-import { Google } from "./Auth/Google";
-import {  useLogin } from "./Auth/useLogin";
+import {  useLogin } from "./CustomHooks/useLogin";
 
 export const Home = () =>{
 
@@ -50,10 +49,6 @@ const {changeInput, handleSubmit, user, register, setRegister, incorrecto} = use
       }
     </div>
     <div class="p-5">
-        <div class=" justify-center">
-            <button type="button" class="transition duration-200 border border-gray-200 text-gray-500 w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-normal text-center inline-block">    <Google/>
-</button>
-        </div>
     </div>
       <div class="py-5">
      

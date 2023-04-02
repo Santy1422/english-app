@@ -1,13 +1,14 @@
 import React, { useEffect } from "react";
-import { useCard } from "./useCard";
+import { useCard } from "../CustomHooks/useCard";
 import {  useSelector } from "react-redux";
 
 import 'reactjs-popup/dist/index.css';
 import { Botones } from "./Botones";
+import { Estadistics } from "./Estadistics";
 
-export const Cards = ({setChangeCard, changeCard, newCard}) =>{
+export const Cards = ({setChangeCard, changeCard}) =>{
 
-  const {posicion, español, setEspañol, next, palabraEspañol, palabraIngles, deleteWord, leer, check, registrar, setRegistrar,sendResults, vistas, saveWords, setSaveWords} = useCard(setChangeCard, changeCard)
+  const {posicion, español, setEspañol, next, palabraEspañol, palabraIngles, deleteWord, leer, registrar, setRegistrar,sendResults, vistas, saveWords, setSaveWords} = useCard(setChangeCard, changeCard)
 
     const profile = useSelector((state) => state.profile)
     useEffect(() =>{
@@ -23,29 +24,7 @@ export const Cards = ({setChangeCard, changeCard, newCard}) =>{
         <><div class="relative max-w-md mx-auto md:max-w-2xl min-w-0 break-words bg-yellow-500 w-full mb-6 shadow-lg rounded-xl mt-20 my-0">
 
             <div class="px-6">
-                <div class="flex flex-wrap justify-center">
-                        <div class="relative">
-                            <img src={profile?.palabras?.image[posicion] ? profile?.palabras?.image[posicion] :   null} class="shadow-xl  rounded-full align-middle border-none relative -m-16 -ml-20 lg:-ml-16 min-w-[100px] max-w-[130px]" />
-                        </div>
-                        </div>
-                    <div class="w-full text-center mt-20">
-                        <div class="flex justify-center lg:pt-4 pt-8 pb-0">
-                            <div class="p-3 text-center">
-                                <span class="text-xl font-bold block uppercase tracking-wide text-black">{profile?.palabras?.ingles.length ? profile?.palabras?.ingles.length + profile?.aprendidas?.ingles.length : 0}</span>
-                                <span class="text-sm text-white">Palabras</span>
-                            </div>
-                            
-                            <div class="p-3 text-center">
-                                <span class="text-xl font-bold block uppercase tracking-wide text-black">{token ? vistas?.length : 0}</span>
-                                <span class="text-sm text-white">Veces vista</span>
-                            </div>
-                            <div class="p-3 text-center">
-                                <span class="text-xl font-bold block uppercase tracking-wide text-black">{profile?.aprendidas?.ingles.length ? profile?.aprendidas?.ingles.length : 0}</span>
-                                <span class="text-sm text-white">Aprendidas</span>
-                            </div>
-
-                    </div>
-                </div>
+               <Estadistics posicion={posicion} profile={profile} token={token} vistas={vistas}/>
 
                 <div class="text-center mt-2">
 {palabraEspañol || palabraIngles ? 

@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { useCard } from "./useCard";
 
 export const Botones = ({next, palabraEspañol}) =>{
 
     const profile = useSelector((state) => state.profile)
   
-      const token = localStorage.getItem("accessToken");
       let posicionAleatoria = Math.floor(Math.random() * profile.palabras.español.length);
       let elementoAleatorio = profile.palabras.español[posicionAleatoria];
       let elementoAleatorio2 = elementoAleatorio;
