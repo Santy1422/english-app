@@ -21,7 +21,7 @@ require('dotenv').config();
 // async function main() {//conecta mongoose a la database
 //          await mongoose.connect(DATABASE_URL+"/"+DATABASE_NAME);
 // }
-//#region  MONGOOSE  
+// #region  MONGOOSE  
 
 // deploy
 let conexion = "mongodb://mongo:bryxl0WFeD3IetwBzAIc@containers-us-west-28.railway.app:6726"
@@ -35,7 +35,7 @@ main().catch(err => console.log({error: 'Error al conectar con la database' + er
 //#endregion
 
 // main().catch(err => console.log({error: 'Error al conectar con la database' + err.message})); //como main es asincronica, es una promesa, tiene .catch:
-//#endregion
+// #endregion
 
 
 // main().catch(err => console.log({error: 'Error al conectar con la database' + err.message}));

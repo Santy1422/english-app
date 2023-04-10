@@ -7,9 +7,9 @@ export const Home = () =>{
 const {changeInput, handleSubmit, user, register, setRegister, incorrecto} = useLogin()
     return(
 
-<div class="min-h-screen bg-gray-100 flex flex-col justify-center sm:py-12">
+<div class="min-h-screen bg-gray-800 flex flex-col justify-center sm:py-12">
 <div class="p-10 xs:p-0 mx-auto md:w-full md:max-w-md">
-  <div class="bg-white shadow w-full rounded-lg divide-y divide-gray-200">
+  <div class="bg-gray-500 shadow w-full rounded-lg divide-y divide-gray-200">
     {incorrecto ? 
   <div className="alert alert-error shadow-lg">
   <div>
@@ -20,14 +20,14 @@ const {changeInput, handleSubmit, user, register, setRegister, incorrecto} = use
 : null}
     <div class="px-5 py-7">
     {register ?
-      <><label class="font-semibold text-sm text-gray-600 pb-1 block">Nombre</label><input type="text" class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" value={user.name} name="name" onChange={(e) => changeInput(e)} /></>
+      <><label class="font-semibold text-sm text-white pb-1 block">Nombre</label><input type="text" class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" value={user.name} name="name" onChange={(e) => changeInput(e)} /></>
       : 
       null
       }
 
-      <label class="font-semibold text-sm text-gray-600 pb-1 block">Correo electronico</label>
+      <label class="font-semibold text-sm text-white pb-1 block">Correo electronico</label>
       <input type="email"  class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" value={user.email} name="email" onChange={(e) => changeInput(e)}/>
-      <label class="font-semibold text-sm text-gray-600 pb-1 block">Contraseña</label>
+      <label class="font-semibold text-sm text-white pb-1 block">Contraseña</label>
       <input type="password" class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full"  value={user.password} name="password" onChange={(e) => changeInput(e)}/>
       
      
@@ -54,14 +54,14 @@ const {changeInput, handleSubmit, user, register, setRegister, incorrecto} = use
      
         {!register ? 
         <div class="text-center sm:text-right whitespace-nowrap">
-          <button onClick={() => setRegister(true)} class="transition duration -200 mx-5 px-5 py-4 cursor-pointer font-normal text-sm rounded-lg text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-200 focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50 ring-inset">
+          <button onClick={() => setRegister(true)} class="transition duration -200 mx-5 px-5 py-4 cursor-pointer font-normal text-sm rounded-lg text-white hover:bg-gray-100 focus:outline-none focus:bg-gray-200 focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50 ring-inset">
         ¿Aun no estas registrado?
           </button>
   
         </div>
         : 
         <div class="text-center sm:text-right whitespace-nowrap">
-        <button onClick={() => setRegister(false)} class="transition duration -200 mx-5 px-5 py-4 cursor-pointer font-normal text-sm rounded-lg text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-200 focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50 ring-inset">
+        <button onClick={() => setRegister(false)} class="transition duration -200 mx-5 px-5 py-4 cursor-pointer font-normal text-sm rounded-lg text-white hover:bg-gray-100 focus:outline-none focus:bg-gray-200 focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50 ring-inset">
       Iniciar Sesion
         </button>
 
