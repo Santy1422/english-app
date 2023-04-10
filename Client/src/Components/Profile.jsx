@@ -17,8 +17,9 @@ let photo =  "https://img-19.ccm.net/4KM3uefjhLzfImuIf3ZtMyNGmes=/450x/smart/45d
 
   
 <hr></hr>
-
+<div class="flex justify-center">
     <ProfileWords/>
+  </div>
   </div>
 )
 }

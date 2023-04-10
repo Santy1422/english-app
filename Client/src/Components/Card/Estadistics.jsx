@@ -12,16 +12,16 @@ export const Estadistics = ({profile, posicion, token, vistas}) =>{
     <div class="w-full text-center mt-20">
         <div class="flex justify-center lg:pt-4 pt-8 pb-0">
             <div class="p-3 text-center">
-                <span class="text-xl font-bold block uppercase tracking-wide text-black">{profile?.palabras?.ingles.length ? profile?.palabras?.ingles.length + profile?.aprendidas?.ingles.length : 0}</span>
+                <span class="text-xl font-bold block uppercase tracking-wide text-white">{profile?.palabras?.ingles.length ? profile?.palabras?.ingles.length + profile?.aprendidas?.ingles.length : 0}</span>
                 <span class="text-sm text-white">Palabras</span>
             </div>
             
             <div class="p-3 text-center">
-                <span class="text-xl font-bold block uppercase tracking-wide text-black">{token ? vistas?.length : 0}</span>
+                <span class="text-xl font-bold block uppercase tracking-wide text-white">{token ? vistas?.length : 0}</span>
                 <span class="text-sm text-white">Veces vista</span>
             </div>
             <div class="p-3 text-center">
-                <span class="text-xl font-bold block uppercase tracking-wide text-black">{profile?.aprendidas?.ingles.length ? profile?.aprendidas?.ingles.length : 0}</span>
+                <span class="text-xl font-bold block uppercase tracking-wide text-white">{profile?.aprendidas?.ingles.length ? profile?.aprendidas?.ingles.length : 0}</span>
                 <span class="text-sm text-white">Aprendidas</span>
             </div>
 

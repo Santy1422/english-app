@@ -6,8 +6,8 @@ export const Botones = ({next, palabraEspañol}) =>{
     const profile = useSelector((state) => state.profile)
   
       let posicionAleatoria = Math.floor(Math.random() * profile.palabras.español.length);
-      let elementoAleatorio = profile.palabras.español[posicionAleatoria];
-      let elementoAleatorio2 = elementoAleatorio;
+      let elementoAleatorio = profile.palabras.español[posicionAleatoria].toLowerCase();
+      let elementoAleatorio2 = elementoAleatorio.toLowerCase();
       
       if (profile.palabras.español.length > 1 && posicionAleatoria !== profile.ultimaPosicion) {
         do {
@@ -17,15 +17,20 @@ export const Botones = ({next, palabraEspañol}) =>{
         profile.ultimaPosicion = posicionAleatoria;
         
         elementoAleatorio2 = profile.palabras.español[posicionAleatoria];
-      }
-            const elementos = [palabraEspañol, elementoAleatorio, elementoAleatorio2];
+        if(elementoAleatorio2.toLowerCase() === palabraEspañol.toLowerCase()){
+          elementoAleatorio2 = profile.palabras.español[posicionAleatoria +1] || profile.palabras.español[posicionAleatoria - 1] 
+        }
+        if(elementoAleatorio.toLowerCase() === palabraEspañol.toLowerCase()){
+          elementoAleatorio = profile.palabras.español[posicionAleatoria +1] || profile.palabras.español[posicionAleatoria - 1] 
+        }      }
+            const elementos = [palabraEspañol.toLowerCase(), elementoAleatorio.toLowerCase(), elementoAleatorio2.toLowerCase()];
       elementos.sort(() => Math.random() - 0.5);
 
       
 const [error, setError] = useState(false)
      const checkWord = (elemento) =>{
         console.log(elemento)
-        if(elemento === elementos.find((ele) => ele === palabraEspañol)){
+        if(elemento === elementos.find((ele) => ele === palabraEspañol.toLowerCase())){
             setError(false)
             next()
         } 
@@ -38,8 +43,8 @@ const [error, setError] = useState(false)
       {elementos.map((elemento, index) => (
         <button  style={{
             borderRadius: "9999px",
-            backgroundColor: "#f59e0b",
-            color: "white",
+            backgroundColor: "#fffefb",
+            color: "black",
             border: error ? "2px solid red" : "2px solid white",
           }}
            onClick={() =>checkWord(elemento)} key={index}>{elemento}</button>

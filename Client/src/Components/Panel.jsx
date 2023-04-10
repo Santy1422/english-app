@@ -7,6 +7,7 @@ import { Profile } from "./Profile";
 import { CleanProfile } from "../redux/actions";
 import  axios  from "axios";
 import { MovilMenu } from "./MovilMenu";
+import { Menu } from "./Menu";
 
 export const Panel = () =>{
   const dispatch = useDispatch()
@@ -44,85 +45,64 @@ export const Panel = () =>{
   };
 const [newCard, setNewCard] = useState(true)
 const [movil, setMovil] = useState(false)
+const [sidebarOpen, setSidebarOpen] = useState(false);
 
+function handleSidebarToggle() {
+  setSidebarOpen(!sidebarOpen);
+}
 
 return(
-<div> 
+  <div class="flex h-screen bg-gray-100">
 
-<div class="h-screen w-full  bg-white relative flex overflow-hidden">
-
-  {/* <!-- Sidebar --> */}
-  <aside class="h-full w-full md:w-20 flex flex-col space-y-10 items-center justify-center relative hidden md:flex bg-yellow-500 text-white">
-    {/* <!-- Profile --> */}
-    <div onClick={() => setPaginas(0)} class="flex items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">
-<p> Perfil </p>  
-</div>
-
-    {/* <!-- Courses --> */}
-    <div onClick={() => setPaginas(1)} class="flex items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">
-    <p> Palabras </p>  
-    </div>
- 
-    {/* <!-- Theme --> */}
-    <div onClick={() => setPaginas(2)} class="flex items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">
-    <p> Agregar palabra </p>  
-
-    </div>
-
-  </aside>
-
- 
-  <div class="w-full h-full flex flex-col justify-between">
-
-    {/* <!-- Header --> */}
-    <header class="h-16  w-full flex items-center relative justify-end px-5 space-x-10 bg-yellow-500">
-    <button class=" block md:hidden  mr-20" onClick={() => setMovil(!movil)}>
-  <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
-    <path
-      d="M4 6h16M4 12h16M4 18h16"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-    />
-  </svg>
-</button>
-    {/* <!-- Informação --> */}
-      <div class="flex flex-shrink-0 items-center space-x-4 text-white">
-        
-        {/* <!-- Texto --> */}
-        <div class="flex flex-col items-end ">
-          {/* <!-- Nome --> */}
-          <div class="text-md font-medium ">{profile?.name}</div>
-          {/* <!-- Título --> */}
-          <div class="text-sm font-regular">Student</div>
+    {/* <!-- sidebar --> */}
+    <div class="hidden md:flex flex-col w-64 bg-gray-800">
+        <div class="flex items-center justify-center h-16 bg-gray-900">
+            <span class="text-white font-bold uppercase">Menu</span>
         </div>
-        
-        <button class="rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white" onClick={() => logout()}>Salir</button>
-      </div>
-    </header>
+<Menu setPaginas={setPaginas}/>
+        </div>
 
-    {/* <!-- Main --> */}
-    <main class="max-w-full h-full flex relative overflow-y-hidden">
-      {/* <!-- Container --> */}
-      <div class="h-full w-full m-6 flex flex-wrap items-start justify-start rounded-tl grid-flow-col auto-cols-max gap-4 overflow-y-scroll justify-center">
+    {/* <!-- Main content --> */}
+    <div class="flex flex-col flex-1 overflow-y-auto">
+        <div class="flex items-center justify-between h-16 bg-white border-b border-gray-200">
+            <div class="flex items-center px-4">
+                <button class="text-gray-500 focus:outline-none focus:text-gray-700 md:hidden" onClick={() => handleSidebarToggle()} >
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+                
+            </div>
+            
+            <div class="flex items-center pr-4">
+            <button onClick={() => logout()} type="button" class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Logout</button>
 
-        {/* <!-- Container --> */}
-        
-  {movil ?
+            
+            </div>
+        </div>
+        {sidebarOpen &&
+                    <div class="flex h-screen bg-gray-100">
+
+<Menu setPaginas={setPaginas}/>
+                    </div>
+}
+        <div class="p-4">
+        {movil && !sidebarOpen ? 
   <MovilMenu setPaginas={setPaginas} setMovil={setMovil} movil={movil}/>
-:  paginas === 0 ? <Profile movil={movil}/>:
-        paginas === 1 ?
-            <Cards changeCard={changeCard} setChangeCard={setChangeCard} newCard={newCard}/>    
-             : paginas === 2 ? <NewWord newCard={newCard} setNewCard={setNewCard}/> : null
-
+ : paginas === 0  && !sidebarOpen ? <Profile movil={movil}/>:
+      paginas === 1  && !sidebarOpen ?
+       <Cards changeCard={changeCard} setChangeCard={setChangeCard} newCard={newCard} setPaginas={setPaginas}/>    
+         : paginas === 2  && !sidebarOpen && <NewWord newCard={newCard} setNewCard={setNewCard}/> 
+         
     }
-      </div>
-    </main>
-  </div>
+          
 
+        </div>
+    
+</div>
 </div>
 
-</div>
     )
 }
