@@ -90,8 +90,8 @@ const bulk = async() =>{
 
 
     return(
-        <div class="relative max-w-md mx-auto md:max-w-2xl mt-6 min-w-0 break-words bg-gray-800 w-full mb-6 shadow-lg rounded-xl mt-16">
-		<div>
+     <div class="relative max-w-md mx-auto md:max-w-2xl min-w-0 break-words bg-gray-800 w-full mb-6 shadow-lg rounded-xl mt-20 my-0">
+      <div>
 		</div>
 		<div class="relative px-4 py-10 bg-gray-800 shadow-lg sm:rounded-3xl sm:p-20">
 			<div class="max-w-md mx-auto">

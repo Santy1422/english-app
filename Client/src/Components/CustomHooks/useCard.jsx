@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Change, InputRegister } from "../../redux/actions";
 export const useCard = (setChangeCard, changeCard) =>{
     const profile = useSelector((state) => state.profile)
-    const test = useSelector((state) => state.test)
     const token = localStorage.getItem("accessToken");
 
     const [posicion, setPosicion] = useState(0)    
@@ -29,12 +28,12 @@ const next = () => {
 const leer = () => {
     const synth = window.speechSynthesis;
     const utterThis = new SpeechSynthesisUtterance(
-      profile?.palabras?.ingles[posicion] ? profile?.palabras?.ingles[posicion] : test[0].ingles[posicion]
+      profile?.palabras?.ingles[posicion] && profile?.palabras?.ingles[posicion]
     );
     utterThis.lang = 'en-UK';
-    utterThis.rate = 0.9; // Ajustar la velocidad (rango: 0.1 - 10)
-    utterThis.pitch = 1.1; // Ajustar el tono (rango: 0 - 2)
-    utterThis.volume = 0.8; // Ajustar el volumen (rango: 0 - 1)
+    utterThis.rate = 0.6; // Ajustar la velocidad (rango: 0.1 - 10)
+    utterThis.pitch = 0.7; // Ajustar el tono (rango: 0 - 2)
+    utterThis.volume = 0.5; // Ajustar el volumen (rango: 0 - 1)
     synth.speak(utterThis);
   }
 const prev = () => {
@@ -87,8 +86,8 @@ catch(err) {
  
 }
 
-var palabraEspañol = token ? profile?.palabras?.español[posicion]?.charAt(0)?.toUpperCase() + profile?.palabras?.español[posicion]?.slice(1)?.toLowerCase() : test[0].español[posicion]
-var palabraIngles = token ? profile?.palabras?.ingles[posicion]?.charAt(0)?.toUpperCase() + profile?.palabras?.ingles[posicion]?.slice(1)?.toLowerCase() : test[0].ingles[posicion]
+var palabraEspañol = token && profile?.palabras?.español[posicion]?.charAt(0)?.toUpperCase() + profile?.palabras?.español[posicion]?.slice(1)?.toLowerCase() 
+var palabraIngles =profile?.palabras?.ingles[posicion]?.charAt(0)?.toUpperCase() + profile?.palabras?.ingles[posicion]?.slice(1)?.toLowerCase() 
 var vistas = profile?.vistas?.filter((ele) => ele?.toLowerCase() === profile?.palabras?.ingles[posicion]?.toLowerCase())
 
 

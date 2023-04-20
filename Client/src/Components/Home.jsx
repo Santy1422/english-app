@@ -1,6 +1,6 @@
 import React from "react";
 import {  useLogin } from "./CustomHooks/useLogin";
-
+import image from "../image.png"
 export const Home = () =>{
 
 
@@ -9,16 +9,18 @@ const {changeInput, handleSubmit, user, register, setRegister, incorrecto} = use
 
 <div class="min-h-screen bg-gray-800 flex flex-col justify-center sm:py-12">
 <div class="p-10 xs:p-0 mx-auto md:w-full md:max-w-md">
-  <div class="bg-gray-500 shadow w-full rounded-lg divide-y divide-gray-200">
+  <div class="bg-gray-500 shadow w-full rounded-lg divide-y divide-gray-200 py-6">
+ <center> <img src={image}  style={{ maxWidth: '100%' }}/></center>
     {incorrecto ? 
   <div className="alert alert-error shadow-lg">
   <div>
     <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
     <span>¡Ups!, Email o contraseña incorrecto.</span>
   </div>
+
 </div>
 : null}
-    <div class="px-5 py-7">
+    <div class="px-5 py-8">
     {register ?
       <><label class="font-semibold text-sm text-white pb-1 block">Nombre</label><input type="text" class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" value={user.name} name="name" onChange={(e) => changeInput(e)} /></>
       : 
@@ -48,8 +50,7 @@ const {changeInput, handleSubmit, user, register, setRegister, incorrecto} = use
         </button>
       }
     </div>
-    <div class="p-5">
-    </div>
+
       <div class="py-5">
      
         {!register ? 

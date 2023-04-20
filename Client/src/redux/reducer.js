@@ -1,13 +1,6 @@
-import palabras from "../Components/palabras.json"
 const initialState = {
     profile: [],
-    test : [
-        palabras ={
-            español: palabras.espanol,
-            ingles: palabras.ingles
 
-        },
-    ],
     change:true
 }
 

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { Cards } from "./Card/Cards";
 import { NewWord } from "./NewWord";
 import { useHistory } from "react-router-dom";
@@ -6,7 +6,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { Profile } from "./Profile";
 import { CleanProfile } from "../redux/actions";
 import  axios  from "axios";
-import { MovilMenu } from "./MovilMenu";
 import { Menu } from "./Menu";
 
 export const Panel = () =>{
@@ -43,6 +42,7 @@ export const Panel = () =>{
   }
 
   };
+
 const [newCard, setNewCard] = useState(true)
 const [movil, setMovil] = useState(false)
 const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -85,12 +85,12 @@ return(
         {sidebarOpen &&
                     <div class="flex h-screen bg-gray-100">
 
-<Menu setPaginas={setPaginas}/>
+<Menu setPaginas={setPaginas} setMovil={setMovil} handleSidebarToggle={handleSidebarToggle}/>
                     </div>
 }
         <div class="p-4">
         {movil && !sidebarOpen ? 
-  <MovilMenu setPaginas={setPaginas} setMovil={setMovil} movil={movil}/>
+  <Menu  setPaginas={setPaginas} setMovil={setMovil} movil={movil} />
  : paginas === 0  && !sidebarOpen ? <Profile movil={movil}/>:
       paginas === 1  && !sidebarOpen ?
        <Cards changeCard={changeCard} setChangeCard={setChangeCard} newCard={newCard} setPaginas={setPaginas}/>    

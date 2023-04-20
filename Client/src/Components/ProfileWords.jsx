@@ -10,7 +10,6 @@ const {spanish, english, screen} = props
 const location = useLocation()
 let mapeoCondicion = screen ? spanish : profile?.palabras?.ingles
 const token = localStorage.getItem("accessToken");
-let noScreen = "https://images.vexels.com/media/users/3/142193/isolated/preview/d5f1419f36018c19634f5501f58a1531-palabras-de-argot-comico-de-dibujos-animados.png"
   return (
     <div class="my-6 ">
       <ul className="max-w-md divide-y ">
@@ -35,7 +34,6 @@ Imagen</p>
 Aprendizaje
 </p>
                   </div>
-                  {/* {profile?.vistas?.filter((vista) => vista.toLowerCase() === (english ? english[index] : ele).toLowerCase()).length < 3} */}
 
                 </div>
               </li>
@@ -62,7 +60,6 @@ Aprendizaje
                     <p className="text-sm font-medium text-black">
                   Veces vistas: {profile?.vistas?.filter((vista) => vista.toLowerCase() === (english ? english[index] : ele)?.toLowerCase()).length}</p>
                   </div>
-                  {/* {profile?.vistas?.filter((vista) => vista.toLowerCase() === (english ? english[index] : ele).toLowerCase()).length < 3} */}
 
                 </div>
               </li>

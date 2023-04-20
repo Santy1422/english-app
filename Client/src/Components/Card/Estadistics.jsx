@@ -6,7 +6,7 @@ export const Estadistics = ({profile, posicion, token, vistas}) =>{
         <div>
         <div class="flex flex-wrap justify-center">
         <div class="relative">
-            <img src={profile?.palabras?.image[posicion] ? profile?.palabras?.image[posicion] :   null} class="shadow-xl  rounded-full align-middle border-none relative -m-16 -ml-20 lg:-ml-16 min-w-[100px] max-w-[130px]" />
+            <img src={profile?.palabras?.image[posicion] && profile?.palabras?.image[posicion] } class="shadow-xl  rounded-full align-middle border-none relative -m-16 -ml-20 lg:-ml-16 min-w-[100px] max-w-[130px]" />
         </div>
         </div>
     <div class="w-full text-center mt-20">
@@ -17,7 +17,7 @@ export const Estadistics = ({profile, posicion, token, vistas}) =>{
             </div>
             
             <div class="p-3 text-center">
-                <span class="text-xl font-bold block uppercase tracking-wide text-white">{token ? vistas?.length : 0}</span>
+                <span class="text-xl font-bold block uppercase tracking-wide text-white">{vistas?.length ? vistas?.length : 0}</span>
                 <span class="text-sm text-white">Veces vista</span>
             </div>
             <div class="p-3 text-center">
