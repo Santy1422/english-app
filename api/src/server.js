@@ -28,7 +28,7 @@ let conexion = "mongodb://mongo:bryxl0WFeD3IetwBzAIc@containers-us-west-28.railw
 
 async function main() {//conecta mongoose a la database
          await mongoose.connect(conexion);
-// use  `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
+// use  `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test')
 }
 
 main().catch(err => console.log({error: 'Error al conectar con la database' + err.message})); //como main es asincronica, es una promesa, tiene .catch:
