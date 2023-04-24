@@ -47,9 +47,8 @@ router.put("/", async (req, res) => {
       palabra.forEach((p, i) => usuario.palabras.español.push(p.toString()));
       word.forEach((w, i) => usuario.palabras.ingles.push(w.toString()));
       image.forEach((img, i) => usuario.palabras.image.push(img.toString()));
-      ejemplo.forEach((ej, i) => usuario.palabras.ejemplo.push(ej.toString()));
+      if(ejemplo) ejemplo.forEach((ej, i) => usuario.palabras.ejemplo.push(ej.toString()));
 
-      console.log(auth)
       await usuario.save();
       res.status(200).send(usuario)
       if(!word && image){
