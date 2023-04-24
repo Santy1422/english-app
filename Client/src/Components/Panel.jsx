@@ -85,16 +85,16 @@ return(
         {sidebarOpen &&
                     <div class="flex h-screen bg-gray-100">
 
-<Menu setPaginas={setPaginas} setMovil={setMovil} handleSidebarToggle={handleSidebarToggle}/>
+<Menu setPaginas={setPaginas} setMovil={setMovil} handleSidebarToggle={handleSidebarToggle} setSidebarOpen={setSidebarOpen} sidebarOpen={sidebarOpen}/>
                     </div>
 }
         <div class="p-4">
         {movil && !sidebarOpen ? 
-  <Menu  setPaginas={setPaginas} setMovil={setMovil} movil={movil} />
+          <Menu setPaginas={setPaginas} setMovil={setMovil} handleSidebarToggle={handleSidebarToggle} setSidebarOpen={setSidebarOpen} sidebarOpen={sidebarOpen}/>
  : paginas === 0  && !sidebarOpen ? <Profile movil={movil}/>:
       paginas === 1  && !sidebarOpen ?
        <Cards changeCard={changeCard} setChangeCard={setChangeCard} newCard={newCard} setPaginas={setPaginas}/>    
-         : paginas === 2  && !sidebarOpen && <NewWord newCard={newCard} setNewCard={setNewCard}/> 
+         : paginas === 2  && !sidebarOpen && <NewWord newCard={newCard} setNewCard={setNewCard} paginas={paginas}/> 
          
     }
           

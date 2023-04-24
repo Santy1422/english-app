@@ -40,13 +40,15 @@ catch(err){
 
 
 router.put("/", async (req, res) => {
-    const {email, palabra, word, image } = req.body;
+    const {email, palabra, word, image, ejemplo } = req.body;
     const usuario = await UserModel.findOne({ email: email });
   
     if (usuario) {
       palabra.forEach((p, i) => usuario.palabras.español.push(p.toString()));
       word.forEach((w, i) => usuario.palabras.ingles.push(w.toString()));
       image.forEach((img, i) => usuario.palabras.image.push(img.toString()));
+      ejemplo.forEach((ej, i) => usuario.palabras.ejemplo.push(ej.toString()));
+
       console.log(auth)
       await usuario.save();
       res.status(200).send(usuario)
@@ -79,17 +81,19 @@ try{
 
 
   router.put("/delete", async (req, res) => {
-    const { email, palabra, word, image } = req.body;
+    const { email, palabra, word, image, ejemplo } = req.body;
     try {
       const user = await UserModel.findOne({ email: email });  
       if (user) {
         await UserModel.updateOne(
           { email: email },
-          { $pull: { 'palabras.español': palabra, 'palabras.ingles': word, 'palabras.image': image } }
+          { $pull: { 'palabras.español': palabra, 'palabras.ingles': word, 'palabras.image': image, 'palabras.ejemplo': ejemplo,} }
         );
         user.aprendidas.español.push(palabra);
         user.aprendidas.ingles.push(word);
         user.aprendidas.image.push(image);
+        user.aprendidas.ejemplo.push(ejemplo);
+
         await user.save();
         res.status(200).send(user);
       } else {

@@ -3,8 +3,8 @@ import React from "react";
 export const Menu = ({setPaginas, sidebarOpen, setSidebarOpen}) =>{
 
     const aux = (number) =>{
+        setSidebarOpen && setSidebarOpen(!sidebarOpen)
         setPaginas(number)
-        setSidebarOpen(!sidebarOpen)
     }
     return(
         <div class="flex flex-col flex-1 overflow-y-auto">

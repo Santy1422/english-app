@@ -4,20 +4,23 @@ import { useDispatch, useSelector } from "react-redux";
 import { ProfileWords } from "./ProfileWords";
 import { Change, InputRegister } from "../redux/actions";
 
-export const NewWord = ({newCard, setNewCard}) =>{
+export const NewWord = ({newCard, setNewCard, paginas}) =>{
 
     const profile = useSelector((state) => state.profile)
 const dispatch = useDispatch()
 
     const [spanish, setSpanish] = useState([]);
     const [english, setEnglish] = useState([]);
+    const [ejemplo, setEjemplo] = useState([]);
+
     const [screen, setScreen] = useState([]);
     const [traslation, setTraslation] = useState("")
     const [englishWord, setEnglishword] = useState("")
     const [palabras, setPalabras] = useState({
       palabra: "",
       word: englishWord ? englishWord : "",
-      image: ""
+      image: "",
+      ejemplo: ""
   })    
     const changeInput = (e) =>{
         setPalabras({
@@ -26,13 +29,14 @@ const dispatch = useDispatch()
         });
         setTraslation(e.target.value);
       };
-      console.log(traslation);
-    console.log(traslation)
+
 
     const autoCompletar = async (es) => {
       try {
+        // 
         let traduccion = await axios.get(`https://api.mymemory.translated.net/get?q=${traslation}&langpair=es|en`);
-        setEnglishword(traduccion?.data?.matches[0]?.translation)
+         setEnglishword(traduccion?.data?.matches[1]?.translation)
+
       } catch (err) {
         console.log(err);
       }
@@ -54,31 +58,40 @@ const bulk = async() =>{
     setScreen([...screen, response.data.photos[0].src.medium]);
     setEnglish([...english, palabras.word ? palabras.word : englishWord]);
     setSpanish([...spanish, palabras.palabra]);
+    setEjemplo([...ejemplo, palabras.ejemplo]);
+
   
     setPalabras({
       palabra: "",
       word: ""  ,
+      ejemplo: ""  ,
+
     }) 
     setEnglishword("")
   }
+
   const agregar = async () => {
     try {
       await axios.put("/ingles", {
         email: profile.email,
         palabra: spanish,
         word: english,
-        image: screen
+        image: screen,
+        ejemplo: ejemplo.length && ejemplo || undefined
       }).then((scces) => {
         dispatch(InputRegister(scces.data));
         setPalabras({
           palabra: "",
           word: "",
           englishWord: "",
-          traslation: ""
+          traslation: "",
+          ejemplo: "",
         });
         setEnglish([]);
         setSpanish([]);
         setScreen([]);
+        setEjemplo([]);
+
         setNewCard(!newCard);
         dispatch(Change());
       });
@@ -101,16 +114,36 @@ const bulk = async() =>{
 				<div class="divide-y divide-gray-200">
 					<div class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
 						<div class="relative">
-							<input autocomplete="off" onChange={(e) => changeInput(e)} value ={palabras.palabra} id="ingles" name="palabra" type="text" class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600" placeholder="Email address" />
-							<label for="email" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Palabra en español</label>
+            <label for="input-group-1" class="block mb-2 text-sm font-medium text-white ">Spanish Word</label>
+<div class="relative mb-6">
+  <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+    <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
+  </div>
+  <input type="text" onChange={(e) => changeInput(e)} value ={palabras.palabra} id="ingles" name="palabra" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Escribe la palabra en ingles"/>
+</div>
+          
 						</div>
-						<div class="relative">
-							<input autocomplete="off"  onClick={()=> autoCompletar()} 
+            <div class="relative">
+            <label for="input-group-1" class="block mb-2 text-sm font-medium text-white ">English Word</label>
+<div class="relative mb-6">
+  <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+    <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
+  </div>
+  <input   onClick={()=> autoCompletar()} 
               onChange={(e) => changeInput(e)}
-               value ={ englishWord ? englishWord : palabras.word} id="ingles" name="word" type="text" class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600" placeholder="Password" />
-							<label for="password" class="absolute left-0 -top-3.5 text-white text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Palabra en ingles</label>
+               value ={ englishWord ? englishWord : palabras.word} id="ingles" name="word" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Click para autocompletar"/>
+</div>
+<label for="input-group-1" class="block mb-2 text-sm font-medium text-white ">Spanish Word</label>
+<div class="relative mb-6">
+  <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+    <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
+  </div>
+  <input type="textarea" onChange={(e) => changeInput(e)}
+               value ={ palabras.ejemplo} id="ingles" name="ejemplo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="¿Quieres añadir una oracion o ejemplo?"/>
+</div>
 						</div>
-            
+
+       
 <div class="">
   <button onClick={() => bulk()} class="btn btn-primary bg-white text-black text-sm sm:text-base md:text-lg">Agregar palabras</button>
   {spanish.length ? 
@@ -118,7 +151,7 @@ const bulk = async() =>{
   : null
 }
 </div>
-            <ProfileWords spanish={spanish} english={english} screen={screen}/>
+            <ProfileWords spanish={spanish} english={english} screen={screen} paginas={paginas}/>
             
 					</div>
 				</div>

@@ -56,6 +56,9 @@ const userSchema = mongoose.Schema(
       }, 
       vistas:{
         type: Array
+      },
+      ejemplo:{
+        type: Array
       }
     },
     aprendidas: {
@@ -69,6 +72,10 @@ const userSchema = mongoose.Schema(
         type: Array,
       }, 
       detail:{
+        type: Array
+      }
+      ,
+      ejemplo:{
         type: Array
       }
     },
