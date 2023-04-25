@@ -5,6 +5,14 @@ export const Home = () =>{
 
 
 const {changeInput, handleSubmit, user, register, setRegister, incorrecto} = useLogin()
+const invitado = () =>{
+  setUser({
+    ...user,
+    email: "invitado@gmail.com",
+    password: "123456"
+  })
+}
+
     return(
 
 <div class="min-h-screen bg-gray-800 flex flex-col justify-center sm:py-12">
@@ -31,7 +39,7 @@ const {changeInput, handleSubmit, user, register, setRegister, incorrecto} = use
       <input type="email"  class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" value={user.email} name="email" onChange={(e) => changeInput(e)}/>
       <label class="font-semibold text-sm text-white pb-1 block">Contraseña</label>
       <input type="password" class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full"  value={user.password} name="password" onChange={(e) => changeInput(e)}/>
-      
+
      
       {!register ?
       <button onClick={() => handleSubmit()} type="button" class="transition duration-200 bg-blue-500 hover:bg-blue-600 focus:bg-blue-700 focus:shadow-sm focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block">
@@ -50,7 +58,12 @@ const {changeInput, handleSubmit, user, register, setRegister, incorrecto} = use
         </button>
       }
     </div>
-
+    <div class="sm:text-center ">
+          <button onClick={() => invitado()} class="transition duration -200 mx-5 px-5 py-4 cursor-pointer font-normal text-sm rounded-lg text-white hover:bg-gray-100 focus:outline-none focus:bg-gray-200 focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50 ring-inset">
+        Ingresa como invitado
+          </button>
+  
+        </div>
       <div class="py-5">
      
         {!register ? 
@@ -58,6 +71,7 @@ const {changeInput, handleSubmit, user, register, setRegister, incorrecto} = use
           <button onClick={() => setRegister(true)} class="transition duration -200 mx-5 px-5 py-4 cursor-pointer font-normal text-sm rounded-lg text-white hover:bg-gray-100 focus:outline-none focus:bg-gray-200 focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50 ring-inset">
         ¿Aun no estas registrado?
           </button>
+           
   
         </div>
         : 
@@ -67,7 +81,9 @@ const {changeInput, handleSubmit, user, register, setRegister, incorrecto} = use
         </button>
 
       </div>
+
         }
+          
       </div>
   </div>
   <div class="py-5">
