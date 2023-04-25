@@ -4,7 +4,7 @@ import image from "../image.png"
 export const Home = () =>{
 
 
-const {changeInput, handleSubmit, user, register, setRegister, incorrecto} = useLogin()
+const {changeInput, handleSubmit, user, register, setRegister, incorrecto, setUser} = useLogin()
 const invitado = () =>{
   setUser({
     ...user,
