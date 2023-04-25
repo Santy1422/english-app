@@ -70,7 +70,9 @@ let word = await axios.put("/ingles/delete",
 {    email: profile.email,
       palabra: profile.palabras.español[posicion],
       word: profile.palabras.ingles[posicion],
-      image: profile.palabras.image[posicion]
+      image: profile.palabras.image[posicion],
+      ejemplo: profile.palabras.ejemplo[posicion]
+
 } )
 .then((succces) => 
 dispatch(InputRegister(succces.data)),

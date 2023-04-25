@@ -50,21 +50,21 @@ export const Cards = ({setChangeCard, changeCard, setPaginas}) =>{
               <div class="flex flex-wrap justify-betwen">
                 <div class="w-full px-4">
                   <p></p>
-                  {palabraEspañol && !español &&
+                  {palabraEspañol ?  !español ?
                     <button onClick={() => setEspañol(!español)}
                       type="button"
                       class="inline-block rounded bg-primary-100 text-white px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out hover:bg-primary-accent-100 focus:bg-primary-accent-100 focus:outline-none focus:ring-0 active:bg-primary-accent-200">
                       Ver en español
                     </button>
-                    ||
+                  :
                     <button onClick={() => setEspañol(!español)}
                       type="button"
                       class="inline-block rounded bg-primary-100 px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-primary-accent-100 focus:bg-primary-accent-100 focus:outline-none focus:ring-0 active:bg-primary-accent-200">
                       Ver en ingles
-                    </button>
-              
+                    </button> 
+              : null
                   }
-                  {palabraEspañol ?
+                  {palabraEspañol || palabraIngles ?
                     <button onClick={() => deleteWord()}
                       type="button"
                       class="inline-block rounded bg-primary-100 px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-primary-accent-100 focus:bg-primary-accent-100 focus:outline-none focus:ring-0 active:bg-primary-accent-200">
