@@ -28,6 +28,7 @@ const auth = async(req, res, next) => {
 }
 
 
+
 router.get("/user", auth, async (req, res) =>{
 try{
   const existe = await UserModel.findOne({ email: req.user })
@@ -38,6 +39,15 @@ catch(err){
 }
 })
 
+router.get("/userInfo", auth, async (req, res) =>{
+  try{
+    const existe = await UserModel.findOne({ email: req.user })
+   res.status(200).send(existe)
+  }
+  catch(err){
+    console.log(err)
+  }
+  })
 
 router.put("/", async (req, res) => {
     const {email, palabra, word, image, ejemplo } = req.body;
