@@ -7,6 +7,7 @@ import { Profile } from "./Profile";
 import { CleanProfile } from "../redux/actions";
 import  axios  from "axios";
 import { Menu } from "./Menu";
+import { NewPost } from "./NewPost";
 
 export const Panel = () =>{
   const dispatch = useDispatch()
@@ -14,7 +15,7 @@ export const Panel = () =>{
   const [changeCard, setChangeCard] = useState(true)
   const [paginas, setPaginas] = useState(1)
   const history = useHistory()  
-
+console.log(profile)
   const logout = () => {
     localStorage.clear("accessToken");
     const tokenUser = localStorage.getItem("accessToken");
@@ -89,14 +90,32 @@ return(
                     </div>
 }
         <div class="p-4">
-        {movil && !sidebarOpen ? 
-          <Menu setPaginas={setPaginas} setMovil={setMovil} handleSidebarToggle={handleSidebarToggle} setSidebarOpen={setSidebarOpen} sidebarOpen={sidebarOpen}/>
- : paginas === 0  && !sidebarOpen ? <Profile movil={movil}/>:
-      paginas === 1  && !sidebarOpen ?
-       <Cards changeCard={changeCard} setChangeCard={setChangeCard} newCard={newCard} setPaginas={setPaginas}/>    
-         : paginas === 2  && !sidebarOpen && <NewWord newCard={newCard} setNewCard={setNewCard} paginas={paginas}/> 
-         
-    }
+        {
+  movil && !sidebarOpen ? (
+    <Menu
+      setPaginas={setPaginas}
+      setMovil={setMovil}
+      handleSidebarToggle={handleSidebarToggle}
+      setSidebarOpen={setSidebarOpen}
+      sidebarOpen={sidebarOpen}
+    />
+  ) : paginas === 0 && !sidebarOpen ? (
+    <Profile movil={movil} />
+  ) : paginas === 1 && !sidebarOpen ? (
+    <Cards
+      changeCard={changeCard}
+      setChangeCard={setChangeCard}
+      newCard={newCard}
+      setPaginas={setPaginas}
+    />
+  ) : paginas === 2 ? (
+    !sidebarOpen && (
+      <NewWord newCard={newCard} setNewCard={setNewCard} paginas={paginas} />
+    )
+  ) : paginas === 3 && !sidebarOpen ? (
+    <NewPost paginas={paginas} />
+  ) : null
+}
           
 
         </div>

@@ -76,10 +76,10 @@ router.put("/", async (req, res) => {
     const usuario = await UserModel.findOne({ email: email });
   
     if (usuario) {
-      usuario.palabras.title.push(title)
-      usuario.category.title.push(category)
-      usuario.content.title.push(content)
-      usuario.image.title.push(image)
+      usuario.teory.title.push(title)
+      usuario.teory.title.push(category && category || "sin categoria")
+      usuario.teory.title.push(content)
+      usuario.teory.title.push(image && image || "https://cdn.pixabay.com/photo/2016/07/03/17/47/post-it-1495148_640.jpg")
 
       await usuario.save();
       res.status(200).send(usuario)
