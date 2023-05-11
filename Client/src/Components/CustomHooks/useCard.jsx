@@ -1,9 +1,10 @@
 import  { useState} from "react";
-
 import axios from "axios";
 
 import { useDispatch, useSelector } from "react-redux";
 import { Change, InputRegister } from "../../redux/actions";
+const Hyphenation = require('hyphen');
+
 export const useCard = (setChangeCard, changeCard) =>{
     const profile = useSelector((state) => state.profile)
     const token = localStorage.getItem("accessToken");
@@ -11,8 +12,8 @@ export const useCard = (setChangeCard, changeCard) =>{
     const [posicion, setPosicion] = useState(0)    
 const [español, setEspañol] = useState(false)
 const [saveWords, setSaveWords] = useState(false)
-const tokenUser = localStorage.getItem("accessToken");
-
+const hyphenation = new Hyphenation();
+hyphenation.loadLanguage('en'); 
 const [check, setCheck] = useState()
 const [registrar, setRegistrar] = useState([])
 const dispatch = useDispatch()
@@ -27,15 +28,18 @@ const next = () => {
 } 
 const leer = () => {
     const synth = window.speechSynthesis;
-    const utterThis = new SpeechSynthesisUtterance(
-      profile?.palabras?.ingles[posicion] && profile?.palabras?.ingles[posicion]
-    );
+    const text = profile?.palabras?.ingles[posicion] || '';
+  
+    // Separación de sílabas utilizando hyphen
+    const hyphenatedText = hyphenation.hyphenateText(text).join('');
+  
+    const utterThis = new SpeechSynthesisUtterance(hyphenatedText);
     utterThis.lang = 'en-UK';
-    utterThis.rate = 0.6; // Ajustar la velocidad (rango: 0.1 - 10)
-    utterThis.pitch = 0.7; // Ajustar el tono (rango: 0 - 2)
-    utterThis.volume = 0.5; // Ajustar el volumen (rango: 0 - 1)
+    utterThis.rate = 0.6; // Ajusta la velocidad según sea necesario (rango: 0.1 - 10)
+    utterThis.pitch = 0.7; // Ajusta el tono según sea necesario (rango: 0 - 2)
+    utterThis.volume = 0.5; // Ajusta el volumen según sea necesario (rango: 0 - 1)
     synth.speak(utterThis);
-  }
+  };
 const prev = () => {
     if(posicion === 0) setPosicion(profile?.palabras?.ingles.length -1)
     else{

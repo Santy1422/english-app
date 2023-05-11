@@ -68,10 +68,12 @@ const dispatch = useDispatch()
   
     try {
         if(paginas === 3) {
-            await axios.put("/post", {
+            await axios.put("/post", body ={
+                
                 email: profile.email,
                 title:  palabras.palabra ,
                 content: palabras.word,
+            
               }).then((scces) => {
                 setPalabras({
                   palabra: "",
