@@ -73,7 +73,6 @@ const dispatch = useDispatch()
                 email: profile.email,
                 title:  palabras.palabra ,
                 content: palabras.word,
-            
               }).then((scces) => {
                 setPalabras({
                   palabra: "",
