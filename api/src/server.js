@@ -6,8 +6,6 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 
 // const cors = require('cors');
-const { checkJwt, firebaseAdmin, setAdmin, extractUserData } = require('./utils/firebase-stuff');
-const {globalLimit} = require('./utils/rate-limiters');
 
 // permite leer archivo .env
 
@@ -64,14 +62,7 @@ const create = async () => {
   // Todas las Rutas:
   app.use(routes);
 
-  app.get('/check', checkJwt, async (req, res) => {
-    //setAdmin(req.user.uid)
-    try {
-      res.send({ message: 'Token decodificado exitosamente!', user: req.user });
-    } catch (err) {
-      res.send({ message: 'el back exploto' + err.message });
-    }
-  });
+  
 
   return app;
 };

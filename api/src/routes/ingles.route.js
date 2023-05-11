@@ -69,6 +69,24 @@ router.put("/", async (req, res) => {
       res.status(404).json({ message: "No se encontró el usuario" });
     }
   });
+
+
+  router.put("/post", async (req, res) => {
+    const {email, title, category, content, image } = req.body;
+    const usuario = await UserModel.findOne({ email: email });
+  
+    if (usuario) {
+      usuario.palabras.title.push(title)
+      usuario.category.title.push(category)
+      usuario.content.title.push(content)
+      usuario.image.title.push(image)
+
+      await usuario.save();
+      res.status(200).send(usuario)
+    } else {
+      res.status(404).json({ message: "No se encontró el usuario" });
+    }
+  });
   router.put("/save", async (req, res) => {
     const { email, aprendida } = req.body;
 try{
