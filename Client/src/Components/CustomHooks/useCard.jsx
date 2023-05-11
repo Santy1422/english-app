@@ -3,7 +3,6 @@ import axios from "axios";
 
 import { useDispatch, useSelector } from "react-redux";
 import { Change, InputRegister } from "../../redux/actions";
-const Hyphenation = require('hyphen');
 
 export const useCard = (setChangeCard, changeCard) =>{
     const profile = useSelector((state) => state.profile)
@@ -12,8 +11,6 @@ export const useCard = (setChangeCard, changeCard) =>{
     const [posicion, setPosicion] = useState(0)    
 const [español, setEspañol] = useState(false)
 const [saveWords, setSaveWords] = useState(false)
-const hyphenation = new Hyphenation();
-hyphenation.loadLanguage('en'); 
 const [check, setCheck] = useState()
 const [registrar, setRegistrar] = useState([])
 const dispatch = useDispatch()
@@ -34,9 +31,8 @@ const leer = () => {
     const text = profile?.palabras?.ingles[posicion] || '';
   
     // Separación de sílabas utilizando hyphen
-    const hyphenatedText = hyphenation.hyphenateText(text).join('');
   
-    const utterThis = new SpeechSynthesisUtterance(hyphenatedText);
+    const utterThis = new SpeechSynthesisUtterance(text);
     utterThis.lang = 'en-UK';
     utterThis.rate = 0.6; // Ajusta la velocidad según sea necesario (rango: 0.1 - 10)
     utterThis.pitch = 0.7; // Ajusta el tono según sea necesario (rango: 0 - 2)
