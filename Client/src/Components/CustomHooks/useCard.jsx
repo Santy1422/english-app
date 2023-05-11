@@ -3,7 +3,7 @@ import axios from "axios";
 
 import { useDispatch, useSelector } from "react-redux";
 import { Change, InputRegister } from "../../redux/actions";
-// const Hyphenation = require('hyphen');
+const Hyphenation = require('hyphen');
 
 export const useCard = (setChangeCard, changeCard) =>{
     const profile = useSelector((state) => state.profile)
@@ -29,20 +29,20 @@ const next = () => {
 
 
 
-// const leer = () => {
-//     const synth = window.speechSynthesis;
-//     const text = profile?.palabras?.ingles[posicion] || '';
+const leer = () => {
+    const synth = window.speechSynthesis;
+    const text = profile?.palabras?.ingles[posicion] || '';
   
-//     // Separación de sílabas utilizando hyphen
-//     const hyphenatedText = hyphenation.hyphenateText(text).join('');
+    // Separación de sílabas utilizando hyphen
+    const hyphenatedText = hyphenation.hyphenateText(text).join('');
   
-//     const utterThis = new SpeechSynthesisUtterance(hyphenatedText);
-//     utterThis.lang = 'en-UK';
-//     utterThis.rate = 0.6; // Ajusta la velocidad según sea necesario (rango: 0.1 - 10)
-//     utterThis.pitch = 0.7; // Ajusta el tono según sea necesario (rango: 0 - 2)
-//     utterThis.volume = 0.5; // Ajusta el volumen según sea necesario (rango: 0 - 1)
-//     synth.speak(utterThis);
-//   };
+    const utterThis = new SpeechSynthesisUtterance(hyphenatedText);
+    utterThis.lang = 'en-UK';
+    utterThis.rate = 0.6; // Ajusta la velocidad según sea necesario (rango: 0.1 - 10)
+    utterThis.pitch = 0.7; // Ajusta el tono según sea necesario (rango: 0 - 2)
+    utterThis.volume = 0.5; // Ajusta el volumen según sea necesario (rango: 0 - 1)
+    synth.speak(utterThis);
+  };
 const prev = () => {
     if(posicion === 0) setPosicion(profile?.palabras?.ingles.length -1)
     else{
