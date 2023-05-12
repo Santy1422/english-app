@@ -68,7 +68,7 @@ const dispatch = useDispatch()
   
     try {
         if(paginas === 3) {
-            await axios.put("/post", {
+            await axios.put("/ingles/post", {
                 email: profile.email,
                 teory: [
                   {
