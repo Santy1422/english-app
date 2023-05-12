@@ -30,7 +30,6 @@ const leer = () => {
     const synth = window.speechSynthesis;
     const text = profile?.palabras?.ingles[posicion] || '';
   
-    // Separación de sílabas utilizando hyphen
   
     const utterThis = new SpeechSynthesisUtterance(text);
     utterThis.lang = 'en-UK';

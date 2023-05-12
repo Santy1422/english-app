@@ -70,22 +70,17 @@ const userSchema = mongoose.Schema({
     type: Array
   },
   teory: {
-    title: {
-      type: Array,
+    type: Array,
+    items: {
+      type: Object,
+      properties: {
+        title: { type: String },
+        category: { type: String },
+        content: { type: String },
+        image: { type: String },
+      },
     },
-    category: {
-      type: Array,
-    },
-    content: {
-      type: Array,
-    },
-    image: {
-      type: Array
-    },
-    ejemplo: {
-      type: Array
-    }
-  }
+  },
 }, {
   timestamps: {
     createdAt: 'created_at',

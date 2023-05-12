@@ -69,11 +69,16 @@ const dispatch = useDispatch()
     try {
         if(paginas === 3) {
             await axios.put("/post", {
-                
                 email: profile.email,
-                title:  palabras.palabra ,
-                content: palabras.word,
-              }).then((scces) => {
+                teory: [
+                  {
+                    title: palabras.palabra,
+                    category: '', // Add category here if needed
+                    content: palabras.word,
+                    image: '', // Add image here if needed
+                  }
+                ]
+              }).then((success) => {
                 setPalabras({
                   palabra: "",
                   word: "",
@@ -81,8 +86,7 @@ const dispatch = useDispatch()
                   traslation: "",
                   ejemplo: "",
                 });
-          });
-
+              });
         }
       await axios.put("/ingles", {
         email: profile.email,
