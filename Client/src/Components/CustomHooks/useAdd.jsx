@@ -67,27 +67,7 @@ const dispatch = useDispatch()
   const agregar = async () => {
   
     try {
-        if(paginas === 3) {
-            await axios.put("/ingles/post", {
-                email: profile.email,
-                teory: [
-                  {
-                    title: palabras.palabra,
-                    category: '', // Add category here if needed
-                    content: palabras.word,
-                    image: '', // Add image here if needed
-                  }
-                ]
-              }).then((success) => {
-                setPalabras({
-                  palabra: "",
-                  word: "",
-                  spanishWord: "",
-                  traslation: "",
-                  ejemplo: "",
-                });
-              });
-        }
+      
       await axios.put("/ingles", {
         email: profile.email,
         palabra:  spanish ,
@@ -115,9 +95,38 @@ const dispatch = useDispatch()
       console.log(err);
     }
   };
+  const agregarPost = async () => {
+  
+    try {
+            await axios.put("/ingles/post", {
+                email: profile.email,
+                teory: [
+                  {
+                    title: palabras.palabra,
+                    category: '', // Add category here if needed
+                    content: palabras.word,
+                    image: '', // Add image here if needed
+                  }
+                ]
+              }).then((success) => {
+                setPalabras({
+                  palabra: "",
+                  word: "",
+                  spanishWord: "",
+                  traslation: "",
+                  ejemplo: "",
+                });
+              });
+        
+    
+
+    } catch(err) {
+      console.log(err);
+    }
+  };
 
     return {
-        changeInput,   agregar,   bulk,  autoCompletar,    spanish, setSpanish, english, setEnglish, ejemplo, setEjemplo, screen, setScreen, traslation, setTraslation, spanishWord, setSpanishWord, palabras, setPalabras
+        agregarPost,  changeInput,   agregar,   bulk,  autoCompletar,    spanish, setSpanish, english, setEnglish, ejemplo, setEjemplo, screen, setScreen, traslation, setTraslation, spanishWord, setSpanishWord, palabras, setPalabras
     }
     
 };

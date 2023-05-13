@@ -3,7 +3,7 @@ import { useAdd } from "./CustomHooks/useAdd";
 
 export const NewPost = () => {
 
-    const { palabras, setPalabras, changeInput,agregar } = useAdd()
+    const { palabras, setPalabras, changeInput,agregarPost } = useAdd()
     return(
         <>
         <div class="heading text-center font-bold text-2xl m-5 text-gray-800">New Post</div>
@@ -22,7 +22,7 @@ export const NewPost = () => {
     {/* <!-- buttons --> */}
     <div class="buttons flex">
       <div class="btn border border-gray-300 p-1 px-4 font-semibold cursor-pointer text-gray-500 ml-auto">Cancel</div>
-      <button onClick={() =>agregar()} class="btn border border-indigo-500 p-1 px-4 font-semibold cursor-pointer text-gray-200 ml-2 bg-indigo-500">Post</button>
+      <button onClick={() =>agregarPost()} class="btn border border-indigo-500 p-1 px-4 font-semibold cursor-pointer text-gray-200 ml-2 bg-indigo-500">Post</button>
     </div>
   </div>
         </>
