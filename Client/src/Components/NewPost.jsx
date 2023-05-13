@@ -1,17 +1,27 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { useAdd } from "./CustomHooks/useAdd";
-
+import SunEditor from 'suneditor-react';
+import 'suneditor/dist/css/suneditor.min.css'; // Import Sun Editor's CSS File
 export const NewPost = () => {
+    const sunEditorRef = useRef(null);
+    const [editorValue, setEditorValue] = useState("");
 
-    const { palabras, setPalabras, changeInput,agregarPost } = useAdd()
-    return(
+    const { palabras, setPalabras, changeInput,agregarPost, test } = useAdd(editorValue, sunEditorRef, setEditorValue)
+
+
+
+
+        return(
         <>
-        <div class="heading text-center font-bold text-2xl m-5 text-gray-800">New Post</div>
 
   <div class="editor mx-auto w-10/12 flex flex-col text-gray-800 border border-gray-300 p-4 shadow-lg max-w-2xl">
     <input name="palabra" value={ palabras.palabra} onChange={(e) => changeInput(e)} class="title bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" spellcheck="false" placeholder="Title" type="text"/>
-    <textarea name="word" value={ palabras.word} onChange={(e) => changeInput(e)} class="description bg-gray-100 sec p-3 h-60 border border-gray-300 outline-none" spellcheck="false" placeholder="Describe everything about this post here"></textarea>
-    
+    {/* <textarea name="word" value={ palabras.word} onChange={(e) => changeInput(e)} class="description bg-gray-100 sec p-3 h-60 border border-gray-300 outline-none" spellcheck="false" placeholder="Describe everything about this post here"></textarea> */}
+    <SunEditor ref={sunEditorRef}
+  onChange={(content) => test(content)}
+  setContents={editorValue}  />
+
+
     {/* <!-- icons --> */}
     <div class="icons flex text-gray-500 m-2">
       <svg class="mr-2 cursor-pointer hover:text-gray-700 border rounded-full p-1 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>

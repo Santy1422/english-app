@@ -1,8 +1,13 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import axios from "axios";
+import SunEditor from 'suneditor-react';
+
 import { useDispatch, useSelector } from "react-redux";
 import { Change, InputRegister } from "../../redux/actions";
-export const useAdd = (newCard, setNewCard, paginas, e) => {
+export const useAdd = (newCard, setNewCard, paginas, e, sunEditorRef) => {
+
+    const [editorValue, setEditorValue] = useState("");
+
     const profile = useSelector((state) => state.profile)
 const dispatch = useDispatch()
     const [spanish, setSpanish] = useState([]);
@@ -14,18 +19,22 @@ const dispatch = useDispatch()
     const [spanishWord, setSpanishWord] = useState("")
     const [palabras, setPalabras] = useState({ //para los post palabras es titulo word descripcion imagen imagen ejemplo categoria
       palabra:  spanishWord ? spanishWord : "",
-      word: "",
+      word:  "",
       image: "",
       ejemplo: ""
   })    
 
-  const changeInput = (e) => {
+
+  const changeInput = (e, content) => {
+    console.log(content)
     setPalabras({
       ...palabras,
       [e.target.name]: e.target.value,
     });
     setTraslation(e.target.value);
+    
   };
+
   const autoCompletar = async (es) => {
     try {
       // 
@@ -98,19 +107,19 @@ const dispatch = useDispatch()
   const agregarPost = async () => {
   
     try {
+        console.log(editorValue)
             await axios.put("/ingles/post", {
                 email: profile.email,
                 teory: [
                   {
                     title: palabras.palabra,
                     category: '', // Add category here if needed
-                    content: palabras.word,
-                    image: '', // Add image here if needed
+                    content: editorValue ? editorValue : "",
+                    image: palabras.image && palabras.image || "https://4.bp.blogspot.com/-vCV_zeA80SA/WYHNPcWbk2I/AAAAAAAADiA/SCCJf2BJWSgY1GyQI2ZEGwYB3wxQ1Ll5gCLcBGAs/w1600/1200x630bb.jpg", // Add image here if needed
                   }
                 ]
               }).then((success) => {
                 dispatch(InputRegister(success.data));
-
                 setPalabras({
                   palabra: "",
                   word: "",
@@ -126,9 +135,11 @@ const dispatch = useDispatch()
       console.log(err);
     }
   };
-
+  const test = (content) => { 
+    setEditorValue(content)
+} 
     return {
-        agregarPost,  changeInput,   agregar,   bulk,  autoCompletar,    spanish, setSpanish, english, setEnglish, ejemplo, setEjemplo, screen, setScreen, traslation, setTraslation, spanishWord, setSpanishWord, palabras, setPalabras
+        sunEditorRef, test,    agregarPost,  changeInput,   agregar,   bulk,  autoCompletar,    spanish, setSpanish, english, setEnglish, ejemplo, setEjemplo, screen, setScreen, traslation, setTraslation, spanishWord, setSpanishWord, palabras, setPalabras
     }
     
 };
