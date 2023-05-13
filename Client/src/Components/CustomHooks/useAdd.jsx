@@ -109,6 +109,8 @@ const dispatch = useDispatch()
                   }
                 ]
               }).then((success) => {
+                dispatch(InputRegister(success.data));
+
                 setPalabras({
                   palabra: "",
                   word: "",
