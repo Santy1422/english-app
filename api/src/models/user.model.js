@@ -4,6 +4,14 @@ const { toJSON/* , paginate */ } = require('./plugins');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
+const teorySchema = new mongoose.Schema({
+  _id: { type: mongoose.Schema.Types.ObjectId, auto: true },
+  title: { type: String },
+  category: { type: String },
+  content: { type: String },
+  image: { type: String },
+});
+
 const userSchema = mongoose.Schema({
   type: {
     type: String,
@@ -69,18 +77,7 @@ const userSchema = mongoose.Schema({
   vistas: {
     type: Array
   },
-  teory: {
-    type: Array,
-    items: {
-      type: Object,
-      properties: {
-        title: { type: String },
-        category: { type: String },
-        content: { type: String },
-        image: { type: String },
-      },
-    },
-  },
+  teory: [teorySchema],
 }, {
   timestamps: {
     createdAt: 'created_at',
@@ -102,7 +99,7 @@ userSchema.pre('save', async function (next) {
     user.password = await bcrypt.hash(user.password, 8)
   }
   next()
-})
+});
 
 userSchema.methods.generateAuthToken = async function () {
   const user = this
@@ -110,7 +107,7 @@ userSchema.methods.generateAuthToken = async function () {
   user.tokens = user.tokens.concat({ token })
   await user.save()
   return token
-}
+};
 
 userSchema.statics.findByCredentials = async (email, password) => {
   const user = await User.findOne({ email })
@@ -122,7 +119,7 @@ userSchema.statics.findByCredentials = async (email, password) => {
     throw new Error({ error: 'Invalid login credentials' })
   }
   return user
-}
+};
 
 const User = mongoose.model('User', userSchema);
 

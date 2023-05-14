@@ -8,6 +8,7 @@ import { CleanProfile } from "../redux/actions";
 import  axios  from "axios";
 import { Menu } from "./Menu";
 import { NewPost } from "./NewPost";
+import { PostCard } from "./PostCard";
 
 export const Panel = () =>{
   const dispatch = useDispatch()
@@ -114,6 +115,9 @@ return(
     )
   ) : paginas === 3 && !sidebarOpen ? (
     <NewPost paginas={paginas} />
+  ) : 
+  paginas === 4 && !sidebarOpen ? (
+    <PostCard paginas={paginas} />
   ) : null
 }
           

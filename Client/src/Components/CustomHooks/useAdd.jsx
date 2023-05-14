@@ -107,7 +107,6 @@ const dispatch = useDispatch()
   const agregarPost = async () => {
   
     try {
-        console.log(editorValue)
             await axios.put("/ingles/post", {
                 email: profile.email,
                 teory: [
