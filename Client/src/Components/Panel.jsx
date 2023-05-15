@@ -48,7 +48,6 @@ export const Panel = (props) =>{
 const [newCard, setNewCard] = useState(true)
 const [movil, setMovil] = useState(false)
 const [sidebarOpen, setSidebarOpen] = useState(false);
-console.log(props.articulo[0])
 function handleSidebarToggle() {
   setSidebarOpen(!sidebarOpen);
 }
@@ -122,12 +121,13 @@ return(
   paginas === 5 && !sidebarOpen ? (
 <>
 <h3 class="text-black mb-1 text-sm font-bold">
-  {props.articulo && props?.articulo[0]?.title}</h3>
+{props.articulo && props?.articulo[0]?.title}
+</h3>
   <hr></hr>
   <p
                   className="text-gray-700 text-base"
                   dangerouslySetInnerHTML={{
-                    __html: props.articulo &&  props?.articulo[0]?.content
+                    __html: props.articulo && props?.articulo[0]?.content
                   }}
                 ></p></>
   ) : null
