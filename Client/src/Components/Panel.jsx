@@ -9,14 +9,14 @@ import  axios  from "axios";
 import { Menu } from "./Menu";
 import { NewPost } from "./NewPost";
 import { PostCard } from "./PostCard";
+import { PostPage } from "./PostPage";
 
-export const Panel = () =>{
+export const Panel = (props) =>{
   const dispatch = useDispatch()
   const profile = useSelector((state) => state.profile)
   const [changeCard, setChangeCard] = useState(true)
   const [paginas, setPaginas] = useState(1)
   const history = useHistory()  
-console.log(profile)
   const logout = () => {
     localStorage.clear("accessToken");
     const tokenUser = localStorage.getItem("accessToken");
@@ -44,11 +44,11 @@ console.log(profile)
   }
 
   };
-
+ 
 const [newCard, setNewCard] = useState(true)
 const [movil, setMovil] = useState(false)
 const [sidebarOpen, setSidebarOpen] = useState(false);
-
+console.log(props.articulo[0])
 function handleSidebarToggle() {
   setSidebarOpen(!sidebarOpen);
 }
@@ -117,7 +117,19 @@ return(
     <NewPost paginas={paginas} />
   ) : 
   paginas === 4 && !sidebarOpen ? (
-    <PostCard paginas={paginas} />
+    <PostCard paginas={paginas} setPaginas={setPaginas} />
+  ) :
+  paginas === 5 && !sidebarOpen ? (
+<>
+<h3 class="text-black mb-1 text-sm font-bold">
+  {props.articulo[0].title}</h3>
+  <hr></hr>
+  <p
+                  className="text-gray-700 text-base"
+                  dangerouslySetInnerHTML={{
+                    __html: props.articulo[0].content
+                  }}
+                ></p></>
   ) : null
 }
           

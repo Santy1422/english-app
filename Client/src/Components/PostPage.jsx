@@ -1,13 +1,20 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { Panel } from "./Panel";
 
 export const PostPage = () => {
-const profile = useSelector(state => state.profile)
-const article = useParams()
-console.log(article)
+    const { id } = useParams();
+    const profile = useSelector(state => state.profile);
+    
+    let articulo = profile?.teory?.filter((ele) => ele?._id === id);
+    console.log(articulo);
+
     return(
 <>
+<Panel articulo = { articulo }/>
+
+
 </>
     )
 

@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 
-export const PostCard = () => {
+export const PostCard = (props) => {
   const profile = useSelector((state) => state.profile);
 
   const limitContent = (content, limit) => {
@@ -17,7 +17,7 @@ export const PostCard = () => {
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 max-w-6xl">
         {profile?.teory?.map((ele, index) => (
-        <Link to={`/post/${ele?.id}`}>  <div className="max-w-sm w-full lg:max-w-full lg:flex" key={index}>
+        <Link to={`/post/${ele?._id}`}>  <div onClick={()=> props.setPaginas(5)} className="max-w-sm w-full lg:max-w-full lg:flex" key={index}>
             <div className="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
               <div className="mb-8">
                 <p className="text-sm text-gray-600 flex items-center">
