@@ -122,12 +122,12 @@ return(
   paginas === 5 && !sidebarOpen ? (
 <>
 <h3 class="text-black mb-1 text-sm font-bold">
-  {props.articulo[0].title}</h3>
+  {props?.articulo[0]?.title}</h3>
   <hr></hr>
   <p
                   className="text-gray-700 text-base"
                   dangerouslySetInnerHTML={{
-                    __html: props.articulo[0].content
+                    __html: props?.articulo[0]?.content
                   }}
                 ></p></>
   ) : null
