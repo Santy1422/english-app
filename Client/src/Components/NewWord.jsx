@@ -18,16 +18,16 @@ export const NewWord = ({ newCard, setNewCard, paginas }) => {
 
 
   return (
-    <div class="relative max-w-md mx-auto md:max-w-2xl min-w-0 break-words bg-gray-800 w-full mb-6 shadow-lg rounded-xl mt-20 my-0">
+    <div class="relative max-w-md mx-auto md:max-w-2xl min-w-0 break-words bg-gray-800 w-full mb-6 shadow-lg rounded-xl mt-10">
       <div>
       </div>
-      <div class="relative px-4 py-10 bg-gray-800 shadow-lg sm:rounded-3xl sm:p-20">
+      <div class="relative px-4  bg-gray-800 shadow-lg sm:rounded-3xl sm:p-20">
         <div class="max-w-md mx-auto">
           <div>
             <h1 class="text-2xl font-semibold  text-white">Agrega nuevas palabras</h1>
           </div>
           <div class="divide-y divide-gray-200">
-            <div class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
+            <div class="py-3 text-base leading-6  text-gray-700 sm:text-lg sm:leading-7">
 
 
             </div>
