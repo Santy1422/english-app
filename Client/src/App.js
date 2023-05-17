@@ -25,6 +25,7 @@ function App() {
       {location.pathname !== "/" && <Panel/>}
 
       <Route exact path="/" component={Home} />
+      <Route exact path="/post/:id" component={PostPage} />
 
       </Switch>
     </div>
