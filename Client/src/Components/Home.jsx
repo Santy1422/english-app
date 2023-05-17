@@ -1,10 +1,10 @@
 import React from "react";
 import {  useLogin } from "./CustomHooks/useLogin";
 import image from "../image.png"
-export const Home = () =>{
+export const Home = (props) =>{
 
 
-const {changeInput, handleSubmit, user, register, setRegister, incorrecto, setUser} = useLogin()
+const {changeInput, handleSubmit, user, register, setRegister, incorrecto, setUser} = useLogin(props.setPaginas)
 const invitado = () =>{
   setUser({
     ...user,

@@ -13,49 +13,47 @@ export const PostCard = (props) => {
   };
   return (
     <>
+    <section class="bg-white dark:bg-gray-900">
+  <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+      <div class="mx-auto max-w-screen-sm text-center lg:mb-16 mb-8">
+          <h2 class="mb-4 text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Articles</h2>
+      </div> 
+      </div>
+     
           <div className="flex justify-center">
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 max-w-6xl">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 max-w-3xl">
         {profile?.teory?.map((ele, index) => (
         <Link to={`/post/${ele?._id}`}>  <div onClick={()=> props.setPaginas(5)} className="max-w-sm w-full lg:max-w-full lg:flex" key={index}>
-            <div className="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
-              <div className="mb-8">
-                <p className="text-sm text-gray-600 flex items-center">
-                  <svg
-                    className="fill-current text-gray-500 w-3 h-3 mr-2"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                  >
-                    <path d="M4 8V6a6 6 0 1 1 12 0v2h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2h1zm5 6.73V17h2v-2.27a2 2 0 1 0-2 0zM7 6v2h6V6a3 3 0 0 0-6 0z" />
-                  </svg>
-                  {ele?.category && ele?.category || "category"}
-                </p>
-                <div className="text-gray-900 font-bold text-xl mb-2">
-                  {ele?.title}
-                  </div>
-                <p
+           
+           
+           <article class="group">
+  <img
+    alt="Lava"
+    src={ele?.image}
+    class="h-56 w-full rounded-xl object-cover shadow-xl transition group-hover:grayscale-[50%]"
+  />
+
+  <div class="p-4">
+    <a href="#">
+      <h3 class="text-lg font-medium text-gray-900">
+      {ele?.title}
+      </h3>
+    </a>
+
+    {/* <p
                   className="text-gray-700 text-base"
                   dangerouslySetInnerHTML={{
-                    __html: limitContent(ele?.content, 150),
+                    __html: limitContent(ele?.content, 50),
                   }}
-                ></p>
-              </div>
-              <div className="flex items-center">
-                <img
-                  className="w-10 h-10 rounded-full mr-4"
-                  src={ele?.image}
-                  alt="Avatar of Jonathan Reinink"
-                />
-                <div className="text-sm">
-                  <p className="text-gray-900 leading-none">{profile?.name}</p>
-                  <p className="text-gray-600">Aug 18</p>
-                </div>
-              </div>
-            </div>
+                ></p> */}
+  </div>
+</article>
           </div></Link>
         ))}
       </div>
       </div>
+      </section>
 
     </>
   );

@@ -8,7 +8,6 @@ export const PostPage = () => {
     const profile = useSelector(state => state.profile);
     
     let articulo = profile?.teory?.filter((ele) => ele?._id === id);
-    console.log(articulo);
 
     return(
 <>

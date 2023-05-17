@@ -1,12 +1,14 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { ProfileWords } from "./ProfileWords";
 export  const Profile = () =>{
   const profile = useSelector((state) => state.profile)
 
   const token = localStorage.getItem("accessToken");
 let photo =  "https://img-19.ccm.net/4KM3uefjhLzfImuIf3ZtMyNGmes=/450x/smart/45d7788dc1474c02bd6ff6224672765a/ccmcms-esccm/34935311.png"
-  return(
+  
+
+return(
   <div>
         <img
     src={photo}

@@ -13,6 +13,7 @@ const dispatch = useDispatch()
     const [spanish, setSpanish] = useState([]);
     const [english, setEnglish] = useState([]);
     const [ejemplo, setEjemplo] = useState([]);
+    const [clean, setClean] = useState(false);
 
     const [screen, setScreen] = useState([]);
     const [traslation, setTraslation] = useState("")
@@ -23,7 +24,6 @@ const dispatch = useDispatch()
       image: "",
       ejemplo: ""
   })    
-
 
   const changeInput = (e, content) => {
     console.log(content)
@@ -119,6 +119,7 @@ const dispatch = useDispatch()
                 ]
               }).then((success) => {
                 dispatch(InputRegister(success.data));
+                setClean(!clean)
                 setPalabras({
                   palabra: "",
                   word: "",
@@ -138,7 +139,7 @@ const dispatch = useDispatch()
     setEditorValue(content)
 } 
     return {
-        sunEditorRef, test,    agregarPost,  changeInput,   agregar,   bulk,  autoCompletar,    spanish, setSpanish, english, setEnglish, ejemplo, setEjemplo, screen, setScreen, traslation, setTraslation, spanishWord, setSpanishWord, palabras, setPalabras
+      clean, sunEditorRef, test,    agregarPost,  changeInput,   agregar,   bulk,  autoCompletar,    spanish, setSpanish, english, setEnglish, ejemplo, setEjemplo, screen, setScreen, traslation, setTraslation, spanishWord, setSpanishWord, palabras, setPalabras
     }
     
 };

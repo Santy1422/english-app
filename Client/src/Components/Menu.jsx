@@ -1,11 +1,13 @@
 import React from "react";
+import { useHistory } from 'react-router-dom';
 
 export const Menu = ({setPaginas, sidebarOpen, setSidebarOpen}) =>{
+    const history = useHistory();
 
-    const aux = (number) =>{
-        setSidebarOpen && setSidebarOpen(!sidebarOpen)
-        setPaginas(number)
-    }
+    const aux = (number) => {
+        setSidebarOpen && setSidebarOpen(!sidebarOpen);
+        setPaginas(number);
+      }
     return(
         <div class="flex flex-col flex-1 overflow-y-auto">
 
