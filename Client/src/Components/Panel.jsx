@@ -10,14 +10,14 @@ import { Menu } from "./Menu";
 import { NewPost } from "./NewPost";
 import { PostCard } from "./PostCard";
 import { PostPage } from "./PostPage";
+import { useLocation, useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 export const Panel = (props) =>{
   const dispatch = useDispatch()
-  const profile = useSelector((state) => state.profile)
   const [changeCard, setChangeCard] = useState(true)
   const [paginas, setPaginas] = useState(1)
   const history = useHistory()  
-  console.log(props)
+const location = useLocation()
   const logout = () => {
     localStorage.clear("accessToken");
     const tokenUser = localStorage.getItem("accessToken");
@@ -99,40 +99,28 @@ return(
       setSidebarOpen={setSidebarOpen}
       sidebarOpen={sidebarOpen}
     />
-  ) : paginas === 0 && !sidebarOpen ? (
+  ) : location.pathname === "/dashboard" ? (
     <Profile movil={movil} />
-  ) : paginas === 1 && !sidebarOpen ? (
+  ) : location.pathname === "/dashboard/card" && !sidebarOpen ? (
     <Cards
       changeCard={changeCard}
       setChangeCard={setChangeCard}
       newCard={newCard}
       setPaginas={setPaginas}
     />
-  ) : paginas === 2 ? (
+  ) :  location.pathname === "/dashboard/addCard" ? (
     !sidebarOpen && (
    
       <NewWord newCard={newCard} setNewCard={setNewCard} paginas={paginas} />
     )
-  ) : paginas === 3 && !sidebarOpen ? (
+  ) :  location.pathname === "/post/addPost" && !sidebarOpen ? (
     <NewPost paginas={paginas} />
   ) : 
-  paginas === 4 && !sidebarOpen ? (
+  location.pathname === "/post" && !sidebarOpen ? (
     <PostCard paginas={paginas} setPaginas={setPaginas} />
   ) :
-  paginas === 5 && !sidebarOpen ? (
-<>
-<section class="bg-white dark:bg-gray-900 py-1">
-  <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
-      <div class="mx-auto max-w-screen-sm text-center lg:mb-16 mb-8">
-          <h2 class="mb-4 text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">{props.articulo && props?.articulo[0]?.title}
-</h2>
-
-  <hr></hr>
-  <p className="text-gray-700 text-base text-left font-light text-gray-500 sm:text-xl " dangerouslySetInnerHTML={{ __html: props.articulo && props?.articulo[0]?.content }}></p>
-</div>
-</div>
-</section>
-</>
+ !sidebarOpen ? (
+<PostPage/>
   ) : null
 }
           

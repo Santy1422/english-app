@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 import {  useLogin } from "./CustomHooks/useLogin";
 import image from "../image.png"
 export const Home = (props) =>{
@@ -13,6 +13,9 @@ const invitado = () =>{
   })
 }
 
+useEffect(()=> {
+
+})
     return(
 
 <div class="min-h-screen bg-gray-800 flex flex-col justify-center sm:py-12">

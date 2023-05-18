@@ -42,7 +42,7 @@ const handleSubmit = async () =>{
   );
   localStorage.setItem("accessToken", response?.data?.token)
 dispatch(InputRegister(response.data.user))
-  history.push("/userPanel") 
+  history.push("/dashboard") 
     }
 catch(err){
   setIncorrecto(!incorrecto)
