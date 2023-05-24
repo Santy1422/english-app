@@ -4,11 +4,12 @@ import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { Panel } from "./Panel";
 
 export const PostPage = () => {
-    const { id } = useParams();
+    let { id } = useParams();
     const profile = useSelector(state => state.profile);
     
-    let articulo = profile?.teory?.filter((ele) => ele?.id == id);
-    console.log(id)
+    let articulo = profile?.teory?.filter((ele) =>  ele?.id == id);
+    let post = articulo.find((ele) => ele.id == id)
+    console.log(post)
     return(
 <>
 <section class="bg-white dark:bg-gray-900 py-1">

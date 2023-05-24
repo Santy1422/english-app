@@ -26,7 +26,7 @@ function App() {
       {location.pathname !== "/" && <Panel/>}
 
       <Route exact path="/" component={Home} />
-      <Route exact path="/post/:id" component={PostPage} />
+      <Route  path="/post/:id" component={PostPage} />
       <Route exact path="/post" component={PostCard} />
       <Route exact path="/dashboard" component={Panel} />
       <Route exact path="/dashboard/card" component={Cards} />

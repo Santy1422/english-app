@@ -58,7 +58,7 @@ const dispatch = useDispatch()
       }
     })
   
-    setScreen([...screen, response.data.photos[0].src.medium]);
+    setScreen([...screen, response.data?.photos[0]?.src?.medium && response.data?.photos[0]?.src?.medium || "https://cdn.pixabay.com/photo/2015/11/03/08/56/question-mark-1019820_640.jpg"]);
     setEnglish([...english, palabras.word]);
     setSpanish([...spanish, palabras.palabra ? palabras.palabra : spanishWord]);
     setEjemplo([...ejemplo, palabras.ejemplo]);

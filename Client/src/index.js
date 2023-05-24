@@ -6,11 +6,13 @@ import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom"
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { Provider } from 'react-redux';
-import store from './redux/store';
+import {store, persistor }  from './redux/store';
+import { PersistGate } from 'redux-persist/integration/react';
 ReactDOM.render(
 
   <React.StrictMode>
     <Provider store = {store}>
+    <PersistGate loading={null} persistor={persistor}>
 
     <GoogleOAuthProvider clientId="302924800145-ru90babs28qf17asr2l76oij0rdvdt2m.apps.googleusercontent.com">
 
@@ -19,6 +21,7 @@ ReactDOM.render(
     </BrowserRouter>
 
     </GoogleOAuthProvider>
+    </PersistGate>
     </Provider>
 
   </React.StrictMode>,

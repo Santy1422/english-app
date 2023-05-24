@@ -1,14 +1,23 @@
-import {createStore, applyMiddleware, compose} from "redux";
-import thunk from "redux-thunk";
-import rootReducer from "./reducer.js"
+import { createStore, applyMiddleware, compose } from 'redux';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage'; // Importa el almacenamiento que deseas utilizar (por ejemplo, el almacenamiento local)
+import thunk from 'redux-thunk';
+import rootReducer from './reducer.js';
 
-const composeEnhancers = (
-typeof window !== "undefined" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
+const persistConfig = {
+  key: 'root', // Puedes especificar una clave personalizada para tu almacenamiento persistente
+  storage, // Almacenamiento que deseas utilizar
+};
 
-const store = createStore(
-  rootReducer,
-  composeEnhancers(applyMiddleware(thunk))
-)
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
+const composeEnhancers =
+  typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    : compose;
 
-export default store;
+const enhancer = composeEnhancers(applyMiddleware(thunk));
+const store = createStore(persistedReducer, enhancer);
+const persistor = persistStore(store);
+
+export { store, persistor };

@@ -5,7 +5,6 @@ import 'reactjs-popup/dist/index.css';
 import { Botones } from "./Botones";
 import { Estadistics } from "./Estadistics";
 import { NextPrev } from "./NextPrev";
-
 export const Cards = ({setChangeCard, changeCard, setPaginas}) =>{
 
   const { posicion, español, setEspañol, next, palabraEspañol,ejemplo, palabraIngles, deleteWord, leer, registrar, setRegistrar,sendResults, vistas, saveWords, setSaveWords} = useCard(setChangeCard, changeCard)
@@ -24,11 +23,10 @@ export const Cards = ({setChangeCard, changeCard, setPaginas}) =>{
         <div class="relative max-w-md mx-auto md:max-w-2xl min-w-0 break-words bg-gray-800 w-full mb-6 shadow-lg rounded-xl mt-20 my-0">
           <div class="px-6">
             <Estadistics posicion={posicion} profile={profile} token={token} vistas={vistas} />
-      
-            <div class="text-center mt-2">
+             <div class="text-center mt-2">
               {
                 palabraEspañol  &&
-                <h3 class="text-2xl text-white font-bold leading-normal mt-16">
+                <h3 onClick={() => leer()} class="text-2xl text-white font-bold leading-normal mt-16">
                   {español && palabraEspañol || palabraIngles}
                 </h3>
                 ||
@@ -85,6 +83,7 @@ export const Cards = ({setChangeCard, changeCard, setPaginas}) =>{
 <button class="btn btn-primary bg-white sm:mx md:mx-20 text-black" onClick={() => sendResults()}>Guardar resultados</button> ||null
 }
 
+     
       </div>   
 
 

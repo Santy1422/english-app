@@ -6,9 +6,6 @@ import { Change, InputRegister } from "../redux/actions";
 import { useAdd } from "./CustomHooks/useAdd";
 
 export const NewWord = ({ newCard, setNewCard, paginas }) => {
-
-  const profile = useSelector((state) => state.profile)
-  const dispatch = useDispatch()
   const {
     agregar, spanish, setSpanish, english, setEnglish, ejemplo, setEjemplo, screen, setScreen, traslation, setTraslation, spanishWord, setSpanishWord, palabras, setPalabras
     , autoCompletar, bulk, changeInput } = useAdd( newCard, setNewCard, paginas)

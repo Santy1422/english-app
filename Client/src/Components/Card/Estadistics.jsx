@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Estadistics = ({profile, posicion, token, vistas}) =>{
+export const Estadistics = ({profile, posicion, vistas}) =>{
 
     return(
         <div>
