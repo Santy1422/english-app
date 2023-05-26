@@ -25,43 +25,26 @@ const next = () => {
 } 
 
 
+const leer = async (ejemplo) => {
+  const synth = window.speechSynthesis;
+  const text = profile?.palabras?.ingles[posicion] || '';
 
-const leer = (ejemplo) => {
-    const synth = window.speechSynthesis;
-    const text = profile?.palabras?.ingles[posicion] || '';
-    
-    const utterThis = new SpeechSynthesisUtterance(text);
-    utterThis.lang = 'en-UK';
-    utterThis.rate = 0.8; // Ajusta la velocidad según sea necesario (rango: 0.1 - 10)
-    utterThis.pitch = 0.7; // Ajusta el tono según sea necesario (rango: 0 - 2)
-    utterThis.volume = 0.8; // Ajusta el volumen según sea necesario (rango: 0 - 1)
-    
-    const punctuatedText = addPunctuationAndEmphasis(text);
-    utterThis.text = punctuatedText;
-    
-    applyPhoneticAdjustments(utterThis);
+
+  const utterThis = new SpeechSynthesisUtterance(text);
+  const voices = synth.getVoices()
+
+  utterThis.lang = 'en-UK';
+  utterThis.rate = 0.8; // Disminuye la velocidad según sea necesario (rango: 0.1 - 10)
+  utterThis.pitch = 1.2; // Ajusta el tono según sea necesario (rango: 0 - 2)
   
-    synth.speak(utterThis);
-  };
+  utterThis.volume = 1.0; // Aumenta el volumen según sea necesario (rango: 0 - 1)
+  utterThis.voice = voices[6]
+  synth.speak(utterThis);
+};
+
+
   
-  const addPunctuationAndEmphasis = (text) => {
-    const punctuatedText = text.replace('.', '. <break time="500ms"/>');
-    // Agrega una pausa de 500ms después de cada punto
-    
-    return punctuatedText;
-  };
-  
-  const applyPhoneticAdjustments = (utterance) => {
-    // Verifica si la API utilizada admite ajustes fonéticos personalizados
-    // Si es compatible, utiliza reglas fonéticas o transcripciones fonéticas
-    // para corregir la pronunciación de palabras específicas
-    
-    // Ejemplo de ajuste fonético personalizado para la palabra "example"
-    if (utterance.text.includes('example')) {
-      // Reemplaza la pronunciación predeterminada con una pronunciación personalizada
-      utterance.text = utterance.text.replace('example', 'igzampl');
-    }
-  };
+
 const prev = () => {
     if(posicion === 0) setPosicion(profile?.palabras?.ingles.length -1)
     else{

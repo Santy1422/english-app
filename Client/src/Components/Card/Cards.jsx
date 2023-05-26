@@ -1,13 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useCard } from "../CustomHooks/useCard";
 import {  useSelector } from "react-redux";
 import 'reactjs-popup/dist/index.css';
 import { Botones } from "./Botones";
 import { Estadistics } from "./Estadistics";
 import { NextPrev } from "./NextPrev";
+import Say, { SayButton } from "react-say-fork"
 export const Cards = ({setChangeCard, changeCard, setPaginas}) =>{
 
   const { posicion, español, setEspañol, next, palabraEspañol,ejemplo, palabraIngles, deleteWord, leer, registrar, setRegistrar,sendResults, vistas, saveWords, setSaveWords} = useCard(setChangeCard, changeCard)
+  const selector = useCallback(voices => [...voices].find(v => v.lang === 'zh-HK'), []);
 
     const profile = useSelector((state) => state.profile)
     useEffect(() =>{
@@ -73,6 +75,7 @@ export const Cards = ({setChangeCard, changeCard, setPaginas}) =>{
 {palabraEspañol &&
       <NextPrev next={next}/> || null
 }
+
 {saveWords &&
                                     <><Botones next={next} palabraEspañol={palabraEspañol} /><br></br></> }
 
