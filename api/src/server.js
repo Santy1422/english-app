@@ -13,16 +13,16 @@ require('dotenv').config();
 
 
 //#region  localhost  
-// mongoose.set('strictQuery', true)
-// const DATABASE_URL = process.env.DATABASE_URL ? process.env.DATABASE_URL : 'mongodb://localhost:27017';
-// const DATABASE_NAME = process.env.DATABASE_NAME || 'findahome';
-// async function main() {//conecta mongoose a la database
-//          await mongoose.connect(DATABASE_URL+"/"+DATABASE_NAME);
-// }
+mongoose.set('strictQuery', true)
+const DATABASE_URL = process.env.DATABASE_URL ? process.env.DATABASE_URL : 'mongodb://localhost:27017';
+const DATABASE_NAME = process.env.DATABASE_NAME || 'findahome';
+async function main() {//conecta mongoose a la database
+         await mongoose.connect(DATABASE_URL+"/"+DATABASE_NAME);
+}
 // #region  MONGOOSE  
 
 // deploy
-let conexion = "mongodb://mongo:bryxl0WFeD3IetwBzAIc@containers-us-west-28.railway.app:6726"
+// let conexion = "mongodb://mongo:bryxl0WFeD3IetwBzAIc@containers-us-west-28.railway.app:6726"
 
 async function main() {//conecta mongoose a la database
          await mongoose.connect(conexion);
@@ -70,3 +70,4 @@ const create = async () => {
 module.exports = {
   create
 };
+
